@@ -32,7 +32,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1580817687085">
+  <link rel="stylesheet" href="/css/style.css?v=1580820540469">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -219,19 +219,19 @@
 
   
   <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '',
-        clientSecret: '',
-        id: window.location.pathname,
-        repo: '',
-        owner: 'ChiseLee',
-        admin: 'ChiseLee'
-    })
-    gitalk.render('gitalk')
+    <div id="gitment"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'ChiseLee', // 你的 GitHub ID
+    repo: 'ChiseLee.github.io', // 存储评论的 repo
+    oauth: {
+        client_id: '50cd9cdd904500c7d00c', // 你的 client ID
+        client_secret: '6451e686fd6240a6d85fa179c7b3352f5fec49e5' // 你的 client secret
+    },
+})
+gitment.render('gitment')
 </script>
 </section>
 </div>
@@ -248,7 +248,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1580817687087"></script>
+<script src="/js/app.js?v=1580820540471"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
