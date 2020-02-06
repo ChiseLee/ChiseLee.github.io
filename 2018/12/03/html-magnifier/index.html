@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>HTML放大镜的一种实现及原理讲解（js） - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="效果预览上下方的宽度和高度指的是图片内可移动滑块的长宽，下文以‘放大镜’来称呼该滑块。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML放大镜的一种实现及原理讲解（js）">
+<meta property="og:url" content="https://chiselee.github.io/2018/12/03/html-magnifier/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="效果预览上下方的宽度和高度指的是图片内可移动滑块的长宽，下文以‘放大镜’来称呼该滑块。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-9b112147796fa5c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-1f27a54e901dca20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-12-03T12:31:16.000Z">
+<meta property="article:modified_time" content="2020-02-06T07:49:16.348Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-9b112147796fa5c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911436">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>HTML放大镜的一种实现及原理讲解（js）</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2018年12月03日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理讲解"><span class="toc-text">原理讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS部分"><span class="toc-text">CSS部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS部分"><span class="toc-text">JS部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码"><span class="toc-text">完整代码</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://upload-images.jianshu.io/upload_images/13713347-9b112147796fa5c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="预览.png"><br>上下方的宽度和高度指的是图片内可移动滑块的长宽，下文以‘放大镜’来称呼该滑块。<a id="more"></a></p>
+<p><strong>基本功能</strong></p>
+<ul>
+<li>移动放大镜来选择需要放大的区域。</li>
+<li>可以根据需求调整放大镜尺寸和倍数，默认放大镜尺寸为50px*50px，放大倍数为2倍。</li>
+<li>上下滑动鼠标滚轮来放大（缩小）放大镜尺寸。</li>
+<li>下方实时显示放大镜当前尺寸和放大倍数。</li>
+</ul>
+<p>eg: 调整放大镜大小来显示一行英文<br><img src="https://upload-images.jianshu.io/upload_images/13713347-1f27a54e901dca20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="原理讲解"><a href="#原理讲解" class="headerlink" title="原理讲解"></a>原理讲解</h2><h3 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h3><pre><code>&lt;body&gt;
+    &lt;div id=&quot;parent&quot;&gt;
+        &lt;div id=&quot;setting&quot;&gt;
+            &lt;span id=&quot;set&quot;&gt;Setting&lt;/span&gt; &lt;span&gt;宽:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;mgfW&quot;&gt;&lt;span&gt;高:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;mgfH&quot;&gt;&lt;span&gt;倍数:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;times&quot;&gt;
+            &lt;input type=&quot;button&quot; value=&quot;确认&quot; id=&quot;sure&quot;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;curPic&quot;&gt;
+            &lt;div id=&quot;mgf&quot;&gt;&lt;/div&gt;
+            &lt;img src=&quot;./0.jpg&quot; /&gt;
+        &lt;/div&gt;
+        &lt;p id=&quot;inF&quot;&gt;当前宽度：&lt;span id =&quot;curW&quot;&gt;&lt;/span&gt; 当前高度：&lt;span id=&quot;curH&quot;&gt;&lt;/span&gt; 当前倍数：&lt;span id=&quot;curT&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+        &lt;div id=&quot;boxEnlarge&quot;&gt;
+            &lt;img src=&quot;./0.jpg&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre><h3 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h3><pre><code>#parent{
+    position: relative;
+    margin: 50px auto;
+}
+#setting{
+    position: absolute;
+    width: 400px;
+    top:20px;
+    left: 50px;
+    text-align: center;
+    font-family: SimSun;
+}
+#inF{
+    position: absolute;
+    left: 50px;
+    width: 400px;
+    top: 440px;
+    text-align: center;
+    font-family: Simsun;
+}
+#curW, #curH, #curT{
+    color: blue;
+}
+#set{
+    font-weight: bold; 
+    font-style: italic;
+}
+#sure{
+    font-family: Simsun;
+    color:red;
+}
+#mgfH, #mgfW, #times{
+    width: 50px;
+}
+#curPic{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+#curPic:hover{
+    cursor: move;
+}
+#curPic img{
+    width: 400px;
+    height: 400px;
+}
+#mgf{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 230, 93, 0.3);
+}
+#boxEnlarge{
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 550px;
+    overflow: hidden;
+}</code></pre><p>准备一张图片（最好是大图），默认显示区和放大区域两部分放入该图片，默认区域和内部的图片大小事先是设置好了的，放大区域和内部的图片大小之后根据放大倍数设置 。</p>
+<h3 id="JS部分"><a href="#JS部分" class="headerlink" title="JS部分"></a>JS部分</h3><p><strong>①控制放大区域和放大镜的显示与隐藏</strong></p>
+<pre><code>var parent = document.getElementById(&#39;parent&#39;);
+var curpic = document.getElementById(&#39;curPic&#39;);
+var mgf = document.getElementById(&quot;mgf&quot;);
+var boxEnlarge = document.getElementById(&quot;boxEnlarge&quot;);
+/*鼠标移至图片范围时，显示‘放大镜’和放大区域*/
+curpic.onmouseover = function(){
+    var mgf = document.getElementById(&quot;mgf&quot;);
+    mgf.style.display = &quot;block&quot;;
+    boxEnlarge.style.display = &quot;block&quot;;
+}
+/*鼠标移出图片范围时，隐藏‘放大镜’和放大区域*/
+curpic.onmouseout = function(){
+    var mgf = document.getElementById(&quot;mgf&quot;);
+    mgf.style.display = &quot;none&quot;;
+    boxEnlarge.style.display = &quot;none&quot;;
+}</code></pre><p><strong>②放大镜的倍数和尺寸设置</strong></p>
+<pre><code>/*默认‘放大镜’尺寸和放大倍数*/
+var times = 2;
+var mgfW = 50;
+var mgfH = 50;
+var curT = document.getElementById(&#39;curT&#39;);
+var curW = document.getElementById(&#39;curW&#39;);
+var curH = document.getElementById(&#39;curH&#39;);
+curT.innerText = 2+&#39;倍&#39;;
+curW.innerText = 50+&#39;px&#39;;
+curH.innerText = 50+&#39;px;&#39;
+mgf.style.width = mgfW + &#39;px&#39;;
+mgf.style.height = mgfH + &#39;px&#39;;
+/*自定义‘放大镜’尺寸和放大倍数*/
+var button = document.getElementById(&#39;sure&#39;);
+button.onclick = function (){//点击确认按钮触发事件
+    times = document.getElementById(&#39;times&#39;).value;
+    mgfH = document.getElementById(&#39;mgfH&#39;).value;
+    mgfW = document.getElementById(&#39;mgfW&#39;).value;
+    if(mgfH &gt; curpic.offsetHeight){
+        mgfH = curpic.offsetHeight;
+    }
+    if(mgfW &gt; curpic.offsetWidth){
+        mgfW = curpic.offsetWidth;
+    }
+    mgf.style.width = mgfW + &#39;px&#39;;
+    mgf.style.height = mgfH + &#39;px&#39;;
+    curH.innerText = mgfH + &#39;px&#39;;
+    curW.innerText = mgfW + &#39;px&#39;;
+    curT.innerText = times + &#39;倍&#39;;
+}</code></pre><p><strong>③放大镜随鼠标移动</strong></p>
+<pre><code>/*‘放大镜’随鼠标移动*/
+curpic.onmousemove = function(){
+    Move();
+}
+function Move(e){
+    /*根据‘放大镜’和放大倍数设置放大区域大小*/
+    boxEnlarge.style.width = mgf.offsetWidth*times + &#39;px&#39;;
+    boxEnlarge.style.height = mgf.offsetHeight*times + &#39;px&#39;;
+
+    /*鼠标移至‘放大镜’中心*/
+    e = e || event;
+    var mgfx = e.clientX - curpic.offsetLeft - parent.offsetLeft - mgf.offsetWidth/2;
+    var mgfy = e.clientY - curpic.offsetTop - parent.offsetTop - mgf.offsetHeight/2;
+    if(mgfx&lt;0){
+        mgfx = 0;
+    }
+    if(mgfx &gt;= curpic.offsetWidth-mgf.offsetWidth){
+        mgfx = curpic.offsetWidth-mgf.offsetWidth;
+    }
+    if(mgfy&lt;0){
+        mgfy = 0;
+    }
+    if(mgfy &gt;= curpic.offsetHeight-mgf.offsetHeight){
+        mgfy = curpic.offsetHeight-mgf.offsetHeight;
+    }
+    mgf.style.left = mgfx + &#39;px&#39;;
+    mgf.style.top = mgfy + &#39;px&#39;;
+
+    /*设置放大的图片尺寸并根据‘放大镜’的移动调整显示区域*/
+    var pic = boxEnlarge.children[0];
+    pic.style.width = curpic.offsetWidth*times + &#39;px&#39;;
+    pic.style.height = curpic.offsetHeight*times + &#39;px&#39;;
+    pic.style.marginLeft = ((-1)*mgf.offsetLeft*times)+&#39;px&#39;;
+    pic.style.marginTop = ((-1)*mgf.offsetTop*times)+&#39;px&#39;;
+}</code></pre><p><strong>④鼠标滚动放大（缩小）放大镜</strong></p>
+<pre><code>//未设置兼容性
+curpic.onmousewheel = function(e){
+    if(e.wheelDelta&gt;0){
+        if(mgf.offsetWidth*1.5 &gt; curpic.offsetWidth){
+            mgf.style.width = curpic.offsetWidth + &#39;px&#39;;
+            return;
+        }
+        if(mgf.offsetHeight*1.5 &gt; curpic.offsetHeight){
+            mgf.style.height = curpic.offsetHeight + &#39;px&#39;;
+            return;
+        }
+        mgf.style.width=mgf.offsetWidth*1.5 +&#39;px&#39;;
+        mgf.style.height=mgf.offsetHeight*1.5 +&#39;px&#39;;
+    }
+    if(e.wheelDelta&lt;0){
+        mgf.style.width= parseInt(mgf.offsetWidth/1.5) +&#39;px&#39;;
+        mgf.style.height=parseInt(mgf.offsetHeight/1.5) +&#39;px&#39;;
+    }
+    curH.innerText = mgf.offsetHeight + &#39;px&#39;;
+    curW.innerText = mgf.offsetWidth + &#39;px&#39;;
+    Move();
+}</code></pre><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;放大镜&lt;/title&gt;
+&lt;style&gt;
+#parent{
+    position: relative;
+    margin: 50px auto;
+}
+#setting{
+    position: absolute;
+    width: 400px;
+    top:20px;
+    left: 50px;
+    text-align: center;
+    font-family: SimSun;
+}
+#inF{
+    position: absolute;
+    left: 50px;
+    width: 400px;
+    top: 440px;
+    text-align: center;
+    font-family: Simsun;
+}
+#curW, #curH, #curT{
+    color: blue;
+}
+#set{
+    font-weight: bold; 
+    font-style: italic;
+}
+#sure{
+    font-family: Simsun;
+    color:red;
+}
+#mgfH, #mgfW, #times{
+    width: 50px;
+}
+#curPic{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+#curPic:hover{
+    cursor: move;
+}
+#curPic img{
+    width: 400px;
+    height: 400px;
+}
+#mgf{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 230, 93, 0.3);
+}
+#boxEnlarge{
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 550px;
+    overflow: hidden;
+}
+&lt;/style&gt;
+&lt;script&gt;
+    window.onload = function(){
+    var parent = document.getElementById(&#39;parent&#39;);
+    var curpic = document.getElementById(&#39;curPic&#39;);
+    var mgf = document.getElementById(&quot;mgf&quot;);
+    var boxEnlarge = document.getElementById(&quot;boxEnlarge&quot;);
+    curpic.onmouseover = function(){
+        var mgf = document.getElementById(&quot;mgf&quot;);
+        mgf.style.display = &quot;block&quot;;
+        boxEnlarge.style.display = &quot;block&quot;;
+    }
+    curpic.onmouseout = function(){
+        var mgf = document.getElementById(&quot;mgf&quot;);
+        mgf.style.display = &quot;none&quot;;
+        boxEnlarge.style.display = &quot;none&quot;;
+    }
+    var times = 2;
+    var mgfW = 50;
+    var mgfH = 50;
+    var curT = document.getElementById(&#39;curT&#39;);
+    var curW = document.getElementById(&#39;curW&#39;);
+    var curH = document.getElementById(&#39;curH&#39;);
+    curT.innerText = 2+&#39;倍&#39;;
+    curW.innerText = 50+&#39;px&#39;;
+    curH.innerText = 50+&#39;px;&#39;
+    mgf.style.width = mgfW + &#39;px&#39;;
+    mgf.style.height = mgfH + &#39;px&#39;;
+    var button = document.getElementById(&#39;sure&#39;);
+    button.onclick = function (){
+        times = document.getElementById(&#39;times&#39;).value;
+        mgfH = document.getElementById(&#39;mgfH&#39;).value;
+        mgfW = document.getElementById(&#39;mgfW&#39;).value;
+        if(mgfH &gt; curpic.offsetHeight){
+            mgfH = curpic.offsetHeight;
+        }
+        if(mgfW &gt; curpic.offsetWidth){
+            mgfW = curpic.offsetWidth;
+        }
+        mgf.style.width = mgfW + &#39;px&#39;;
+        mgf.style.height = mgfH + &#39;px&#39;;
+        curH.innerText = mgfH + &#39;px&#39;;
+        curW.innerText = mgfW + &#39;px&#39;;
+        curT.innerText = times + &#39;倍&#39;;
+    }
+    curpic.onmousewheel = function(e){
+        if(e.wheelDelta&gt;0){
+            if(mgf.offsetWidth*1.5 &gt; curpic.offsetWidth){
+                mgf.style.width = curpic.offsetWidth + &#39;px&#39;;
+                return;
+            }
+            if(mgf.offsetHeight*1.5 &gt; curpic.offsetHeight){
+                mgf.style.height = curpic.offsetHeight + &#39;px&#39;;
+                return;
+            }
+            mgf.style.width=mgf.offsetWidth*1.5 +&#39;px&#39;;
+            mgf.style.height=mgf.offsetHeight*1.5 +&#39;px&#39;;
+        }
+        if(e.wheelDelta&lt;0){
+            mgf.style.width= parseInt(mgf.offsetWidth/1.5) +&#39;px&#39;;
+            mgf.style.height=parseInt(mgf.offsetHeight/1.5) +&#39;px&#39;;
+        }
+        curH.innerText = mgf.offsetHeight + &#39;px&#39;;
+        curW.innerText = mgf.offsetWidth + &#39;px&#39;;
+        Move();
+    }
+    curpic.onmousemove = function(){
+        Move();
+    }
+    function Move(e){
+        boxEnlarge.style.width = mgf.offsetWidth*times + &#39;px&#39;;
+        boxEnlarge.style.height = mgf.offsetHeight*times + &#39;px&#39;;
+        e = e || event;
+        var mgfx = e.clientX - curpic.offsetLeft - parent.offsetLeft - mgf.offsetWidth/2;
+        var mgfy = e.clientY - curpic.offsetTop - parent.offsetTop - mgf.offsetHeight/2;
+        if(mgfx&lt;0){
+            mgfx = 0;
+        }
+        if(mgfx &gt;= curpic.offsetWidth-mgf.offsetWidth){
+            mgfx = curpic.offsetWidth-mgf.offsetWidth;
+        }
+        if(mgfy&lt;0){
+            mgfy = 0;
+        }
+        if(mgfy &gt;= curpic.offsetHeight-mgf.offsetHeight){
+            mgfy = curpic.offsetHeight-mgf.offsetHeight;
+        }
+        mgf.style.left = mgfx + &#39;px&#39;;
+        mgf.style.top = mgfy + &#39;px&#39;;
+        var pic = boxEnlarge.children[0];
+        pic.style.width = curpic.offsetWidth*times + &#39;px&#39;;
+        pic.style.height = curpic.offsetHeight*times + &#39;px&#39;;
+        pic.style.marginLeft = ((-1)*mgf.offsetLeft*times)+&#39;px&#39;;
+        pic.style.marginTop = ((-1)*mgf.offsetTop*times)+&#39;px&#39;;
+    }
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;parent&quot;&gt;
+        &lt;div id=&quot;setting&quot;&gt;
+            &lt;span id=&quot;set&quot;&gt;Setting&lt;/span&gt; &lt;span&gt;宽:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;mgfW&quot;&gt;&lt;span&gt;高:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;mgfH&quot;&gt;&lt;span&gt;倍数:&lt;/span&gt;&lt;input type=&quot;text&quot; id=&quot;times&quot;&gt;
+            &lt;input type=&quot;button&quot; value=&quot;确认&quot; id=&quot;sure&quot;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;curPic&quot;&gt;
+            &lt;div id=&quot;mgf&quot;&gt;&lt;/div&gt;
+            &lt;img src=&quot;./0.jpg&quot; /&gt;
+        &lt;/div&gt;
+        &lt;p id=&quot;inF&quot;&gt;当前宽度：&lt;span id =&quot;curW&quot;&gt;&lt;/span&gt; 当前高度：&lt;span id=&quot;curH&quot;&gt;&lt;/span&gt; 当前倍数：&lt;span id=&quot;curT&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+        &lt;div id=&quot;boxEnlarge&quot;&gt;
+            &lt;img src=&quot;./0.jpg&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2018/12/03/html-magnifier/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;12&#x2F;03&#x2F;html-magnifier&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;12&#x2F;03&#x2F;html-magnifier&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911438"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

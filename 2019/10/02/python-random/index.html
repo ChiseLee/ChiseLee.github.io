@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python random库常用函数介绍 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="在了解random库的函数前，最好先对随机种子的概念有一定的认识。  随机种子（Random Seed）是计算机专业术语，一种以随机数作为对象的以真随机数（种子）为初始条件的随机数。一般计算机的随机数都是伪随机数，以一个真随机数（种子）作为初始条件，然后用一定的算法不停迭代产生随机数。摘自百度百科-随机种子  而random库中的seed()函数便是与随机数种子相关的一个函数：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python random库常用函数介绍">
+<meta property="og:url" content="https://chiselee.github.io/2019/10/02/python-random/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="在了解random库的函数前，最好先对随机种子的概念有一定的认识。  随机种子（Random Seed）是计算机专业术语，一种以随机数作为对象的以真随机数（种子）为初始条件的随机数。一般计算机的随机数都是伪随机数，以一个真随机数（种子）作为初始条件，然后用一定的算法不停迭代产生随机数。摘自百度百科-随机种子  而random库中的seed()函数便是与随机数种子相关的一个函数：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-02T08:23:46.000Z">
+<meta property="article:modified_time" content="2020-02-06T03:45:04.741Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911368">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python random库常用函数介绍</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月02日</a>
+    <a><i class="nexmoefont icon-areachart"></i>947 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#seed-、random"><span class="toc-text">seed()、random()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#randint"><span class="toc-text">randint()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getrandbits"><span class="toc-text">getrandbits()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#randrange"><span class="toc-text">randrange()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uniform"><span class="toc-text">uniform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#choice-，-shuffle"><span class="toc-text">choice()， shuffle()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sample"><span class="toc-text">sample()</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>在了解<code>random</code>库的函数前，最好先对随机种子的概念有一定的认识。</p>
+<blockquote>
+<p>随机种子（Random Seed）是计算机专业术语，一种以随机数作为对象的以真随机数（种子）为初始条件的随机数。一般计算机的<a href="https://baike.baidu.com/item/%E9%9A%8F%E6%9C%BA%E6%95%B0/2454368" target="_blank" rel="noopener">随机数</a>都是<a href="https://baike.baidu.com/item/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0/104358" target="_blank" rel="noopener">伪随机数</a>，以一个真随机数（种子）作为初始条件，然后用一定的算法不停<a href="https://baike.baidu.com/item/%E8%BF%AD%E4%BB%A3/8415523" target="_blank" rel="noopener">迭代</a>产生随机数。<br>摘自<a href="https://baike.baidu.com/item/%E9%9A%8F%E6%9C%BA%E7%A7%8D%E5%AD%90/9844665" target="_blank" rel="noopener">百度百科-随机种子</a></p>
+</blockquote>
+<p>而<code>random</code>库中的<code>seed()</code>函数便是与随机数种子相关的一个函数：<a id="more"></a></p>
+<h2 id="seed-、random"><a href="#seed-、random" class="headerlink" title="seed()、random()"></a>seed()、random()</h2><p><code>seed()</code>函数用来初始化随机数种子，默认值为当前系统时间。<br>随机数种子多为一个整数，而且相同的种子所生成的随机数序列也相同。<br><code>random()</code>函数用来生成一个[0, 1]之间的随机<strong>小数</strong>。</p>
+<pre><code>&gt;&gt;&gt; from random import *
+&gt;&gt;&gt; seed(100) #指定种子值为100
+&gt;&gt;&gt; random()
+0.1456692551041303
+&gt;&gt;&gt; random()
+0.45492700451402135
+&gt;&gt;&gt; random()
+0.7707838056590222
+&gt;&gt;&gt; seed(100) #重新指定种子值为100
+&gt;&gt;&gt; random()
+0.1456692551041303
+&gt;&gt;&gt; random()
+0.45492700451402135
+&gt;&gt;&gt; random()
+0.7707838056590222</code></pre><p>这个例子中我们通过<code>seed()</code>函数指定了种子值为100，然后连续调用了三次<code>random</code>库的<code>random()</code>函数。再重新指定相同的种子值重复上面的操作，可以看出，下面生成的随机数和上面是一样的。<br>用<code>seed()</code>方法指定种子值便于测试和同步数据，实际上很多时候都不会使用这个方法而直接使用可以产生随机值的方法。</p>
+<h2 id="randint"><a href="#randint" class="headerlink" title="randint()"></a>randint()</h2><p><code>randint(a, b)</code>(a&lt;=b) 生成一个[a, b]之间的<strong>整数</strong>。</p>
+<p><em>下面的例子都默认使用了<code>from random import *</code>的方式导入了该模块，不会再在代码中写出…</em></p>
+<pre><code>&gt;&gt;&gt; randint(1, 100)
+56
+&gt;&gt;&gt; randint(1, 100)
+65
+&gt;&gt;&gt; randint(1, 100)
+15</code></pre><h2 id="getrandbits"><a href="#getrandbits" class="headerlink" title="getrandbits()"></a>getrandbits()</h2><p><code>getrandbits(n)</code> 生成一个n比特长度的随机整数。<br>这个方法可能有点模糊，所以用了较多例子展示（已省略换行符）</p>
+<pre><code>&gt;&gt;&gt; for i in range(15):
+    getrandbits(2)
+
+
+3 2 3 0 1 0 1 3 3 3 0 3 0 0 0
+&gt;&gt;&gt; for i in range(15):
+    getrandbits(4)
+
+
+14 5 5 10 6 15 13 3 6 15 7 8 4 14 12
+&gt;&gt;&gt; for i in range(15):
+    getrandbits(16)
+
+
+53609 24582 10513 56130 42502 41841 8132 11838 369 39502 25920 9673 50692 55803 37103</code></pre><h2 id="randrange"><a href="#randrange" class="headerlink" title="randrange()"></a>randrange()</h2><p><code>randrange(a, b, s)</code>三个参数，前两个确定范围，最后一个确定步长。生成一个[a, b)之间的以s为步数的随机整数。</p>
+<pre><code>&gt;&gt;&gt; randrange(1, 5, 2)
+3
+&gt;&gt;&gt; randrange(1, 5, 2)
+1
+&gt;&gt;&gt; randrange(1, 5, 2)
+1
+&gt;&gt;&gt; randrange(1, 5, 2)
+1</code></pre><p>上面例子的取值只可能是1或3。<br>第三个参数可以省略，<code>randrange(a, b)</code>，此时该函数则会返回[a, b)之间的一随机整数。(类似<code>randint</code>，但范围不同，b取的是开区间)</p>
+<h2 id="uniform"><a href="#uniform" class="headerlink" title="uniform"></a>uniform</h2><p><code>uniform(a, b)</code>生成一个[a, b]间的随机小数。</p>
+<pre><code>&gt;&gt;&gt; uniform(5, 9)
+5.544250560923066
+&gt;&gt;&gt; uniform(5, 9)
+7.3384045617521085
+&gt;&gt;&gt; uniform(5, 9)
+7.3375537545818705
+&gt;&gt;&gt; uniform(5, 9)
+5.444180418594738
+&gt;&gt;&gt; uniform(5, 9)
+6.203185383252325</code></pre><h2 id="choice-，-shuffle"><a href="#choice-，-shuffle" class="headerlink" title="choice()， shuffle()"></a>choice()， shuffle()</h2><p><code>choice(s)</code>从序列类型中随机返回一个元素。<br><code>shuffle(s)</code>将序列类型中的元素随机排列，返回打乱后的序列。</p>
+<pre><code>&gt;&gt;&gt; s = list(range(10))
+&gt;&gt;&gt; s
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; shuffle(s)
+&gt;&gt;&gt; s
+[9, 4, 7, 2, 5, 6, 8, 0, 3, 1]
+&gt;&gt;&gt; choice(s)
+9
+&gt;&gt;&gt; choice(s)
+0
+&gt;&gt;&gt; choice(s)
+8</code></pre><h2 id="sample"><a href="#sample" class="headerlink" title="sample()"></a>sample()</h2><p><code>sample(s, k)</code><br>从序列类型中随机选择k个元素，返回这k个元素组成的列表。</p>
+<pre><code>&gt;&gt;&gt; s = tuple(range(10))
+&gt;&gt;&gt; s
+(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+&gt;&gt;&gt; sample(s, 4)
+[0, 2, 7, 9]</code></pre><p><em>如有错误，欢迎指正~</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/10/02/python-random/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;10&#x2F;02&#x2F;python-random&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;10&#x2F;02&#x2F;python-random&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911370"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

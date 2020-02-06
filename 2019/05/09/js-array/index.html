@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>js数组(Array对象)常用方法总结 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="接下来会涉及到的方法名称：  isArray() push() pop() shift() unshift() concat() indexOf() join() split() reverse() sort() slice() splice() every() filter() forEach() map() some()  下面逐一讲解:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js数组(Array对象)常用方法总结">
+<meta property="og:url" content="https://chiselee.github.io/2019/05/09/js-array/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="接下来会涉及到的方法名称：  isArray() push() pop() shift() unshift() concat() indexOf() join() split() reverse() sort() slice() splice() every() filter() forEach() map() some()  下面逐一讲解:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-09T13:17:08.000Z">
+<meta property="article:modified_time" content="2020-02-06T05:28:36.690Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911389">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>js数组(Array对象)常用方法总结</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年05月09日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#isArray"><span class="toc-text">isArray()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push-pop-shift-unshift"><span class="toc-text">push() pop() shift() unshift()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-text">push()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop"><span class="toc-text">pop()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shift"><span class="toc-text">shift()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unshift"><span class="toc-text">unshift()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#concat"><span class="toc-text">concat()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#indexOf"><span class="toc-text">indexOf()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#join-、split"><span class="toc-text">join()、split()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text">join()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-text">split()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reverse"><span class="toc-text">reverse()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sort"><span class="toc-text">sort()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slice"><span class="toc-text">slice()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#splice"><span class="toc-text">splice()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-、-every-、filter-、forEach-、some"><span class="toc-text">map()、 every()、filter()、forEach()、some()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-text">map()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filter"><span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#forEach"><span class="toc-text">forEach()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#some"><span class="toc-text">some()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#every"><span class="toc-text">every()</span></a></li></ol></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <p><strong>接下来会涉及到的方法名称：</strong></p>
+<ul>
+<li><code>isArray()</code></li>
+<li><code>push()</code> <code>pop()</code> <code>shift()</code> <code>unshift()</code></li>
+<li><code>concat()</code></li>
+<li><code>indexOf()</code></li>
+<li><code>join()</code> <code>split()</code></li>
+<li><code>reverse()</code></li>
+<li><code>sort()</code></li>
+<li><code>slice()</code></li>
+<li><code>splice()</code></li>
+<li><code>every()</code> <code>filter()</code> <code>forEach()</code> <code>map()</code> <code>some()</code></li>
+</ul>
+<p>下面逐一讲解:<a id="more"></a></p>
+<h2 id="isArray"><a href="#isArray" class="headerlink" title="isArray()"></a>isArray()</h2><blockquote>
+<p>判断一个对象是否为数组，参数为需判断的对象。是的话返回<code>true</code>，否则返回<code>false</code>。</p>
+</blockquote>
+<pre><code class="js">Array.isArray(&#39;test&#39;)
+//false
+Array.isArray([&#39;t&#39;,&#39;e&#39;,&#39;s&#39;,&#39;t&#39;])
+//true
+var test = [1,2,8];
+Array.isArray(test)
+//true</code></pre>
+<h2 id="push-pop-shift-unshift"><a href="#push-pop-shift-unshift" class="headerlink" title="push() pop() shift() unshift()"></a>push() pop() shift() unshift()</h2><h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><blockquote>
+<p>参数为一个或多个元素，调用后将此参数追加至数组末尾，并返回数组长度。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [1,2,3,4];
+arr1.push(5)
+//5
+arr1.push(5)
+//6
+arr1.push(6,6,6)
+//9
+arr1.push([7,8,9])
+//10
+arr1
+//(10) [1, 2, 3, 4, 5, 5, 6, 6, 6, Array(3)]</code></pre>
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><blockquote>
+<p>删除数组中的最后一个元素，并将该元素作为返回值返回。</p>
+</blockquote>
+<pre><code class="js">var arr2 = [1,3,5,7,10];
+arr2.pop()
+//10
+arr2
+//(4) [1, 3, 5, 7]</code></pre>
+<h3 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h3><blockquote>
+<p>删除数组中的第一个元素，并将该元素作为返回值返回。</p>
+</blockquote>
+<pre><code class="js">var arr3 = [1, 2, 4, 6, 8];
+arr3.shift()
+//1
+arr3
+//(4) [2, 4, 6, 8]</code></pre>
+<h3 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h3><blockquote>
+<p>参数为一个或多个元素，调用后将此参数追加至数组开始，并返回数组长度。</p>
+</blockquote>
+<pre><code class="js">var arr4 = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;];
+arr4.unshift(555);
+//5
+arr4.unshift(&#39;world&#39;)
+//6
+arr4
+//(6) [&quot;world&quot;, 555, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</code></pre>
+<h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><blockquote>
+<p>连接两个或多个数组，返回连接后的数组。(不会改变原有数组)</p>
+</blockquote>
+<pre><code class="js">var arr1 = [1,5,9];
+var arr2 = [&quot;c&quot;,&#39;h&#39;,&#39;i&#39;];
+arr1.concat(arr2)
+//(6) [1, 5, 9, &quot;c&quot;, &quot;h&quot;, &quot;i&quot;]
+arr2.concat(arr1,&#39;hello&#39;,&#39;w&#39;);
+//(8) [&quot;c&quot;, &quot;h&quot;, &quot;i&quot;, 1, 5, 9, &quot;hello&quot;, &quot;w&quot;]</code></pre>
+<h2 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h2><blockquote>
+<p>查找元素在数组中出现的下标。第一个参数为元素值，第二个参数指定开始检索的位置（可选），返回第一次找到该元素的下标，若查找失败，返回-1。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [3,4,3,5,6];
+arr1.indexOf(3)
+//0
+arr1.indexOf(3, 0)
+//0
+arr1.indexOf(3, 1)
+//2
+arr1.indexOf(3, 5)
+//-1
+arr1.indexOf(7)
+//-1</code></pre>
+<p>若想从后面开始查找，使用方法<strong><code>lastIndexOf()</code></strong></p>
+<h2 id="join-、split"><a href="#join-、split" class="headerlink" title="join()、split()"></a>join()、split()</h2><h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><blockquote>
+<p>将数组内容拼接成一个字符串并返回，默认以’,’分隔，指定参数后则以参数来分隔。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [&#39;hel&#39;,&#39;lo&#39;,&#39;&#39;,&#39;w&#39;,&#39;orld&#39;];
+arr1.join()
+//&quot;hel,lo,,w,orld&quot;
+arr1.join(&#39;&#39;);
+//&quot;helloworld&quot;
+arr1.join(&#39;==&#39;);
+//&quot;hel==lo====w==orld&quot;
+
+var arr2 = [55,4,89];
+arr2.join();
+//&quot;55,4,89&quot;</code></pre>
+<h3 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h3><blockquote>
+<p>将字符串按参数分割成一个个元素，返回由这些元素组成的数组。</p>
+</blockquote>
+<pre><code class="js">var str1 = &quot;helloworld&quot;;
+str1.split();
+//[&quot;helloworld&quot;]
+str1.split(&#39;l&#39;);
+//(4) [&quot;he&quot;, &quot;&quot;, &quot;owor&quot;, &quot;d&quot;]
+str1.split(&#39;o&#39;);
+//(3) [&quot;hell&quot;, &quot;w&quot;, &quot;rld&quot;]</code></pre>
+<h2 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h2><blockquote>
+<p>颠倒数组中元素的顺序并返回。（改变原来的数组）</p>
+</blockquote>
+<pre><code class="js">var arr1 = [&#39;e&#39;,&#39;s&#39;,&#39;i&#39;,&#39;h&#39;,&#39;c&#39;];
+arr1.reverse();
+//(5) [&quot;c&quot;, &quot;h&quot;, &quot;i&quot;, &quot;s&quot;, &quot;e&quot;]
+arr1
+//(5) [&quot;c&quot;, &quot;h&quot;, &quot;i&quot;, &quot;s&quot;, &quot;e&quot;]</code></pre>
+<h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><blockquote>
+<p>对数组元素进行排序（根据编码顺序，数组内容会改变）可以传入一个自定义的函数来指定比较方式。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [1000, 5, 20, 1, 10];
+arr1.sort()
+//(5) [1, 10, 1000, 20, 5] 并不是按数值的大小排序
+arr1
+//(5) [1, 10, 1000, 20, 5]
+arr2 = [&quot;asdd&quot;,&quot;qws,&quot;,&quot;sqwe&quot;,&quot;mlk&quot;];
+//(4) [&quot;asdd&quot;, &quot;qws,&quot;, &quot;sqwe&quot;, &quot;mlk&quot;]
+arr2.sort();
+//(4) [&quot;asdd&quot;, &quot;mlk&quot;, &quot;qws,&quot;, &quot;sqwe&quot;]</code></pre>
+<p>自定义方式的写法：</p>
+<ul>
+<li>传入两个参数a，b。</li>
+<li>a &lt; b：a将排在b之前，返回一个小于0的值。</li>
+<li>a = b：返回0。</li>
+<li>a &gt; b：返回一个大于0的值。</li>
+</ul>
+<pre><code class="js">var arr2 = [555, 1, 120, 20, 255, 10];
+
+//可以这样写
+arr2.sort(function(a,b){
+    if(a&gt;b){
+        return 1;
+    }else if(a==b){
+        return 0;
+    }else{
+        return -1;
+    }
+});
+//或者直接
+arr2.sort(function(a, b){
+    return a-b;
+});
+//(6) [1, 10, 20, 120, 255, 555]
+
+//这样写便是从大向小排列
+arr2.sort(function(a, b){return b-a});</code></pre>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><blockquote>
+<p>返回一个新数组，使用一个参数作为开始下标，数组内容为下标对应元素一直到结尾的元素。第二个参数可以指定结束下标(不包含)。参数可以为负，-x即代表倒数第x个元素。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [&quot;add&quot;, &quot;odd&quot;, &quot;qwq&quot;, &quot;uuu&quot;];
+arr1.slice(1);
+//(3) [&quot;odd&quot;, &quot;qwq&quot;, &quot;uuu&quot;]
+arr1.slice(1, 2);
+//[&quot;odd&quot;]
+arr1.slice(-2, -1)
+//[&quot;qwq&quot;]
+arr1.slice(-2)
+//(2) [&quot;qwq&quot;, &quot;uuu&quot;]</code></pre>
+<h2 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h2><blockquote>
+<p>向数组中删除内容。第一个参数指定位置(可以使用负数索引)，第二个参数设置要删除的数量，第三个参数可选，向第一个参数所在位置添加。返回被删除的元素。原数组的内容会发生变化。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [158, &quot;emmm&quot;, &quot;wor&quot;, 666, 233, 666]; 
+arr1.splice(1, 1)
+//[&quot;emmm&quot;]
+arr1
+//(5) [158, &quot;wor&quot;, 666, 233, 666]
+arr1.splice(0, 2)
+//(2) [158, &quot;wor&quot;]
+arr1
+//(3) [666, 233, 666]
+arr1.splice(0, 1, &#39;999&#39;)
+//[666]
+arr1
+//(3) [&quot;999&quot;, 233, 666]</code></pre>
+<h2 id="map-、-every-、filter-、forEach-、some"><a href="#map-、-every-、filter-、forEach-、some" class="headerlink" title="map()、 every()、filter()、forEach()、some()"></a>map()、 every()、filter()、forEach()、some()</h2><p>这几个方法都含有两个参数，其第一个参数为一个回调函数（下面的解释以“函数”代替）<br>关于方法的两个参数：</p>
+<ul>
+<li>函数，该函数有包含3个参数<ul>
+<li>cur：当前执行这个函数的元素。</li>
+<li>index(可选)：当前元素的索引值。</li>
+<li>arr(可选)：调用方法的数组对象。</li>
+</ul>
+</li>
+<li>执行回调函数使用的this值（可选）。</li>
+</ul>
+<p>下面的示例均只使用函数参数，且只使用了函数的第一个参数。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><blockquote>
+<p>使数组中的每个元素执行函数，创建并返回一个新数组。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [1,3,5,7,9];
+arr1.map(function(cur){
+    return 2*cur;
+});
+//(5) [2, 6, 10, 14, 18]</code></pre>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><blockquote>
+<p>使数组中的每个元素执行函数，满足函数条件的元素将作为新数组中的一个元素，返回这个新数组。（过滤作用）</p>
+</blockquote>
+<pre><code class="js">var arr1 = [&quot;a&quot;,&#39;asdsad&#39;,&quot;p&quot;,&quot;ser&quot;,&quot;z&quot;];
+arr1.filter(function(cur){
+    return cur.length == 1
+});
+//(3) [&quot;a&quot;, &quot;p&quot;, &quot;z&quot;]</code></pre>
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach()"></a>forEach()</h3><blockquote>
+<p>使数组中的每一个元素执行函数。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [&#39;first&#39;,&#39;second&#39;,&#39;third&#39;];
+arr1.forEach(function(cur){
+    console.log(cur);
+});
+//first
+//second
+//third</code></pre>
+<h3 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h3><blockquote>
+<p>检测数组中是否有元素满足函数条件。只要有一个满足条件即返回true，全部都不满足才返回false。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [111, 15, 25, 66, 789];
+arr1.some(function(cur){
+    return cur &gt; 100;
+});
+//true
+arr1.some(function(cur){
+    return cur &lt; 10;
+});
+//false</code></pre>
+<h3 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h3><blockquote>
+<p>检查数组中的元素是否全部满足函数条件。只有所有元素都满足条件才会返回true，只要有一个元素不满足则会返回false。</p>
+</blockquote>
+<pre><code class="js">var arr1 = [1,3,5,7,8];
+arr1.every(function(cur){
+    return cur%2 == 0;
+});
+//false</code></pre>
+<p><em>如有错误，欢迎指正，感激不尽！</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/05/09/js-array/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;05&#x2F;09&#x2F;js-array&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;05&#x2F;09&#x2F;js-array&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911392"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

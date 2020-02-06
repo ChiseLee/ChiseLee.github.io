@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>中缀表达式转换为后缀表达式并求值 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="前言之前用js实现的一个简易计算器有许多处理得不好的地方，抛开样式的问题，计算器最核心的计算部分直接使用了eval()函数，今天自己来实现计算部分，目标是获取一个算式字符串，并让计算机得出结果。 在这之前，什么是中缀表达式，什么是后缀表达式？？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中缀表达式转换为后缀表达式并求值">
+<meta property="og:url" content="https://chiselee.github.io/2018/11/17/in-post/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="前言之前用js实现的一个简易计算器有许多处理得不好的地方，抛开样式的问题，计算器最核心的计算部分直接使用了eval()函数，今天自己来实现计算部分，目标是获取一个算式字符串，并让计算机得出结果。 在这之前，什么是中缀表达式，什么是后缀表达式？？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-17T15:00:10.000Z">
+<meta property="article:modified_time" content="2020-02-06T08:06:34.622Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911440">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>中缀表达式转换为后缀表达式并求值</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月17日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从一个算式说起"><span class="toc-text">从一个算式说起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中缀表达式转换为后缀表达式"><span class="toc-text">中缀表达式转换为后缀表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后缀表达式的计算"><span class="toc-text">后缀表达式的计算</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前用js实现的一个简易计算器有许多处理得不好的地方，抛开样式的问题，计算器最核心的计算部分直接使用了<code>eval()</code>函数，今天自己来实现计算部分，目标是<strong>获取一个算式字符串，并让计算机得出结果</strong>。</p>
+<p>在这之前，<em>什么是中缀表达式，什么是后缀表达式？？</em> <a id="more"></a><br>今天特地查阅了一下<strong>《数据结构教程》</strong>：</p>
+<blockquote>
+<p>……在算术表达式中，运算符位于两个操作数中间的表达式称为<strong>中缀表达式</strong>（infix expression）…… <strong>后缀表达式</strong>（postfix expression）或逆波兰表达式，就是在算术表达式中运算符在操作数的后面……</p>
+</blockquote>
+<p>我们在日常生活中所使用的几乎都是中缀表达式。因为我们知道运算法则：括号内优先计算，先乘除后加减……计算机并不懂得我们的计算法则，后缀表达式才对它的胃口，转化好的后缀表达式已经事先考虑了优先级，不仅没有括号，而且<strong>位置越靠前的运算符越优先执行</strong>。</p>
+<p>在达到我们的目标前，我们事先准备三个“容器”：</p>
+<pre><code>var infixExp[];        //存放中缀表达式字符
+var postfixExp[];      //存放后缀表达式字符
+var tempExp[];         //存放临时字符</code></pre><p>备注：上面的数组应该理解成<em>栈</em>，js中数组的<code>pop()</code>和<code>push()</code>方法，下文会以<em>出栈</em>，<em>入栈</em>来称呼。</p>
+<h2 id="从一个算式说起"><a href="#从一个算式说起" class="headerlink" title="从一个算式说起"></a>从一个算式说起</h2><p><code>4.25*（3+1）</code><br>看到这个算式，我们的第一个问题来了，<strong>如何将其正确地存入到<code>infixExp</code>里？</strong><br>也就是说我们需要的是<code>[&#39;4.25&#39;,&#39;*&#39;,&#39;(&#39;,&#39;3&#39;,&#39;+&#39;,&#39;1&#39;,&#39;)&#39;]</code>而不是<code>[&#39;4&#39;,&#39;.&#39;,&#39;2&#39;,&#39;5&#39;,&#39;*&#39;,&#39;(&#39;,&#39;3&#39;,&#39;+&#39;,&#39;1&#39;,&#39;)&#39;]</code>。</p>
+<p>这里提供一种思路:</p>
+<pre><code>strTemp = &quot;获取到的中缀表达式字符串&quot;;
+function expSolve() {
+    var i=0;
+    var j=0;
+    if(strTemp[0] == &#39;-&#39;){
+        i = 1;
+    }//对负数的处理
+
+    for(; i&lt;strTemp.length; i++){
+        if(strTemp[i]==&#39;(&#39;&amp;&amp;strTemp[i+1]==&#39;-&#39;){
+            infixExp.push(&#39;(&#39;);
+            j = i+1;
+            i++;
+            continue;
+        }//对负数的处理
+
+        if(strTemp[i]==&#39;+&#39;||strTemp[i]==&#39;-&#39;||strTemp[i]==&#39;*&#39;||strTemp[i]==&#39;/&#39;||strTemp[i]==&#39;(&#39;||strTemp[i]==&#39;)&#39;){
+            if(strTemp.slice(j, i)!=&#39;&#39;)
+                infixExp.push(strTemp.slice(j, i));
+            infixExp.push(strTemp[i]);
+            j=i+1;
+        }
+    }
+    if(strTemp.slice(j)!=&#39;&#39;)
+        infixExp.push(strTemp.slice(j));
+}</code></pre><p>扫描字符串的每个字符，当遇到运算符和括号时<code>+</code>，<code>-</code>，<code>*</code>，<code>/</code>，<code>（</code>，<code>）</code>时，将该符号前部分和该符号依次插入到<code>infixExp</code>里，要做是否为空的判断<em>(例如括号前可能会出现运算符)*。最后剩下部分可能为运算符右侧的数也要插入数组。<br>*可能还存在bug，慎用！一定有更好的方法</em></p>
+<h2 id="中缀表达式转换为后缀表达式"><a href="#中缀表达式转换为后缀表达式" class="headerlink" title="中缀表达式转换为后缀表达式"></a>中缀表达式转换为后缀表达式</h2><p>扫描<code>infixExp</code>中的每个元素：</p>
+<ol>
+<li>遇到数，直接入栈<code>postfixExp</code>。</li>
+<li>遇到符号<code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>时：<ul>
+<li>如果此时临时栈<code>tempExp</code>为空，该符号直接入栈<code>tempExp</code>。</li>
+<li>如果此时临时栈<code>tempExp</code>不为空，该符号优先级高于<code>tempExp</code>中的栈顶元素或栈顶元素为<code>(</code>时，入栈<code>tempExp</code>。</li>
+<li>如果此时临时栈<code>tempExp</code>不为空，该符号优先级低于<code>tempExp</code>中的栈顶元素，将<code>tempExp</code>中的栈顶元素出栈，并入栈<code>postfixExp</code>，直到该符号优先级高于<code>tempExp</code>的栈顶元素或栈顶元素为<code>(</code>，才将该符号入栈。</li>
+</ul>
+</li>
+<li>遇到括号<code>(</code>或<code>)</code>时：<ul>
+<li>遇到左括号<code>(</code>，直接入栈<code>tempExp</code>。</li>
+<li>遇到右括号<code>)</code>，右括号两个栈均不入，将<code>tempExp</code>中的栈顶元素出栈，并入栈<code>postExp</code>，直到遇到<code>(</code>。左括号只出栈但<strong>不进入</strong><code>postfixExp</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>左括号只有当遇到右括号时才出栈。</strong><br>扫描完<code>infixExp</code>中的所有元素后，将<code>tempExp</code>中的元素依次弹出入栈<code>postfixExp</code></p>
+<p><em>中缀转后缀的实现（js）</em></p>
+<pre><code>function infixTopostfix() {
+    var item;
+    for (var i = 0; i &lt; infixExp.length; i++) {
+        if (!isNaN(infixExp[i])) {
+            postfixExp.push(infixExp[i]);
+        }
+        else if (infixExp[i] == &#39;+&#39; || infixExp[i] == &#39;-&#39; || infixExp[i] == &#39;*&#39; || infixExp[i] == &#39;/&#39;||infixExp[i]==&#39;(&#39;||infixExp[i]==&#39;)&#39;){
+            if (tempExp.length == 0) {
+                tempExp.push(infixExp[i]);
+            }
+            else if (infixExp[i] == &#39;*&#39; || infixExp[i] == &#39;/&#39;) {
+                item = tempExp.pop();
+                if (item == &#39;*&#39; || item == &#39;/&#39;) {
+                    postfixExp.push(item);
+                }
+                else {
+                    tempExp.push(item);
+                }
+                tempExp.push(infixExp[i]);
+            }
+            else if (infixExp[i] == &#39;+&#39; || infixExp[i] == &#39;-&#39;) {
+                while (tempExp.length != 0) {
+                    item = tempExp.pop();
+                    if(item == &#39;(&#39;){
+                        tempExp.push(item);
+                        break;
+                    }
+                    postfixExp.push(item);
+                }
+                tempExp.push(infixExp[i]);
+            }
+            else if(infixExp[i] == &#39;(&#39;){
+                tempExp.push(infixExp[i]);
+            }
+            else if(infixExp[i] == &#39;)&#39;){
+                while (1) {
+                    item = tempExp.pop();
+                    if(item == &#39;(&#39;){
+                        break;
+                    }
+                    postfixExp.push(item);
+                }
+            }
+        }
+    }
+    while (tempExp.length != 0) {
+        postfixExp.push(tempExp.pop());
+    }
+}</code></pre><h2 id="后缀表达式的计算"><a href="#后缀表达式的计算" class="headerlink" title="后缀表达式的计算"></a>后缀表达式的计算</h2><p>扫描<code>postfixExp</code>中的每个元素：</p>
+<ol>
+<li>遇到数，入栈<code>tempExp</code>。</li>
+<li>遇到符号<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>（后缀表达式一定不会含左右括号），从<code>tempExp</code>中依次取出两个数，并根据符号计算（后取出的数在符号左侧）。最后将该次结果入栈<code>tempExp</code>。</li>
+</ol>
+<p>扫描结束，<code>tempExp</code>中只剩一个元素， 即为最终结果！</p>
+<p><em>后缀表达式的计算（js）</em></p>
+<pre><code>function postfixCalc() {
+    for (var i = 0; i &lt; postfixExp.length; i++) {
+        if (!isNaN(postfixExp[i])) {
+            tempExp.push(postfixExp[i]);
+        }
+        else {
+            var strRight = opeStack.pop();
+            var strLeft = opeStack.pop();
+            switch (postfixExp[i]) {
+                case &#39;+&#39;:
+                    opeStack.push(Number(strLeft) + Number(strRight));
+                    break;
+                case &#39;-&#39;:
+                    opeStack.push(Number(strLeft) - Number(strRight));
+                    break;
+                case &#39;*&#39;:
+                    opeStack.push(Number(strLeft) * Number(strRight));
+                    break;
+                case &#39;/&#39;:
+                    opeStack.push(Number(strLeft) / Number(strRight));
+                    break;
+                default:
+                    alert(&quot;运算符号出错！&quot;);
+            }
+        }
+    }
+    var out = tempExp.pop();   //out即为最终结果
+}</code></pre>
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2018/11/17/in-post/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;17&#x2F;in-post&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;17&#x2F;in-post&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911441"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>初识安卓之LinearLayout线性布局 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="前言在安卓的多种布局方式中，LinearLayout(线性布局)和RelativeLayout(相对布局)算是最为常用的两种方式了，这里只讲解线性布局，随后将会更新相对布局的相关知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识安卓之LinearLayout线性布局">
+<meta property="og:url" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="前言在安卓的多种布局方式中，LinearLayout(线性布局)和RelativeLayout(相对布局)算是最为常用的两种方式了，这里只讲解线性布局，随后将会更新相对布局的相关知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-9e46ef7fc835f521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-fe300db84e9f413a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-ad8f186f21ced6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-26faecc15797a297.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-7a767de4a7ccdf5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2019-01-09T07:54:42.000Z">
+<meta property="article:modified_time" content="2020-02-06T07:35:24.159Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911434">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>初识安卓之LinearLayout线性布局</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年01月09日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/android/" rel="tag">android</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用属性"><span class="toc-text">常用属性</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在安卓的多种布局方式中，<code>LinearLayout(线性布局)</code>和<code>RelativeLayout(相对布局)</code>算是最为常用的两种方式了，这里只讲解线性布局，随后将会更新相对布局的相关知识。<a id="more"></a></p>
+<h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><p>下面列出几种之后可能会用到<strong>LinearLayout</strong>中的属性，遗忘时查询即可。</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">orientation</td>
+<td align="center">布局方式，有<code>horizontal(水平布局)</code>和<code>vertical(垂直布局)</code>两种方式</td>
+</tr>
+<tr>
+<td align="center">id</td>
+<td align="center">组件名称，方便之后调用</td>
+</tr>
+<tr>
+<td align="center">layout_width</td>
+<td align="center">该组件的宽度</td>
+</tr>
+<tr>
+<td align="center">layout_height</td>
+<td align="center">该组件的高度</td>
+</tr>
+<tr>
+<td align="center">layout_weight</td>
+<td align="center">权重</td>
+</tr>
+<tr>
+<td align="center">layout_gravity</td>
+<td align="center">该组件（在父容器）中的对齐方式</td>
+</tr>
+<tr>
+<td align="center">gravity</td>
+<td align="center">该组件所含子组件在其内部的对齐方式</td>
+</tr>
+<tr>
+<td align="center">background</td>
+<td align="center">设置背景图片或填充颜色</td>
+</tr>
+</tbody></table>
+<p><code>orientation</code>属性示例</p>
+<p>orientation属性有<code>horizontal</code>和<code>vertical</code>两个参数供选择，参数的值决定了布局方式。</p>
+<p> 水平布局（<code>horizontal</code>）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>代码如下：</p>
+<pre><code> &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;horizontal&quot;&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第一个文本框&quot;
+            android:background=&quot;#ffff00&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第二个文本框&quot;
+            android:background=&quot;#ff0000&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第三个文本框&quot;
+            android:background=&quot;#008000&quot;/&gt;
+    &lt;/LinearLayout&gt;</code></pre><p>垂直布局（<code>vertical</code>）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13713347-9e46ef7fc835f521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>代码如下：</p>
+<pre><code>   &lt;LinearLayout
+       android:layout_width=&quot;match_parent&quot;
+       android:layout_height=&quot;match_parent&quot;
+       android:orientation=&quot;vertical&quot;&gt;
+       &lt;TextView
+           android:layout_width=&quot;match_parent&quot;
+           android:layout_height=&quot;wrap_content&quot;
+           android:gravity=&quot;center&quot;
+           android:text=&quot;第一个文本框&quot;
+           android:background=&quot;#ffff00&quot;/&gt;
+       &lt;TextView
+           android:layout_width=&quot;match_parent&quot;
+           android:layout_height=&quot;wrap_content&quot;
+           android:gravity=&quot;center&quot;
+           android:text=&quot;第二个文本框&quot;
+           android:background=&quot;#ff0000&quot;/&gt;
+       &lt;TextView
+           android:layout_width=&quot;match_parent&quot;
+           android:layout_height=&quot;wrap_content&quot;
+           android:gravity=&quot;center&quot;
+           android:text=&quot;第三个文本框&quot;
+           android:background=&quot;#008000&quot;/&gt;
+   &lt;/LinearLayout&gt;</code></pre><p><code>layout_weight</code>属性示例</p>
+<p>在这之前先简要说明下<code>match_parent</code>，<code>fill_parent</code>和<code>wrap_content</code>。<br><code>match_parent</code>和<code>fill_parent</code>在效果上相同，都是<em>使该组件的宽度或高度填满父元素，也就是说令其宽度或高度与父元素的宽度或高度一致</em>。<br>用<code>wrap_content</code>产生的效果由该组件本身的实际情况决定，例如一个TextView组件，它的宽度就是由文本实际的内容多少决定的。<br>回到正题，<strong>weight</strong>，这里理解为权重，或是比例，需要注意的是：<br>水平布局时，按比例分配父元素的宽度(width)<br>竖直布局时，按比例分配父元素的高度（height）<br>先看一个例子（以水平布局举例）：</p>
+<pre><code>    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;horizontal&quot;&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第一个文本框&quot;
+            android:layout_weight=&quot;1&quot;
+            android:background=&quot;#ffff00&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第二个文本框&quot;
+            android:layout_weight=&quot;1&quot;
+            android:background=&quot;#ff0000&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第三个文本框&quot;
+            android:layout_weight=&quot;1&quot;
+            android:background=&quot;#008000&quot;/&gt;
+    &lt;/LinearLayout&gt;</code></pre><p>还是之前水平布局的例子，只是我们给每个<code>TextView</code>添加了一句<code>android:layout_weight=&quot;1&quot;</code><br><img src="https://upload-images.jianshu.io/upload_images/13713347-fe300db84e9f413a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>貌似达到了我们的预期，三个<code>TextView</code>按1：1：1分完了总宽度。<br>但有时候可能无法达到预期的效果，请看下面的例子，将三个<code>TextView</code>的<code>android:layout_weight</code>依次设置为’1’，’2’，’3’：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-ad8f186f21ced6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>可以看出三个文本框的大小不一致了，但是明显没有达到我们预期的1：2：3的效果。<br>这是因为我们设置的每个TextView的宽度为<code>wrap_content</code>，每个组件都有本身由text内容决定的宽度，只是将剩余的在宽度上的空间按比例分好后再加在其本身的宽度上。</p>
+<p><em>所以说，为达到真正的比例效果：</em><br><strong>水平布局时，将每个组件的宽度（width）设置为<code>0dp</code></strong><br><strong>竖直布局时，将每个组件的高度（height）设置为<code>0dp</code></strong></p>
+<pre><code>    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;horizontal&quot;&gt;
+        &lt;TextView
+            android:layout_width=&quot;0dp&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第一个文本框&quot;
+            android:layout_weight=&quot;1&quot;
+            android:background=&quot;#ffff00&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;0dp&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第二个文本框&quot;
+            android:layout_weight=&quot;2&quot;
+            android:background=&quot;#ff0000&quot;/&gt;
+        &lt;TextView
+            android:layout_width=&quot;0dp&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:gravity=&quot;center&quot;
+            android:text=&quot;第三个文本框&quot;
+            android:layout_weight=&quot;3&quot;
+            android:background=&quot;#008000&quot;/&gt;
+    &lt;/LinearLayout&gt;</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-26faecc15797a297.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>这样的用法用得较多，那么如果再将每个组件的宽度改为<code>match_parent</code>呢，效果如下：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-7a767de4a7ccdf5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>第一个文本框明显比第二个大，而且第三个文本框消失了，像这样的水平布局中且将所有孩子组件的宽度设置为了<code>match_parent</code>，还要使用<code>layout_weight</code>属性，要得知真正的比例，便需要计算了，下面介绍一种计算方式：<br>①用1减去孩子组件的数目(也就是分成的区域数)，得到数m。<br>②计算每个孩子组件的<code>layout_weight</code>对应值占所有<code>layout_weight</code>和的比例n。<br>③用1+m×n计算出的结果即为实际比例。<br>例如上面那个例子：<br>m = 1 - 3 = -2，每个组件的<code>layout_weight</code>所占比例依次为1/6,1/3,1/2，根据公式计算实际比例：<br>第一个文本框：1-2×1/6 = 2/3<br>第二个文本框：1-2×1/3 = 1/3<br>第三个文本框：1-2×1/2 = 0<br>与实际结果一致，多试试就熟练了。</p>
+<p><em>如有错误，欢迎指正~</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/01/09/android-LinearLayout/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;01&#x2F;09&#x2F;android-LinearLayout&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;01&#x2F;09&#x2F;android-LinearLayout&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911435"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

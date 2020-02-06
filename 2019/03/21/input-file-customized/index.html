@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>自定义input file样式及原理讲解 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="0.写在前面当有要上传文件需要的时候常会用到&lt;input type&#x3D;&quot;file&quot;&gt;，但它默认的样式确实有些影响使用体验…… 上传图片&lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;fn&quot;&gt;再看一个我通过修改CSS实现的样式：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义input file样式及原理讲解">
+<meta property="og:url" content="https://chiselee.github.io/2019/03/21/input-file-customized/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="0.写在前面当有要上传文件需要的时候常会用到&lt;input type&#x3D;&quot;file&quot;&gt;，但它默认的样式确实有些影响使用体验…… 上传图片&lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;fn&quot;&gt;再看一个我通过修改CSS实现的样式：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-5dd7b7cd8ae77237.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-387dd6dd6f536341.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-f9bfb81f7f5f4e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-e3f82504aee6c390.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-c7a1bea1d5dd9d05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-a1589f0d526129d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-e42d35f955e851c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-131021d504945bdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-1e7abc7ffd91305f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-5a32791cde162afc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-0a81394d90ec57c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2019-03-21T07:24:53.000Z">
+<meta property="article:modified_time" content="2020-02-06T06:30:11.078Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-5dd7b7cd8ae77237.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911410">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>自定义input file样式及原理讲解</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>752 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-写在前面"><span class="toc-text">0.写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-修改原理（分步讲解）"><span class="toc-text">1.修改原理（分步讲解）</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="0-写在前面"><a href="#0-写在前面" class="headerlink" title="0.写在前面"></a>0.写在前面</h2><p>当有要上传文件需要的时候常会用到<code>&lt;input type=&quot;file&quot;&gt;</code>，但它默认的样式确实有些影响使用体验……</p>
+<pre><code>上传图片&lt;input type=&quot;file&quot; name=&quot;fn&quot;&gt;</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-5dd7b7cd8ae77237.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在谷歌浏览器使用该标签的样式"><br>再看一个我通过修改CSS实现的样式：<a id="more"></a><br><img src="https://upload-images.jianshu.io/upload_images/13713347-387dd6dd6f536341.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>呃，虽然只是个没什么特色的绿底白字的样式，但是总比初始的感觉好吧… 言归正传，当你明白了修改<code>input type=&quot;file&quot;</code>按钮的原理后，自然可以设计出更佳的样式。</p>
+<h2 id="1-修改原理（分步讲解）"><a href="#1-修改原理（分步讲解）" class="headerlink" title="1.修改原理（分步讲解）"></a>1.修改原理（分步讲解）</h2><pre><code>&lt;div class=&quot;filebutton&quot;&gt;&lt;div&gt;上传图片&lt;/div&gt;&lt;input type=&quot;file&quot; name=&quot;fn&quot;&gt;&lt;/div&gt;</code></pre><p>这是html中的内容，文本和<code>input</code>标签被一个<code>class</code>为<code>filebutton</code>的<code>div</code>标签包裹起来，其中文本“上传图片”也被一个单独的<code>div</code>标签包裹起来，这里使用<code>div</code>标签的原因是：<strong>便于之后更改按钮大小</strong>。<br>先看下未加css的效果：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-f9bfb81f7f5f4e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>现在我们先来改下包裹文字的<code>div</code>样式：</p>
+<pre><code>.filebutton div{
+    font-size: 25px;
+    background: #00ff7f;
+    color: white;
+    padding: 10px 15px;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-e3f82504aee6c390.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>自然，现在点击“上传图片”这块区域是不管用的，现在要做的就是使“选择文件”的响应区域与之重合。<br>尝试将“选择文件”按钮移入“上传图片”区域：</p>
+<pre><code>.filebutton{
+    position: relative;
+}
+.filebutton input{
+    position: absolute;
+    top: 0;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-c7a1bea1d5dd9d05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>“上传图片”这按钮太长了，理想的状态是使他的宽度随文本长度而变，且我们可以使用<code>padding</code>等属性调整，于是父<code>div</code>里加上<code>display: inline-block</code>：</p>
+<pre><code>.filebutton{
+    position: relative;
+    display: inline-block;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-a1589f0d526129d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>宽度也调整好了，但总不能使用这个样子的按钮吧，那就将它透明度设置为’0’隐藏起来(<code>opacity: 0;</code>):</p>
+<pre><code>.filebutton input{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-e42d35f955e851c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt>现在看起来似乎没什么问题了，但实际上这个按钮现在的响应区域有很大问题：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-131021d504945bdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实际响应区域"><br>现在增大<code>input</code>中的<code>font-size</code>来增大响应区域：</p>
+<pre><code>.filebutton input{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    font-size: 100px;
+}</code></pre><p>现在按钮内所有区域都能响应了，但你会发现，按钮外的很大一部分区域也会响应…<br>注释掉<code>opacity:0</code>来看看现在的真实效果：</p>
+<pre><code>.filebutton input{
+    position: absolute;
+    top: 0;
+    /*opacity: 0;*/
+    font-size: 100px;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-1e7abc7ffd91305f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>实际上这句文字所在行才是真正的响应区域，也许你已经有对策了，在父<code>div</code>里设置<code>&quot;overflow:hidden&quot;</code></p>
+<pre><code>.filebutton{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-5a32791cde162afc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>响应区域调整完成。<br>最后取消掉<code>opacity:0</code>的注释，大功告成！<br>##2.完整CSS代码</p>
+<pre><code>.filebutton{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.filebutton input{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    font-size: 100px;
+}
+.filebutton div{
+    font-size: 25px;
+    background: #00ff7f;
+    color: white;
+    padding: 10px 15px;
+}</code></pre><p>这样设置也有不好的地方，选择文件后不会像之前一样文字显示选中了哪个文件，但没关系，将鼠标在按钮处停滞一会就可以知道选中了什么文件：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-0a81394d90ec57c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><em>若你有其他的修改方法，欢迎一起讨论~</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/03/21/input-file-customized/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;03&#x2F;21&#x2F;input-file-customized&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;03&#x2F;21&#x2F;input-file-customized&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911413"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python 字符串常用内置方法介绍 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="Python版本：3.7.0 大小写转换capitalize()capitalize() #字符串首字母大写 &gt;&gt;&gt; str0 &#x3D; &#39;hello World&#39; &gt;&gt;&gt; str0.capitalize() &#39;Hello world&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 字符串常用内置方法介绍">
+<meta property="og:url" content="https://chiselee.github.io/2018/10/26/python-str/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="Python版本：3.7.0 大小写转换capitalize()capitalize() #字符串首字母大写 &gt;&gt;&gt; str0 &#x3D; &#39;hello World&#39; &gt;&gt;&gt; str0.capitalize() &#39;Hello world&#39;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-26T14:33:46.000Z">
+<meta property="article:modified_time" content="2020-02-06T08:41:29.369Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911455">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python 字符串常用内置方法介绍</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2018年10月26日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大小写转换"><span class="toc-text">大小写转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#capitalize"><span class="toc-text">capitalize()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upper-，-lower"><span class="toc-text">upper()， lower()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#swapcase"><span class="toc-text">swapcase()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容判断"><span class="toc-text">内容判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#startswith-，endswith"><span class="toc-text">startswith()，endswith()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isupper-，islower"><span class="toc-text">isupper()，islower()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isalpha-，isdigit-，isalnum"><span class="toc-text">isalpha()，isdigit()，isalnum()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容查找"><span class="toc-text">内容查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-，rfind-，index-，rindex"><span class="toc-text">find()，rfind()，index()，rindex()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#替换，-添加，-删除"><span class="toc-text">替换， 添加， 删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strip-，lstrip-，rstrip"><span class="toc-text">strip()，lstrip()，rstrip()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-text">replace()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#format"><span class="toc-text">format()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text">join()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分割"><span class="toc-text">分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#split-，-rsplit"><span class="toc-text">split()， rsplit()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#partition-，rpartition"><span class="toc-text">partition()，rpartition()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计数"><span class="toc-text">计数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#count"><span class="toc-text">count()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#center"><span class="toc-text">center()</span></a></li></ol></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <p><em>Python版本：3.7.0</em></p>
+<h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><h3 id="capitalize"><a href="#capitalize" class="headerlink" title="capitalize()"></a>capitalize()</h3><p><code>capitalize() #字符串首字母大写</code></p>
+<pre><code>&gt;&gt;&gt; str0 = &#39;hello World&#39;
+&gt;&gt;&gt; str0.capitalize()
+&#39;Hello world&#39;</code></pre><a id="more"></a>
+<h3 id="upper-，-lower"><a href="#upper-，-lower" class="headerlink" title="upper()， lower()"></a>upper()， lower()</h3><p><code>upper() #将字符串的所有小写字符转化为大写</code><br><code>lower() #将字符串的所有大写字符转化为小写</code></p>
+<pre><code>&gt;&gt;&gt; str1 = &#39;Hello World&#39;
+&gt;&gt;&gt; str1.upper()
+&#39;HELLO WORLD&#39;
+&gt;&gt;&gt; str1.lower()
+&#39;hello world&#39;</code></pre><h3 id="swapcase"><a href="#swapcase" class="headerlink" title="swapcase()"></a>swapcase()</h3><p><code>swapcase() #将字符串中的大写字符改为小写，小写字符改为大写</code></p>
+<pre><code>&gt;&gt;&gt; str1 = &#39;Hello World&#39;
+&gt;&gt;&gt; str1.swapcase()
+&#39;hELLO wORLD&#39;</code></pre><h2 id="内容判断"><a href="#内容判断" class="headerlink" title="内容判断"></a>内容判断</h2><h3 id="startswith-，endswith"><a href="#startswith-，endswith" class="headerlink" title="startswith()，endswith()"></a>startswith()，endswith()</h3><p><code>startswith() #判断字符串是否以指定参数开始，返回True或False</code><br><code>endswith() #判断字符串是否以指定参数结束，返回True或False</code></p>
+<pre><code>&gt;&gt;&gt; str1 = &#39;Hello World&#39;
+&gt;&gt;&gt; str1.startswith(&#39;h&#39;)
+False
+&gt;&gt;&gt; str1.endswith(&#39;d&#39;)
+True</code></pre><p>tip:判断时大小写是要区分的，可以添加第二、三个参数来限定范围。</p>
+<h3 id="isupper-，islower"><a href="#isupper-，islower" class="headerlink" title="isupper()，islower()"></a>isupper()，islower()</h3><p><code>isupper() #如果字符串中的字母均为大写返回True，否则返回 False</code><br><code>islower() #如果字符串中的字母均为小写返回True，否则返回 False</code></p>
+<pre><code>&gt;&gt;&gt; str1 = &#39;Hello World&#39;
+&gt;&gt;&gt; str2 = &#39;123asdxfgs...&#39;
+&gt;&gt;&gt; str1.isupper()
+False
+&gt;&gt;&gt; str2.islower()
+True</code></pre><p>tip:字符串中可以含数字和特殊字符</p>
+<h3 id="isalpha-，isdigit-，isalnum"><a href="#isalpha-，isdigit-，isalnum" class="headerlink" title="isalpha()，isdigit()，isalnum()"></a>isalpha()，isdigit()，isalnum()</h3><p><code>isalpha() #如果字符串中只包含字母返回 True，否则返回 False</code><br><code>isdigit() #如果字符串中只包含数字返回 True，否则返回 False</code><br><code>isalnum() #如果字符串中只包含字母或数字返回 True，否则返回 False</code></p>
+<pre><code>&gt;&gt;&gt; str3 = &#39;123456789&#39;
+&gt;&gt;&gt; str2 = &#39;123asdxfgs...&#39;
+&gt;&gt;&gt; str3.isalpha()
+False
+&gt;&gt;&gt; str3.isdigit()
+True
+&gt;&gt;&gt; str2.isalnum()
+False</code></pre><h2 id="内容查找"><a href="#内容查找" class="headerlink" title="内容查找"></a>内容查找</h2><h3 id="find-，rfind-，index-，rindex"><a href="#find-，rfind-，index-，rindex" class="headerlink" title="find()，rfind()，index()，rindex()"></a>find()，rfind()，index()，rindex()</h3><p><code>find() #查找指定参数是否在字符串中，查找成功返回字符下标，失败则返回-1</code><br><code>rfind() #功能和find()一致，但查找方向从右边开始</code><br><code>index() #和find功能一样，但查找失败会产生错误</code><br><code>rindex() #功能和index()一致，但查找方向从右边开始</code></p>
+<pre><code>&gt;&gt;&gt; str2 = &#39;123asdxfgs...&#39;
+&gt;&gt;&gt; str2.find(&#39;123&#39;)
+0
+&gt;&gt;&gt; str2.find(&#39;1234&#39;)
+-1
+&gt;&gt;&gt; str2.index(&#39;x&#39;)
+6
+&gt;&gt;&gt; str2.index(&#39;b&#39;)
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#33&gt;&quot;, line 1, in &lt;module&gt;
+    str2.index(&#39;b&#39;)
+ValueError: substring not found
+&gt;&gt;&gt; str4 = &#39;test88ooo88&#39;
+&gt;&gt;&gt; str4.find(&#39;88&#39;)
+4
+&gt;&gt;&gt; str4.rfind(&#39;88&#39;)
+9</code></pre><p>tip:可以加上第二、三个参数来限制范围。</p>
+<h2 id="替换，-添加，-删除"><a href="#替换，-添加，-删除" class="headerlink" title="替换， 添加， 删除"></a>替换， 添加， 删除</h2><h3 id="strip-，lstrip-，rstrip"><a href="#strip-，lstrip-，rstrip" class="headerlink" title="strip()，lstrip()，rstrip()"></a>strip()，lstrip()，rstrip()</h3><p><code>strip() #默认删除字符串前后的空格，若加上参数，则改为删除字符串前后的该参数</code><br><code>lstrip() #去掉字符串前面的空格，若加上参数，则改为删除字符串前的该参数</code><br><code>rstrip() #删除字符串末尾的空格，若加上参数，则改为删除字符串后的该参数</code></p>
+<pre><code>&gt;&gt;&gt; str5 = &#39;   content    &#39;
+&gt;&gt;&gt; str5.lstrip()
+&#39;content    &#39;
+&gt;&gt;&gt; str5.rstrip()
+&#39;   content&#39;
+&gt;&gt;&gt; str5.strip()
+&#39;content&#39;
+&gt;&gt;&gt; str5.strip(&#39;t&#39;)
+&#39;   content    &#39;
+&gt;&gt;&gt; str6 = &#39;123and123&#39;
+&gt;&gt;&gt; str6.strip(&#39;123&#39;)
+&#39;and&#39;
+&gt;&gt;&gt; str6.lstrip(&#39;123&#39;)
+&#39;and123&#39;</code></pre><p>tip:<code>strip()</code>只能删除字符串前后的指定内容，不能误解为删除该字符串中所有的该字符，若想实现此功能，建议使用<code>replace()</code>。</p>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h3><p><code>replace(old,new[,count]) #将字符串中的所有old用new替换，若使用count参数，则替换次数不超过count次。</code></p>
+<pre><code>&gt;&gt;&gt; str7 = &#39;xxHxexlxxlxo Wxxxxorld&#39;
+&gt;&gt;&gt; str7.replace(&#39;x&#39;, &#39;&#39;)
+&#39;Hello World&#39;
+&gt;&gt;&gt; str7.replace(&#39;x&#39;, &#39;A&#39;)
+&#39;AAHAeAlAAlAo WAAAAorld&#39;
+&gt;&gt;&gt; str7.replace(&#39;x&#39;, &#39;A&#39;, 1)
+&#39;AxHxexlxxlxo Wxxxxorld&#39;</code></pre><h3 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h3><p><code>format() #格式化字符串</code></p>
+<pre><code>&gt;&gt;&gt; &quot;姓名：{}， 性别：{}&quot;.format(&#39;张三&#39;,&#39;男&#39;)
+&#39;姓名：张三， 性别：男&#39;
+&gt;&gt;&gt; &quot;姓名：{a}， 性别：{b}&quot;.format(b=&#39;男&#39;,a=&#39;张三&#39;)
+&#39;姓名：张三， 性别：男&#39;</code></pre><p>tip:常与{}一起使用，参数个数由自己决定。</p>
+<h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><p><code>join() #以原字符串作为分隔符，插入到参数中每个字符之间。</code></p>
+<pre><code>&gt;&gt;&gt; str_break = &#39;xx&#39;
+&gt;&gt;&gt; str_break.join(&#39;AB&#39;)
+&#39;AxxB&#39;
+&gt;&gt;&gt; str_break.join(&#39;ABC&#39;)
+&#39;AxxBxxC&#39;</code></pre><h2 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h2><h3 id="split-，-rsplit"><a href="#split-，-rsplit" class="headerlink" title="split()， rsplit()"></a>split()， rsplit()</h3><p><code>split() #以第一个参数为分隔符分割字符串,返回一个列表</code><br><code>rsplit() #和split()功能相同，但是从右边开始分割</code></p>
+<pre><code>&gt;&gt;&gt; str8 = &#39;AxxBxxC&#39;
+&gt;&gt;&gt; str8.split(&#39;xx&#39;)
+[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]
+&gt;&gt;&gt; str8.split(&#39;x&#39;)
+[&#39;A&#39;, &#39;&#39;, &#39;B&#39;, &#39;&#39;, &#39;C&#39;]
+&gt;&gt;&gt; str8.split(&#39;xxx&#39;)
+[&#39;AxxBxxC&#39;]</code></pre><p>tip:可以加上第二个参数限制次数。</p>
+<pre><code>&gt;&gt;&gt; str8.split(&#39;xx&#39;, 1)
+[&#39;A&#39;, &#39;BxxC&#39;]</code></pre><h3 id="partition-，rpartition"><a href="#partition-，rpartition" class="headerlink" title="partition()，rpartition()"></a>partition()，rpartition()</h3><p><code>partition() #将字符串从参数处分成&#39;参数前&#39;，&#39;参数&#39;，&#39;参数后&#39;三段，返回一个三元元组</code><br><code>rpartition() #功能和partition()一致，但从右边开始</code></p>
+<pre><code>&gt;&gt;&gt; str8 = &#39;AxxBxxC&#39;
+&gt;&gt;&gt; str8.partition(&#39;xx&#39;)
+(&#39;A&#39;, &#39;xx&#39;, &#39;BxxC&#39;)
+&gt;&gt;&gt; str8.rpartition(&#39;xx&#39;)
+(&#39;AxxB&#39;, &#39;xx&#39;, &#39;C&#39;)
+&gt;&gt;&gt; str8.partition(&#39;zzz&#39;)
+(&#39;AxxBxxC&#39;, &#39;&#39;, &#39;&#39;)</code></pre><p>tip:若找不到参数，则返回<code>(&#39;字符串&#39;, &#39;&#39;, &#39;&#39;)</code></p>
+<h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><h3 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h3><p><code>count() #参数为字符串的一个子串，返回该子串出现的次数</code></p>
+<pre><code>&gt;&gt;&gt; str8 = &#39;AxxBxxC&#39;
+&gt;&gt;&gt; str8.count(&#39;xx&#39;)
+2</code></pre><p>tip:可以加上第二，三个参数来限定范围。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="center"><a href="#center" class="headerlink" title="center()"></a>center()</h3><p><code>center() #将某字符串居中，并以指定字符填充至指定长度。</code></p>
+<pre><code>&gt;&gt;&gt; &quot;test&quot;.center(20, &#39;*&#39;)
+&#39;********test********&#39;</code></pre>
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2018/10/26/python-str/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;10&#x2F;26&#x2F;python-str&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;10&#x2F;26&#x2F;python-str&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911456"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

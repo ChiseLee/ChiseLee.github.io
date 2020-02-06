@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>html+css+js实现一个简易日历 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="效果预览只实现了日历最基础的功能，当前日期红色显示，可通过上方的左右按钮查看上一月或下一月的日期。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html+css+js实现一个简易日历">
+<meta property="og:url" content="https://chiselee.github.io/2018/11/20/html-calendar/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="效果预览只实现了日历最基础的功能，当前日期红色显示，可通过上方的左右按钮查看上一月或下一月的日期。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-671724a3355048e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-51b524f91ba0252d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-11-20T13:37:21.000Z">
+<meta property="article:modified_time" content="2020-02-06T07:55:35.109Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-671724a3355048e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911438">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>html+css+js实现一个简易日历</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS部分"><span class="toc-text">CSS部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS部分及原理讲解"><span class="toc-text">JS部分及原理讲解</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://upload-images.jianshu.io/upload_images/13713347-671724a3355048e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简易"><br>只实现了日历最基础的功能，当前日期红色显示，可通过上方的左右按钮查看上一月或下一月的日期。<a id="more"></a></p>
+<h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><pre><code>&lt;body&gt;
+    &lt;div id=&quot;cldFrame&quot;&gt;
+        &lt;div id=&quot;cldBody&quot;&gt;
+            &lt;table&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;td colspan=&quot;7&quot;&gt;
+                            &lt;div id=&quot;top&quot;&gt;
+                                &lt;span id=&quot;left&quot;&gt;&amp;lt;&lt;/span&gt;
+                                &lt;span id=&quot;topDate&quot;&gt;&lt;/span&gt;
+                                &lt;span id=&quot;right&quot;&gt;&amp;gt;&lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr id=&quot;week&quot;&gt;
+                        &lt;td&gt;日&lt;/td&gt;
+                        &lt;td&gt;一&lt;/td&gt;
+                        &lt;td&gt;二&lt;/td&gt;
+                        &lt;td&gt;三&lt;/td&gt;
+                        &lt;td&gt;四&lt;/td&gt;
+                        &lt;td&gt;五&lt;/td&gt;
+                        &lt;td&gt;六&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody id=&quot;tbody&quot;&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre><h2 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h2><pre><code>#cldFrame{
+    position: relative;
+    width: 440px;
+    margin: 50px auto;
+}
+#cldBody{
+    margin: 10px;
+    position: absolute;
+    width: 420px;
+}
+#top{
+    position: relative;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+}
+#topDate{
+    font-size: 30px;
+}
+.curDate{
+    color: red;
+    font-weight: bold;
+}
+table{
+    background-color: #f7f7f7;
+}
+#week td{
+    font-size: 15px;
+}
+td{
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    font-family: Simsun;
+    font-size: 20px;
+}
+#left, #right{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+#left{left: 0px;}
+#right{right: 0px;}
+#left:hover, #right:hover{
+    background-color: rgba(30, 30, 30, 0.2);
+}</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-51b524f91ba0252d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Html+Css"><br>当前显示月份和日期下面将在JS中添加。</p>
+<h2 id="JS部分及原理讲解"><a href="#JS部分及原理讲解" class="headerlink" title="JS部分及原理讲解"></a>JS部分及原理讲解</h2><p>先介绍两个常用的和时间有关的函数，相信大多数人都接触过~</p>
+<p><strong>①判断某年是否是闰年</strong></p>
+<pre><code>/*判断某年是否是闰年*/
+function isLeap(year) {
+    if((year%4==0 &amp;&amp; year%100!=0) || year%400==0){
+        return true;
+    }
+    else{
+        return false; 
+    }
+}</code></pre><p>二月大概是十二个月份中最不安分的一个月。</p>
+<p><strong>②判断某年某月某日是星期几</strong></p>
+<pre><code>var monthDay = [31,0,31,30,31,30,31,31,30,31,30,31];</code></pre><p>在这之前用数组存放每个月有多少天，我这里将二月的天数设置成了0，之后再决定是加28还是29。</p>
+<pre><code>/*判断某年某月某日是星期几，默认日为1号*/
+function whatDay(year, month, day=1) {
+    var sum = 0;
+    sum += (year-1)*365+Math.floor((year-1)/4)-Math.floor((year-1)/100)+Math.floor((year-1)/400)+day;
+    for(var i=0; i&lt;month-1; i++){
+        sum += monthDay[i];
+    }
+    if(month &gt; 2){
+        if(isLeap(year)){ 
+            sum += 29; 
+        }
+        else{
+             sum += 28; 
+        }
+    }
+    return sum%7;      //余数为0代表那天是周日，为1代表是周一，以此类推
+}</code></pre><p>这个函数是为了判断某年某月的1号是星期几而设定的，实际上可以不设置<code>day</code>这个参数，加上了<code>day</code>这个变量，允许使用者在查某日的日期是星期几时也能调用这个函数。</p>
+<p><strong>③日历添加部分</strong><br>根据当前日期决定日历显示哪个月的日期，根据那月的1号是星期几决定1号的添加位置，前方用空格子填充。<del>该月添加完后后方也用空格子补齐。</del></p>
+<pre><code>
+/*显示日历*/
+function showCld(year, month, firstDay){
+    var i;
+    var tagClass = &quot;&quot;;
+    var nowDate = new Date();
+
+    var days;//从数组里取出该月的天数
+    if(month == 2){
+        if(isLeap(year)){
+            days = 29;
+        }
+        else{
+            days = 28;
+        }
+    }
+    else{
+        days = monthDay[month-1];
+    }
+
+    /*当前显示月份添加至顶部*/
+    var topdateHtml = year + &quot;年&quot; + month + &quot;月&quot;;
+    var topDate = document.getElementById(&#39;topDate&#39;);
+    topDate.innerHTML = topdateHtml;    
+
+    /*添加日期部分*/
+    var tbodyHtml = &#39;&lt;tr&gt;&#39;;
+    for(i=0; i&lt;firstDay; i++){//对1号前空白格的填充
+        tbodyHtml += &quot;&lt;td&gt;&lt;/td&gt;&quot;;
+    }
+    var changLine = firstDay;
+    for(i=1; i&lt;=days; i++){//每一个日期的填充
+        if(year == nowDate.getFullYear() &amp;&amp; month == nowDate.getMonth()+1 &amp;&amp; i == nowDate.getDate()) {
+            tagClass = &quot;curDate&quot;;//当前日期对应格子
+        } 
+        else{ 
+            tagClass = &quot;isDate&quot;;//普通日期对应格子，设置class便于与空白格子区分开来
+        }  
+        tbodyHtml += &quot;&lt;td class=&quot; + tagClass + &quot;&gt;&quot; + i + &quot;&lt;/td&gt;&quot;;
+        changLine = (changLine+1)%7;
+        if(changLine == 0 &amp;&amp; i != days){//是否换行填充的判断
+            tbodyHtml += &quot;&lt;/tr&gt;&lt;tr&gt;&quot;;
+        } 
+    }
+    if(changLine!=0){//添加结束，对该行剩余位置的空白填充
+        for (i=changLine; i&lt;7; i++) {
+            tbodyHtml += &quot;&lt;td&gt;&lt;/td&gt;&quot;;
+        }
+    }//实际上不需要填充后方，但强迫症必须整整齐齐！   
+    tbodyHtml +=&quot;&lt;/tr&gt;&quot;;
+    var tbody = document.getElementById(&#39;tbody&#39;);
+    tbody.innerHTML = tbodyHtml;
+}
+</code></pre><p>调用后，日历就可以完整显示了~</p>
+<pre><code>    var curDate = new Date();
+    var curYear = curDate.getFullYear();
+    var curMonth = curDate.getMonth() + 1;
+    showCld(curYear,curMonth,whatDay(curYear,curMonth));</code></pre><p><strong>下一月与上一月</strong></p>
+<pre><code>function nextMonth(){
+    var topStr = document.getElementById(&quot;topDate&quot;).innerHTML;
+    var pattern = /\d+/g;
+    var listTemp = topStr.match(pattern);
+    var year = Number(listTemp[0]);
+    var month = Number(listTemp[1]);
+    var nextMonth = month+1;
+    if(nextMonth &gt; 12){
+        nextMonth = 1;
+        year++;
+    }
+    document.getElementById(&#39;topDate&#39;).innerHTML = &#39;&#39;;
+    showCld(year, nextMonth, whatDay(year, nextMonth));
+}
+function preMonth(){
+    var topStr = document.getElementById(&quot;topDate&quot;).innerHTML;
+    var pattern = /\d+/g;
+    var listTemp = topStr.match(pattern);
+    var year = Number(listTemp[0]);
+    var month = Number(listTemp[1]);
+    var preMonth = month-1;
+    if(preMonth &lt; 1){
+        preMonth = 12;
+        year--;
+    }
+    document.getElementById(&#39;topDate&#39;).innerHTML = &#39;&#39;;
+    showCld(year, preMonth, whatDay(year, preMonth));
+}</code></pre><p>两者没多大差别，别忘了要绑定到按钮上：</p>
+<pre><code>    document.getElementById(&#39;right&#39;).onclick = function(){
+        nextMonth();
+    }
+    document.getElementById(&#39;left&#39;).onclick = function(){
+        preMonth();
+    }</code></pre><p>更多有趣的功能等待着你去添加~</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2018/11/20/html-calendar/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;20&#x2F;html-calendar&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;20&#x2F;html-calendar&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911440"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

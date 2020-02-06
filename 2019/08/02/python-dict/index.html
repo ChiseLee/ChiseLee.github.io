@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python字典内置方法介绍 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="①clear()删除字典内所有元素。 dict_a &#x3D; {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100} dict_a.clear() print(dict_a)  #{} ②copy()拷贝某字典。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python字典内置方法介绍">
+<meta property="og:url" content="https://chiselee.github.io/2019/08/02/python-dict/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="①clear()删除字典内所有元素。 dict_a &#x3D; {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100} dict_a.clear() print(dict_a)  #{} ②copy()拷贝某字典。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-02T11:47:18.000Z">
+<meta property="article:modified_time" content="2020-02-06T04:20:10.466Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911379">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python字典内置方法介绍</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月02日</a>
+    <a><i class="nexmoefont icon-areachart"></i>834 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#①clear"><span class="toc-text">①clear()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#②copy"><span class="toc-text">②copy()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#③fromkeys"><span class="toc-text">③fromkeys()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#④get"><span class="toc-text">④get()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑤items"><span class="toc-text">⑤items()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑥pop"><span class="toc-text">⑥pop()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑦popitem"><span class="toc-text">⑦popitem()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑧setdefault"><span class="toc-text">⑧setdefault()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑨update"><span class="toc-text">⑨update()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⑩values-and-keys"><span class="toc-text">⑩values() and keys()</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="①clear"><a href="#①clear" class="headerlink" title="①clear()"></a>①clear()</h2><p>删除字典内所有元素。</p>
+<pre><code class="dict2">dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+dict_a.clear()
+print(dict_a)
+
+#{}</code></pre>
+<h2 id="②copy"><a href="#②copy" class="headerlink" title="②copy()"></a>②copy()</h2><p>拷贝某字典。<a id="more"></a></p>
+<pre><code class="dict5">dict_b = {
+    &#39;a&#39;: 1,
+    &#39;b&#39;: 2,
+    &#39;c&#39;: 3
+}
+dict_c = dict_b.copy()
+print(dict_c)
+
+#{&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}</code></pre>
+<h2 id="③fromkeys"><a href="#③fromkeys" class="headerlink" title="③fromkeys()"></a>③fromkeys()</h2><p>创建一个新的字典，第一个参数为字典的键（key），第二个参数可选，为<strong>所有键</strong>对应的值（value）。</p>
+<pre><code class="dict5.fromkeys((1,2,3))">dict_t0 = dict.fromkeys(&#39;1&#39;)
+dict_t1 = dict.fromkeys((1, 2, 3), &#39;a&#39;)
+dict_t2 = dict.fromkeys((1, 2, 3), (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;))
+print(dict_t0, dict_t1, dict_t2)
+
+#{&#39;1&#39;: None} 
+#{1: &#39;a&#39;, 2: &#39;a&#39;, 3: &#39;a&#39;} 
+#{1: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;), 2: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;), 3: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)}</code></pre>
+<p>可以看出，尝试给每个键附上不同的值用这个方法是不可取的。</p>
+<h2 id="④get"><a href="#④get" class="headerlink" title="④get()"></a>④get()</h2><p>参数为键(key)，返回该键对应的值(value)，若该键不存在或未对应值，则返回none。<br><code>get()</code>方法可以使用第二个参数，当获取键不存在时，返回设定的值。</p>
+<pre><code>dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+print(dict_a.get(&#39;b&#39;))
+print(dict_a.get(&#39;e&#39;))
+print(dict_a.get(&#39;e&#39;, &#39;test&#39;))
+
+#98
+#None
+#test</code></pre><h2 id="⑤items"><a href="#⑤items" class="headerlink" title="⑤items()"></a>⑤items()</h2><p>以列表形式返回字典的（键，值），常用来遍历一个字典。</p>
+<pre><code>dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+list_t = dict_a.items()
+print(list_t)
+for key, value in dict_a.items():
+    print(key, &#39;:&#39;, value)
+
+#dict_items([(&#39;a&#39;, 97), (&#39;b&#39;, 98), (&#39;c&#39;, 99), (&#39;d&#39;, 100)])
+#a : 97
+#b : 98
+#c : 99
+#d : 100</code></pre><h2 id="⑥pop"><a href="#⑥pop" class="headerlink" title="⑥pop()"></a>⑥pop()</h2><p>删除字典指定键和对应的值。</p>
+<pre><code class="dict3">dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+t = dict_a.pop(&#39;b&#39;)
+print(t, dict_a)
+
+#98 {&#39;a&#39;: 97, &#39;c&#39;: 99, &#39;d&#39;: 100}</code></pre>
+<h2 id="⑦popitem"><a href="#⑦popitem" class="headerlink" title="⑦popitem()"></a>⑦popitem()</h2><p>返回并删除字典末尾的（键，值）对，无参数。</p>
+<pre><code class="dict1">dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+for i in range(3):
+    t = dict_a.popitem()
+    print(t, dict_a)
+
+#(&#39;d&#39;, 100) {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99}
+#(&#39;c&#39;, 99) {&#39;a&#39;: 97, &#39;b&#39;: 98}
+#(&#39;b&#39;, 98) {&#39;a&#39;: 97}</code></pre>
+<h2 id="⑧setdefault"><a href="#⑧setdefault" class="headerlink" title="⑧setdefault()"></a>⑧setdefault()</h2><p>第一个参数为键（key），若存在则返回键对应的值（value），第二个参数为键不存在时的返回值，若不存在则会自动添加进字典。</p>
+<pre><code class="dict1">dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+t1 = dict_a.setdefault(&#39;a&#39;)
+print(t1)
+t2 = dict_a.setdefault(&#39;a&#39;, 101)
+print(t2, dict_a)
+t3 = dict_a.setdefault(&#39;e&#39;, 101)
+print(t3, dict_a)
+
+#97
+#97 {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+#101 {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100, &#39;e&#39;: 101}</code></pre>
+<h2 id="⑨update"><a href="#⑨update" class="headerlink" title="⑨update()"></a>⑨update()</h2><p>参数为一个字典，将参数内容添加至原字典。</p>
+<pre><code class="dict5">dict_a = {&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100}
+dict_t = {&#39;e&#39;: 101, &#39;f&#39;: 102}
+dict_a.update(dict_t)
+print(dict_a)
+
+#{&#39;a&#39;: 97, &#39;b&#39;: 98, &#39;c&#39;: 99, &#39;d&#39;: 100, &#39;e&#39;: 101, &#39;f&#39;: 102}</code></pre>
+<h2 id="⑩values-and-keys"><a href="#⑩values-and-keys" class="headerlink" title="⑩values() and keys()"></a>⑩values() and keys()</h2><p>无参，返回字典所有值（value）或所有键（key）。</p>
+<pre><code class="dict5">dict_d = {
+    &quot;apple&quot;: &#39;A&#39;,
+    &quot;and&quot;: &#39;A&#39;,
+    &quot;boy&quot;: &#39;B&#39;,
+    &quot;China&quot;: &#39;C&#39;
+}
+print(dict_d.keys())
+print(dict_d.values())
+
+
+#dict_keys([&#39;apple&#39;, &#39;and&#39;, &#39;boy&#39;, &#39;China&#39;])
+#dict_values([&#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;])</code></pre>
+<p>转换成集合来避免value值重复。</p>
+<pre><code>print(set(dict_d.values()))
+
+#{&#39;C&#39;, &#39;A&#39;, &#39;B&#39;}</code></pre><p><em>如有错误，欢迎指正！</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/08/02/python-dict/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;08&#x2F;02&#x2F;python-dict&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;08&#x2F;02&#x2F;python-dict&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911383"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

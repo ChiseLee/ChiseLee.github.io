@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>用requestAnimationFrame()实现一个轮播图 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="之前用定时器实现过一个轮播图，轮播图的基本功能都能够满足，但有一个很大的缺点：切换页面，或窗口缩小一段时间后，再切回轮播图所在页面，会发现轮播图有加速效果（图片以更快的速度往前连续滚动多张）。使用requestAnimationFrame()来实现则不会出现这样的问题，在页面处于非激活状态时，动画会自动暂停。html,css部分代码和之前一致：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用requestAnimationFrame()实现一个轮播图">
+<meta property="og:url" content="https://chiselee.github.io/2019/03/30/requestAnimationFrame-lbt/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="之前用定时器实现过一个轮播图，轮播图的基本功能都能够满足，但有一个很大的缺点：切换页面，或窗口缩小一段时间后，再切回轮播图所在页面，会发现轮播图有加速效果（图片以更快的速度往前连续滚动多张）。使用requestAnimationFrame()来实现则不会出现这样的问题，在页面处于非激活状态时，动画会自动暂停。html,css部分代码和之前一致：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-30T07:20:57.000Z">
+<meta property="article:modified_time" content="2020-02-06T06:03:55.288Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911402">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>用requestAnimationFrame()实现一个轮播图</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月30日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>之前用定时器实现过一个轮播图，轮播图的基本功能都能够满足，但有一个很大的缺点：切换页面，或窗口缩小一段时间后，再切回轮播图所在页面，会发现轮播图有加速效果（图片以更快的速度往前连续滚动多张）。<br>使用<code>requestAnimationFrame()</code>来实现则不会出现这样的问题，在页面处于非激活状态时，动画会自动暂停。<br><code>html</code>,<code>css</code>部分代码和之前一致：<a id="more"></a><br><strong><em>html</em></strong></p>
+<pre><code>&lt;body&gt;
+    &lt;div id= &quot;parent&quot;&gt;
+        &lt;div id=&quot;uls&quot;&gt;
+            &lt;ul id=&quot;img_ul&quot;&gt;
+                &lt;li&gt;&lt;img src=&quot;imgs/0.jpg&quot;/&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;img src=&quot;imgs/1.jpg&quot;/&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;img src=&quot;imgs/2.jpg&quot;/&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;img src=&quot;imgs/3.jpg&quot;/&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;img src=&quot;imgs/4.jpg&quot;/&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;ul id=&#39;litCir_ul&#39;&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;buttons&quot;&gt;
+            &lt;span id=&quot;left&quot;&gt;&amp;lt;&lt;/span&gt;
+            &lt;span id=&quot;right&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre><p><strong><em>css</em></strong></p>
+<pre><code>#parent{
+    position: relative;
+    margin: 50px auto;
+    padding: 0;
+    width: 500px;
+    height: 309px;
+}
+
+#uls{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 309px;
+    overflow: hidden;
+}
+
+#img_ul{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 3000px;
+    list-style: none;
+}
+#img_ul li{
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 309px;
+}
+#img_ul li img{
+    width: 500px;
+    height: 309px;
+}
+
+#litCir_ul{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    right: 10px;
+    bottom: 10px;
+    list-style: none;
+}
+#litCir_ul li{
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%; 
+    margin-left:10px ;
+    cursor: pointer;
+}
+
+li.active{
+    background-color: white;
+}
+li.quiet{
+    background-color: #1e90ff;
+}
+
+#buttons{
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+#buttons span{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Simsun;
+    font-size: 30px;
+    border: 1px solid #fff;
+    opacity: 0.3;
+    cursor: pointer;
+    color: #fff;
+    background: black;
+}
+#left{
+    left: 5px;
+}
+#right{
+    left: 100%;
+    margin-left: -45px;
+}</code></pre><p><strong><em>js</em></strong></p>
+<pre><code>window.onload = function(){
+    /*获取HTML中的对象*/
+    var parent = document.getElementById(&quot;parent&quot;);
+    var img_ul = document.getElementById(&quot;img_ul&quot;);
+    var litCir_ul = document.getElementById(&quot;litCir_ul&quot;);
+    var buttons = document.getElementById(&quot;buttons&quot;);
+    var cLis =litCir_ul.children;
+
+    var len = img_ul.children.length;     //图片张数
+    var width = parent.offsetWidth;       //每张图片的宽度
+    var rate = 15;                        //一张图片的切换速度，单位为px
+    var times = 1;                        //切换速度的倍率
+    var gap = 2000;                       //自动切换间隙，单位为毫秒
+    var timer = null;                     //初始化一个定时器
+    var picN = 0;                         //当前显示的图片下标
+    var cirN = 0;                         //当前显示图片的小圆点下标
+    var now;
+    var then = Date.now();
+    var temp;
+
+    /*克隆第一个li到列表末*/
+    img_ul.appendChild(img_ul.children[0].cloneNode(true));
+
+    for (var i=0; i&lt;len; i++){
+        var a_li = document.createElement(&quot;li&quot;);
+        a_li.className = &#39;quiet&#39;;
+        litCir_ul.appendChild(a_li);
+    }
+    litCir_ul.children[0].className = &quot;active&quot;;
+
+    function autoRoll(){
+        now = Date.now();
+        var t = now - then;
+        if(t &gt;= gap){
+            if(Roll(-(picN+1)*width)){
+                picN++;
+                cirN++;
+                then = Date.now();
+            }
+            for(var i=0; i&lt;len; i++){
+                cLis[i].className = &quot;quiet&quot;;
+            }
+            if(cirN == len){
+                cirN = 0;
+            }
+            cLis[cirN].className = &quot;active&quot;;
+            if(picN&gt;=len){
+                img_ul.style.left = 0;
+                picN = 0;
+            }
+        }
+        timer = requestAnimationFrame(autoRoll); 
+    }
+    autoRoll();
+
+    parent.onmouseover = function(){
+        cancelAnimationFrame(timer);
+        buttons.style.display = &#39;block&#39;;
+
+    }
+    parent.onmouseout = function(){
+        timer = requestAnimationFrame(autoRoll);
+        buttons.style.display = &#39;none&#39;;
+    }
+
+    for(var i=0; i&lt;len; i++){
+        cLis[i].index = i;
+        cLis[i].onmouseover = function(){
+            var flag = 0;
+            var rollN = this.index;
+            for(var j=0; j&lt;len; j++){
+                cLis[j].className = &quot;quiet&quot;;
+            }
+            this.className = &quot;active&quot;;
+            temp = cirN;                           //当前active点
+            picN = cirN = this.index;
+            console.log(&#39;this.index:&#39;+this.index);
+            times = Math.abs(this.index - temp);  //距离上个小圆点的距离
+            if(times == 0){
+                return;
+            }
+            console.log(&#39;times:&#39;+times);
+            rate = rate*times;                    //根据距离改变切换速率
+
+            function rollTo(){
+                cancelAnimationFrame(img_ul.timer);
+                if(Roll(-rollN * width)){
+                    flag++;
+                    if(flag == times){
+                        cancelAnimationFrame(img_ul.timer);
+                        rate = 15;
+                        return;
+                    }
+                }
+                img_ul.timer = requestAnimationFrame(rollTo);
+            }
+            rollTo();
+        }
+    }
+
+    /*上一张*/
+    buttons.children[0].onclick = previous;
+    /*下一张*/
+    buttons.children[1].onclick = next;
+
+    function next(){
+        cancelAnimationFrame(img_ul.timer);
+        if(Roll(-(picN+1)*width)){
+            cancelAnimationFrame(img_ul.timer);
+            picN++;
+            cirN++;
+            for(var i=0; i&lt;len; i++){
+                cLis[i].className = &quot;quiet&quot;;
+            }
+            if(cirN == len){
+                cirN = 0;
+            }
+            cLis[cirN].className = &quot;active&quot;;
+            if(picN&gt;=len){
+                img_ul.style.left = 0;
+                picN = 0;
+            }
+            return;
+        }
+        img_ul.timer = requestAnimationFrame(next);
+    }
+
+    function previous(){
+        if(picN&lt;=0){
+            img_ul.style.left = -len*width + &quot;px&quot;;
+            picN = len;
+        }
+        cancelAnimationFrame(img_ul.timer);
+        if(Roll(-(picN-1)*width)){
+            cancelAnimationFrame(img_ul.timer);
+            picN--;
+            cirN--;
+            for(var i=0; i&lt;len; i++){
+                cLis[i].className = &quot;quiet&quot;;
+            }
+            if(cirN &lt; 0){
+                cirN = len-1;
+            }
+            cLis[cirN].className = &quot;active&quot;;
+            return;
+        }
+        img_ul.timer = requestAnimationFrame(previous);
+    }
+
+    function Roll(distance){
+        var speed = img_ul.offsetLeft &lt; distance ? rate:(0-rate);
+            img_ul.style.left = img_ul.offsetLeft + speed + &quot;px&quot;;
+            var leave = distance - img_ul.offsetLeft;
+            if(Math.abs(leave)&lt;=Math.abs(speed)){
+                img_ul.style.left = distance+&quot;px&quot;;
+                return 1;                             //切换完一张图片
+            }
+        return 0;
+    }
+}</code></pre><p>补全<code>html</code>，在指定位置放好图片即可看到效果。</p>
+<p>若你还不了解轮播图的实现原理，欢迎阅读这篇文章：<br><strong><em><a href="https://www.jianshu.com/p/366e374e108d" target="_blank" rel="noopener">简单轮播图的实现及原理讲解（js）</a></em></strong> </p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/03/30/requestAnimationFrame-lbt/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;03&#x2F;30&#x2F;requestAnimationFrame-lbt&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;03&#x2F;30&#x2F;requestAnimationFrame-lbt&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911403"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

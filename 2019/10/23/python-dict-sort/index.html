@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python字典根据键(key)、值(value)排序的方式 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="下面的排序都将使用sorted()函数sorted()函数是python内置的函数，对所有可迭代的对象都可以实现排序操作。当sorted()函数中的可迭代对象参数传入的是一个字典对象，排序的结果是由字典的key值决定的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python字典根据键(key)、值(value)排序的方式">
+<meta property="og:url" content="https://chiselee.github.io/2019/10/23/python-dict-sort/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="下面的排序都将使用sorted()函数sorted()函数是python内置的函数，对所有可迭代的对象都可以实现排序操作。当sorted()函数中的可迭代对象参数传入的是一个字典对象，排序的结果是由字典的key值决定的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-23T14:40:10.000Z">
+<meta property="article:modified_time" content="2020-02-06T03:51:27.866Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911365">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python字典根据键(key)、值(value)排序的方式</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月23日</a>
+    <a><i class="nexmoefont icon-areachart"></i>393 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面的排序都将使用sorted-函数"><span class="toc-text">下面的排序都将使用sorted()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据字典的键（key）排序"><span class="toc-text">根据字典的键（key）排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据字典的值（value）排序"><span class="toc-text">根据字典的值（value）排序</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="下面的排序都将使用sorted-函数"><a href="#下面的排序都将使用sorted-函数" class="headerlink" title="下面的排序都将使用sorted()函数"></a>下面的排序都将使用<code>sorted()</code>函数</h2><p><code>sorted()</code>函数是<code>python</code>内置的函数，对所有可迭代的对象都可以实现排序操作。<br>当<code>sorted()</code>函数中的可迭代对象参数传入的是一个<strong><em>字典</em></strong>对象，排序的结果是由字典的<strong><em><code>key</code></em></strong>值决定的。<a id="more"></a></p>
+<h2 id="根据字典的键（key）排序"><a href="#根据字典的键（key）排序" class="headerlink" title="根据字典的键（key）排序"></a>根据字典的键（key）排序</h2><p><strong>直接使用<code>sorted()</code>函数</strong></p>
+<pre><code>&gt;&gt;&gt; dict_t = {
+    &quot;esc&quot;: 1,
+    &quot;apple&quot;: 5,
+    &quot;dd&quot;: 4,
+    &quot;pass&quot;: 2,
+    &quot;quit&quot;: 3
+    }
+&gt;&gt;&gt; sorted(dict_t)
+[&#39;apple&#39;, &#39;dd&#39;, &#39;esc&#39;, &#39;pass&#39;, &#39;quit&#39;] </code></pre><p>所以不要直接给原字典直接赋值<code>sorted(dict_name)</code>，因为函数返回的是排序好的键名组成的一个<strong><em>列表</em></strong>。<br>再通过返回的列表来遍历字典：</p>
+<pre><code>&gt;&gt;&gt; dict_t = {
+    &quot;esc&quot;: 1,
+    &quot;apple&quot;: 5,
+    &quot;dd&quot;: 4,
+    &quot;pass&quot;: 2,
+    &quot;quit&quot;: 3
+    }
+&gt;&gt;&gt; for each in sorted(dict_t):
+    print(each, dict_t[each])
+
+
+apple 5
+dd 4
+esc 1
+pass 2
+quit 3</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据字典的值（value）排序" class="headerlink" title="根据字典的值（value）排序"></a>根据字典的值（value）排序</h2><p>使用字典内置方法<code>items</code>返回元组对，设定<code>sorted()</code>函数的参数<code>key</code>。</p>
+<pre><code>&gt;&gt;&gt; dict_t = {
+    &quot;esc&quot;: 1,
+    &quot;apple&quot;: 5,
+    &quot;dd&quot;: 4,
+    &quot;pass&quot;: 2,
+    &quot;quit&quot;: 3
+    }
+&gt;&gt;&gt; sorted(dict_t.items(), key=lambda dict_t:dict_t[1])
+[(&#39;esc&#39;, 1), (&#39;pass&#39;, 2), (&#39;quit&#39;, 3), (&#39;dd&#39;, 4), (&#39;apple&#39;, 5)]</code></pre><p>倒序排序时<strong>设置<code>sorted()</code>函数的<code>reverse</code>参数为<code>True</code></strong>。</p>
+<pre><code>&gt;&gt;&gt; dict_t = {
+    &quot;esc&quot;: 1,
+    &quot;apple&quot;: 5,
+    &quot;dd&quot;: 4,
+    &quot;pass&quot;: 2,
+    &quot;quit&quot;: 3
+    }
+&gt;&gt;&gt; sorted(dict_t.items(), key=lambda dict_t:dict_t[1], reverse=True)
+[(&#39;apple&#39;, 5), (&#39;dd&#39;, 4), (&#39;quit&#39;, 3), (&#39;pass&#39;, 2), (&#39;esc&#39;, 1)]</code></pre>
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/10/23/python-dict-sort/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911368"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

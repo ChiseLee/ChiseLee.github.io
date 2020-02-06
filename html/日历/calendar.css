@@ -1,0 +1,101 @@
+span, td{
+  -moz-user-select:none;
+
+  -webkit-user-select:none;
+
+  user-select:none;
+}
+
+#cldFrame{
+    position: relative;
+    width: 440px;
+    margin: 50px auto;
+}
+#cldBody{
+    margin: 70px 10px;
+    position: absolute;
+    width: 420px;
+}
+#top{
+    position: relative;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+}
+#topDate{
+    font-size: 30px;
+}
+.textYmd{
+	color: white;
+	background-color:rgb(95,55,95,0.8);
+	padding:3px;
+}
+.curDate{
+    color: red;
+    font-weight: bold;
+}
+.notDate{
+    color: gray;
+}
+.curDate:hover{
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+}
+.isDate:hover{
+    border-radius: 50%;
+    color: white;
+    background-color: black;
+}
+table{
+    background-color: #f7f7f7;
+    border-spacing:0;
+}
+#week td{
+    font-size: 15px;
+    color: white;
+}
+td{
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    font-family: Simsun;
+    font-size: 20px;
+}
+#left, #right{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+#left{left: 0px;}
+#right{right: 0px;}
+#left:hover, #right:hover{
+    background-color: rgba(30, 30, 30, 0.2);
+}
+#cldTop{
+    position: absolute;
+    margin: 0 10px;
+    width: 420px;
+    text-align: center;
+}
+#cldtopCurdate{
+	background-color:rgb(95,55,95,0.8);
+	padding: 3px;
+    font-style: italic;
+    color: white;
+    cursor: pointer;
+}
+#cldTop span, #jumpElements span{
+    font-family: Simsun;
+}
+#jumpElements{
+    position: absolute;
+    top: 30px;
+    margin: 0px 10px;
+    width: 420px;
+    text-align: center;
+}
+#jumpYear, #jumpMonth, #jumpDay, #jumpButton{
+    width: 40px;
+}

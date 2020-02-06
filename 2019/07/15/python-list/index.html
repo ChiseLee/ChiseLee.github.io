@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python基础知识之列表 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="何为列表可以理解为一种存放元素的容器（类比其他语言的数组）。 列表中的元素不受类型的限制，不同类型的数据都可以扔进同一个列表： list1 &#x3D; [&#39;emt&#39;, 1568, True, &quot;哈哈哈&quot;]一个空列表： list2 &#x3D; []列表中可以包含其他列表：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础知识之列表">
+<meta property="og:url" content="https://chiselee.github.io/2019/07/15/python-list/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="何为列表可以理解为一种存放元素的容器（类比其他语言的数组）。 列表中的元素不受类型的限制，不同类型的数据都可以扔进同一个列表： list1 &#x3D; [&#39;emt&#39;, 1568, True, &quot;哈哈哈&quot;]一个空列表： list2 &#x3D; []列表中可以包含其他列表：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-15T14:51:02.000Z">
+<meta property="article:modified_time" content="2020-02-06T05:22:15.746Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911383">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python基础知识之列表</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年07月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#何为列表"><span class="toc-text">何为列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对列表的一些操作"><span class="toc-text">对列表的一些操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改元素值"><span class="toc-text">修改元素值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加元素"><span class="toc-text">添加元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用append-方法在列表末尾添加新元素："><span class="toc-text">使用append()方法在列表末尾添加新元素：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用insert-方法在指定位置插入元素："><span class="toc-text">使用insert()方法在指定位置插入元素：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除元素"><span class="toc-text">删除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用remove-方法根据值删除元素"><span class="toc-text">使用remove()方法根据值删除元素</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并列表"><span class="toc-text">合并列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用extend-方法合并多个列表"><span class="toc-text">使用extend()方法合并多个列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表排序"><span class="toc-text">列表排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用sort-方法对列表永久性排序"><span class="toc-text">使用sort()方法对列表永久性排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用函数sorted-对列表进行临时排序"><span class="toc-text">使用函数sorted()对列表进行临时排序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用reverse-方法反转列表"><span class="toc-text">使用reverse()方法反转列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用函数len-确定列表长度"><span class="toc-text">使用函数len()确定列表长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用copy-方法复制列表"><span class="toc-text">使用copy()方法复制列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用clear-方法清空列表"><span class="toc-text">使用clear()方法清空列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用count-方法统计某元素出现的次数"><span class="toc-text">使用count()方法统计某元素出现的次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用index-方法查找某元素在列表中的位置"><span class="toc-text">使用index()方法查找某元素在列表中的位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步长（间隔访问）"><span class="toc-text">步长（间隔访问）</span></a></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="何为列表"><a href="#何为列表" class="headerlink" title="何为列表"></a>何为列表</h2><p>可以理解为一种存放元素的容器（类比其他语言的数组）。</p>
+<p>列表中的元素不受类型的限制，不同类型的数据都可以扔进同一个列表：</p>
+<pre><code>list1 = [&#39;emt&#39;, 1568, True, &quot;哈哈哈&quot;]</code></pre><p>一个空列表：</p>
+<pre><code>list2 = []</code></pre><p>列表中可以包含其他列表：<a id="more"></a></p>
+<pre><code>list3 = [&quot;start&quot;, [1, 2, 3], [&quot;a&quot;, &quot;b&quot;]]</code></pre><p>##访问列表元素<br>###使用数字索引<br>第一个元素的索引为0，而不不是1。</p>
+<pre><code>list_a = [&quot;我是第一个元素&quot;, 666, &quot;end&quot;]
+print(list_a[0])
+print(list_a[1])
+
+#我是第一个元素
+#666</code></pre><p>###数字索引可以为负<br>负数下标<code>-1</code>，<code>-2</code>分别表示倒数第一个，倒数第二个元素，以此类推。</p>
+<pre><code>list_a = [&quot;我是第一个元素&quot;, 666, &quot;end&quot;]
+print(list_a[-1])
+print(list_a[-2])
+
+#end
+#666</code></pre><h2 id="对列表的一些操作"><a href="#对列表的一些操作" class="headerlink" title="对列表的一些操作"></a>对列表的一些操作</h2><h3 id="修改元素值"><a href="#修改元素值" class="headerlink" title="修改元素值"></a>修改元素值</h3><p>可以指定修改列表中某元素的值：</p>
+<pre><code>list_b = [&quot;test&quot;, &quot;apple&quot;, 45678]
+list_b[2] = &quot;change&quot;
+print(list_b)
+
+#[&#39;test&#39;, &#39;apple&#39;, &#39;change&#39;]</code></pre><p>可以看出指定的元素值已经被修改，其他元素没有发生变化。</p>
+<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><h4 id="使用append-方法在列表末尾添加新元素："><a href="#使用append-方法在列表末尾添加新元素：" class="headerlink" title="使用append()方法在列表末尾添加新元素："></a>使用<code>append()</code>方法在列表末尾添加新元素：</h4><pre><code>list_c = [123, 555, &#39;so&#39;]
+list_c.append(456)
+print(list_c)
+
+#[123, 555, &#39;so&#39;, 456]</code></pre><h4 id="使用insert-方法在指定位置插入元素："><a href="#使用insert-方法在指定位置插入元素：" class="headerlink" title="使用insert()方法在指定位置插入元素："></a>使用<code>insert()</code>方法在指定位置插入元素：</h4><p>两个参数，依次为索引值和元素值。</p>
+<pre><code>list_d = [1, 5, 7, 9]
+list_d.insert(1, 3)
+print(list_d)
+
+#[1, 3, 5, 7, 9]</code></pre><h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>####使用<code>del</code>语句删除</p>
+<pre><code>list_e = [2, 3, 4, 6, 5]
+del list_e[3]
+print(list_e)
+
+#[2, 3, 4, 5]</code></pre><p>####使用<code>pop()</code>方法删除<br>不使用参数，默认删除列表中的最后一个元素，并返回该值。</p>
+<pre><code>list_f = [&quot;123&quot;, 123, 456, &#39;bbc&#39;]
+pop_ele = list_f.pop()
+print(pop_ele)
+print(list_f)
+
+#bbc
+#[&#39;123&#39;, 123, 456]</code></pre><p>在括号中指定参数，弹出指定元素。</p>
+<pre><code>list_g = [2222, 33, 55, 89]
+list_g.pop(-2)
+print(list_g)
+
+#[2222, 33, 89]</code></pre><h4 id="使用remove-方法根据值删除元素"><a href="#使用remove-方法根据值删除元素" class="headerlink" title="使用remove()方法根据值删除元素"></a>使用<code>remove()</code>方法根据值删除元素</h4><p>参数即为指定删除的元素。</p>
+<pre><code>list_h = [155, 666, 4, 789, 666]
+list_h.remove(666)
+print(list_h)
+
+#[155, 4, 789, 666]</code></pre><p><strong>若该元素在数组中出现了多次，只会删除第一次出现时的元素。</strong></p>
+<h3 id="合并列表"><a href="#合并列表" class="headerlink" title="合并列表"></a>合并列表</h3><h4 id="使用extend-方法合并多个列表"><a href="#使用extend-方法合并多个列表" class="headerlink" title="使用extend()方法合并多个列表"></a>使用<code>extend()</code>方法合并多个列表</h4><pre><code>list_h = [155, 4, 789, 666]
+list_g = [&quot;ss&quot;, &quot;aa&quot;]
+list_g.extend(list_h)
+print(list_g)
+list_g.extend([&#39;n&#39;, &#39;e&#39;, &#39;w&#39;])
+print(list_g)
+
+#[&#39;ss&#39;, &#39;aa&#39;, 155, 4, 789, 666]
+#[&#39;ss&#39;, &#39;aa&#39;, 155, 4, 789, 666, &#39;n&#39;, &#39;e&#39;, &#39;w&#39;]</code></pre><h3 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h3><h4 id="使用sort-方法对列表永久性排序"><a href="#使用sort-方法对列表永久性排序" class="headerlink" title="使用sort()方法对列表永久性排序"></a>使用<code>sort()</code>方法对列表永久性排序</h4><pre><code>list_i = [&quot;x&quot;, &#39;am&#39;, &quot;emmm&quot;]
+list_i.sort()
+print(list_i)
+
+#[&#39;am&#39;, &#39;emmm&#39;, &#39;x&#39;]</code></pre><p>设置<code>reverse=True</code>使其倒序排序</p>
+<pre><code>list_i = [&quot;x&quot;, &#39;am&#39;, &quot;emmm&quot;]
+list_i.sort(reverse = True)
+print(list_i)
+
+#[&#39;x&#39;, &#39;emmm&#39;, &#39;am&#39;]</code></pre><h4 id="使用函数sorted-对列表进行临时排序"><a href="#使用函数sorted-对列表进行临时排序" class="headerlink" title="使用函数sorted()对列表进行临时排序"></a>使用函数<code>sorted()</code>对列表进行临时排序</h4><pre><code>list_j = [542, 23, 67, 8]
+print(sorted(list_j))
+print(list_j)
+
+#[8, 23, 67, 542]
+#[542, 23, 67, 8]</code></pre><p>列表元素的顺序并没有发生变化，同样，该函数也可以传递参数<code>reverse=True</code>使之倒序排序。</p>
+<h3 id="使用reverse-方法反转列表"><a href="#使用reverse-方法反转列表" class="headerlink" title="使用reverse()方法反转列表"></a>使用<code>reverse()</code>方法反转列表</h3><pre><code>list_k = [999, 1, 57, 43]
+list_k.reverse()
+print(list_k)
+
+#[43, 57, 1, 999]</code></pre><p><strong>并不是倒序排序，而是将列表以与初始态相反的顺序显示。</strong></p>
+<h3 id="使用函数len-确定列表长度"><a href="#使用函数len-确定列表长度" class="headerlink" title="使用函数len()确定列表长度"></a>使用函数<code>len()</code>确定列表长度</h3><pre><code>list_k = [999, 1, 57, 43]
+print(len(list_k))
+
+#4</code></pre><h3 id="使用copy-方法复制列表"><a href="#使用copy-方法复制列表" class="headerlink" title="使用copy()方法复制列表"></a>使用<code>copy()</code>方法复制列表</h3><pre><code>list_l = [&#39;cx&#39;, &#39;vb&#39;, &#39;nm&#39;]
+list_temp = list_l.copy()
+print(list_temp)
+
+#[&#39;cx&#39;, &#39;vb&#39;, &#39;nm&#39;]</code></pre><h3 id="使用clear-方法清空列表"><a href="#使用clear-方法清空列表" class="headerlink" title="使用clear()方法清空列表"></a>使用<code>clear()</code>方法清空列表</h3><pre><code>list_m = [777777777777777, 21]
+list_m.clear()
+print(list_m)
+
+#[]</code></pre><p>列表依然存在，不过为一个空列表。</p>
+<h3 id="使用count-方法统计某元素出现的次数"><a href="#使用count-方法统计某元素出现的次数" class="headerlink" title="使用count()方法统计某元素出现的次数"></a>使用<code>count()</code>方法统计某元素出现的次数</h3><p>参数即为需统计的元素值。</p>
+<pre><code>list_n = [233, 4, 233, 23, 77, 233]
+times = list_n.count(233)
+print(times)
+
+#3</code></pre><h3 id="使用index-方法查找某元素在列表中的位置"><a href="#使用index-方法查找某元素在列表中的位置" class="headerlink" title="使用index()方法查找某元素在列表中的位置"></a>使用<code>index()</code>方法查找某元素在列表中的位置</h3><p>使用一个参数，即查找元素值，返回第一次出现位置的下标。</p>
+<pre><code>list_o = [&#39;ass&#39;, &#39;emm&#39;, &#39;flag&#39;, &#39;test&#39;, &#39;flag&#39;]
+print(list_o.index(&#39;flag&#39;))
+
+#2</code></pre><p>可以使用第二，三个参数来指定查找范围，不在范围内的元素会被忽视。第二、三个参数指定的范围：[开始， 结束)</p>
+<pre><code>list_o = [&#39;ass&#39;, &#39;emm&#39;, &#39;flag&#39;, &#39;test&#39;, &#39;flag&#39;]
+print(list_o.index(&#39;flag&#39;, 3, 5))
+
+#4</code></pre><p>##列表分片</p>
+<ul>
+<li><p>list[a:b]，从list[a]到list[b-1]，共（b-a）个元素。</p>
+</li>
+<li><p>list[a:]，从list[a]到列表最后一个元素。</p>
+</li>
+<li><p>list[:b]，从元素的第一个元素开始到list[b-1]</p>
+</li>
+<li><p>list[:],列表所有元素，常用来复制列表。</p>
+</li>
+</ul>
+<pre><code>list_p = [1, 2, 3, 4, 5, 6, 7, 8]
+print(list_p[1:3])
+print(list_p[1:])
+print(list_p[:3])
+print(list_p[:])
+
+#[2, 3]
+#[2, 3, 4, 5, 6, 7, 8]
+#[1, 2, 3]
+#[1, 2, 3, 4, 5, 6, 7, 8]</code></pre><h2 id="步长（间隔访问）"><a href="#步长（间隔访问）" class="headerlink" title="步长（间隔访问）"></a>步长（间隔访问）</h2><pre><code>list_p = [1, 2, 3, 4, 5, 6, 7, 8]
+print(list_p[::2])
+print(list_p[::3])
+print(list_p[::-2])
+
+#[1, 3, 5, 7]
+#[1, 4, 7]
+#[8, 6, 4, 2]</code></pre><p><em>如有错误，欢迎指正~</em></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/07/15/python-list/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;07&#x2F;15&#x2F;python-list&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;07&#x2F;15&#x2F;python-list&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911388"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

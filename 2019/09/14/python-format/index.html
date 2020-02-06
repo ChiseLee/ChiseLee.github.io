@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python格式化字符串方法format()总结 - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="format()方法确实算得上是字符串内置方法中使用频率最高的方法之一。之前我对format()&#96;方法的认识一直停留在简单的填充使用，殊不知该方法还有很强的格式控制功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python格式化字符串方法format()总结">
+<meta property="og:url" content="https://chiselee.github.io/2019/09/14/python-format/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="format()方法确实算得上是字符串内置方法中使用频率最高的方法之一。之前我对format()&#96;方法的认识一直停留在简单的填充使用，殊不知该方法还有很强的格式控制功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-14T03:11:26.000Z">
+<meta property="article:modified_time" content="2020-02-06T03:57:04.602Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1580979911370">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://chiselee.github.io/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>33</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <input id="search_value" name="q" type="search" placeholder="搜索">
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/html/" style="font-size: 13.33px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 15px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="https://chiselee.github.io/image/bj.png">
+        
+        <h1>Python格式化字符串方法format()总结</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月14日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+    
+    
+  </div>
+
+  <div class="nexmoe-post-right">
+    
+      <div id="toc" class="toc-article">
+          <ul class="markdownIt-TOC">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的填充使用"><span class="toc-text">基本的填充使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#按顺序依次填充"><span class="toc-text">按顺序依次填充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定键名填充"><span class="toc-text">指定键名填充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下标填充"><span class="toc-text">下标填充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式控制"><span class="toc-text">格式控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#精度"><span class="toc-text">精度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#填充、对齐、宽度"><span class="toc-text">填充、对齐、宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分隔符"><span class="toc-text">分隔符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型"><span class="toc-text">类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整数类型"><span class="toc-text">整数类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮点数类型"><span class="toc-text">浮点数类型</span></a></li></ol></li></ol></li></ol>
+          </ul>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>format()<code>方法确实算得上是字符串内置方法中使用频率最高的方法之一。之前我对</code>format()`方法的认识一直停留在简单的填充使用，殊不知该方法还有很强的格式控制功能。<a id="more"></a></p>
+<h2 id="基本的填充使用"><a href="#基本的填充使用" class="headerlink" title="基本的填充使用"></a>基本的填充使用</h2><h3 id="按顺序依次填充"><a href="#按顺序依次填充" class="headerlink" title="按顺序依次填充"></a>按顺序依次填充</h3><pre><code class="python">&gt;&gt;&gt; &quot;姓名：{}，性别：{}，年龄：{}&quot;.format(&quot;小明&quot;, &#39;男&#39;, 18)
+&#39;姓名：小明，性别：男，年龄：18&#39;</code></pre>
+<p>format中的每一个参数依次填充到字符串中的<code>{}</code>中，如果缺少参数，会报错。</p>
+<h3 id="指定键名填充"><a href="#指定键名填充" class="headerlink" title="指定键名填充"></a>指定键名填充</h3><pre><code class="python">&gt;&gt;&gt; &quot;姓名：{name}，性别：{sex}，年龄：{age}&quot;.format(name=&quot;小明&quot;, age=&quot;18&quot;, sex=&quot;男&quot;)
+&#39;姓名：小明，性别：男，年龄：18&#39;</code></pre>
+<p>只要将每个键名对应上值即可，可以不按照顺序来赋值。</p>
+<h3 id="下标填充"><a href="#下标填充" class="headerlink" title="下标填充"></a>下标填充</h3><pre><code class="python">&gt;&gt;&gt; &quot;姓名：{2}，性别：{0}，年龄：{1}&quot;.format(&quot;男&quot;, 18, &quot;小明&quot;)
+&#39;姓名：小明，性别：男，年龄：18&#39;</code></pre>
+<p>format中的参数会依照<code>{}</code>中的下标从0开始填充。</p>
+<h2 id="格式控制"><a href="#格式控制" class="headerlink" title="格式控制"></a>格式控制</h2><p><code>format()</code>方法可以控制字符串的<strong>填充</strong>，<strong>对齐</strong>，<strong>宽度</strong>，<strong>分隔符</strong>，<strong>精度</strong>，<strong>类型</strong>，下面在举例中一一介绍。</p>
+<p>使用时常会用到<code>{ : }</code>的结构，其中冒号左侧为<strong>参数的序号</strong>(可参考上方的下标填充)，冒号右侧为<strong>格式控制标记</strong>。</p>
+<h3 id="精度"><a href="#精度" class="headerlink" title="精度"></a>精度</h3><pre><code class="python">&gt;&gt;&gt; &quot;{0:.2f}&quot;.format(2.33333)
+&#39;2.33&#39;
+&gt;&gt;&gt; &quot;{:.2f}&quot;.format(2.33333)
+&#39;2.33&#39;
+&gt;&gt;&gt; &quot;{0:.2f}, {1:.4f}&quot;.format(2.33333, 5.6666888)
+&#39;2.33, 5.6667&#39;
+&gt;&gt;&gt; &quot;{:.2f}, {:.4f}&quot;.format(2.33333, 5.6666888)
+&#39;2.33, 5.6667&#39;
+&gt;&gt;&gt; &quot;{1:.2f}, {0:.4f}&quot;.format(2.33333, 5.6666888)
+&#39;5.67, 2.3333&#39;</code></pre>
+<p>上方例子中冒号右侧的’.2f’和’.4f’分别表示小数部分的输出的有效位数。</p>
+<p>若对字符串使用’.n’的格式，即表示输出字符串的最大长度:</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{0:.2}&quot;.format(&quot;asdffg&quot;)
+&#39;as&#39;
+&gt;&gt;&gt; &quot;{0:.5}&quot;.format(&quot;asdffg&quot;)
+&#39;asdff&#39;</code></pre>
+<p>格式化字符串时，冒号右侧没有’f’。</p>
+<h3 id="填充、对齐、宽度"><a href="#填充、对齐、宽度" class="headerlink" title="填充、对齐、宽度"></a>填充、对齐、宽度</h3><p>这三个格式字段通常放在一起使用。</p>
+<p>宽度确定了字符串的输出位数，不够的位数默认用空格填充。</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:20}&quot;.format(&quot;Test&quot;)
+&#39;Test                &#39;</code></pre>
+<p>一共三种对齐方式：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;</code></td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>居中对齐</td>
+</tr>
+</tbody></table>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:&lt;20}&quot;.format(&quot;Test&quot;)
+&#39;Test                &#39;
+&gt;&gt;&gt; &quot;{:&gt;20}&quot;.format(&quot;Test&quot;)
+&#39;                Test&#39;
+&gt;&gt;&gt; &quot;{:^20}&quot;.format(&quot;Test&quot;)
+&#39;        Test        &#39;
+&gt;&gt;&gt; &quot;{:-^20}&quot;.format(&quot;Test&quot;)
+&#39;--------Test--------&#39;
+&gt;&gt;&gt; &quot;{:#^20}&quot;.format(&quot;Test&quot;)
+&#39;########Test########&#39;</code></pre>
+<p>如果给出的宽度小于实际字符串的长度，则依然输出该字符串：</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:2}&quot;.format(&quot;Test&quot;)
+&#39;Test&#39;</code></pre>
+<h3 id="分隔符"><a href="#分隔符" class="headerlink" title="分隔符"></a>分隔符</h3><p>使用<code>,</code>来显示数字类型的千位分隔符:</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:20,}&quot;.format(123456789)
+&#39;         123,456,789&#39;
+&gt;&gt;&gt; &quot;{:20,}&quot;.format(123456789.9876453210)
+&#39;123,456,789.98764533&#39;
+&gt;&gt;&gt; &quot;{:,}&quot;.format(123456789.9876453210)
+&#39;123,456,789.98764533&#39;
+&gt;&gt;&gt; &quot;{:20,}&quot;.format(123456789.12345)
+&#39;   123,456,789.12345&#39;
+&gt;&gt;&gt; &quot;{:$^30,}&quot;.format(123456789.12345)
+&#39;$$$$$$123,456,789.12345$$$$$$$&#39;</code></pre>
+<p>并且我们可以发现，数字默认右对齐，字符串默认左对齐：</p>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:30}&quot;.format(123456789)
+&#39;                     123456789&#39;
+&gt;&gt;&gt; &quot;{:30}&quot;.format(&quot;123456789&quot;)
+&#39;123456789                     &#39;</code></pre>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><h4 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>b</code></td>
+<td>整数对应的二进制形式</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>整数对应的Unicode字符</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>整数对应的十进制形式</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>整数对应的八进制形式</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>整数对应的小写十六进制形式</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>整数对应的大写十六进制形式</td>
+</tr>
+</tbody></table>
+<pre><code class="python">&gt;&gt;&gt; &quot;整数666的二进制形式：{:b} Unicode字符：{:c} 十进制形式：{:d} 八进制形式：{:o} 小写十六进制形式：{:x} 大写十六进制形式：{:X}&quot;.format(666,666,666,666,666,666)
+&#39;整数666的二进制形式：1010011010 Unicode字符：ʚ 十进制形式：666 八进制形式：1232 小写十六进制形式：29a 大写十六进制形式：29A&#39;</code></pre>
+<h4 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>e</code></td>
+<td>浮点数对应的小写字母e的指数形式</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>浮点数对应的大写字母E的指数形式</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>浮点数对应的标准浮点形式</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>浮点数的百分比形式</td>
+</tr>
+</tbody></table>
+<pre><code class="python">&gt;&gt;&gt; &quot;{:e} {:E} {:f} {:%}&quot;.format(2.33,2.33,2.33,2.33)
+&#39;2.330000e+00 2.330000E+00 2.330000 233.000000%&#39;
+&gt;&gt;&gt; &quot;{:.2e} {:.2E} {:.2f} {:.2%}&quot;.format(2.33,2.33,2.33,2.33)
+&#39;2.33e+00 2.33E+00 2.33 233.00%&#39;</code></pre>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Chise Lee<br>
+<strong>本文链接：</strong><a href="https://chiselee.github.io/2019/09/14/python-format/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;09&#x2F;14&#x2F;python-format&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2019&#x2F;09&#x2F;14&#x2F;python-format&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ'
+    })
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1580979911372"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>
