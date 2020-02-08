@@ -230,6 +230,9 @@ body {
   background-color: rgba(180,180,255,0.15);
   color: #b4b4ff;
 }
+#nexmoe-header .nexmoe-widget-wrap:first-child {
+  margin-top: 0;
+}
 #nexmoe-header .nexmoe-copyright {
   padding: 0 30px;
   text-align: right;
@@ -313,18 +316,29 @@ body {
   overflow: hidden;
   border-radius: 10px;
   margin-bottom: 10px;
-  max-height: 500px;
-  min-height: 65px;
+  min-height: 75px;
   background-color: #eee;
 }
 #nexmoe-content .nexmoe-post .nexmoe-post-cover img {
   width: 100%;
   display: block;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+#nexmoe-content .nexmoe-post .nexmoe-post-cover img.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+  opacity: 1;
 }
 #nexmoe-content .nexmoe-post .nexmoe-post-cover h1 {
   position: absolute;
   bottom: 0;
-  padding: 15px;
+  padding: 20px;
   color: #fff;
   font-size: 2em;
   width: 100%;
@@ -335,8 +349,10 @@ body {
   font-weight: normal;
 }
 #nexmoe-content .nexmoe-post .nexmoe-post-cover h1:after {
-  background-image: -webkit-linear-gradient(to top, rgba(10,17,25,0.2) 10%, rgba(10,17,25,0) 100%);
-  background-image: linear-gradient(to top, rgba(10,17,25,0.2) 10%, rgba(10,17,25,0) 100%);
+  background-image: -moz-linear-gradient(to top, rgba(16,16,16,0.45) 25%, rgba(16,16,16,0) 100%);
+  background-image: -webkit-linear-gradient(to top, rgba(16,16,16,0.45) 25%, rgba(16,16,16,0) 100%);
+  background-image: -ms-linear-gradient(to top, rgba(16,16,16,0.45) 25%, rgba(16,16,16,0) 100%);
+  background-image: linear-gradient(to top, rgba(16,16,16,0.45) 25%, rgba(16,16,16,0) 100%);
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   -ms-pointer-events: none;
@@ -636,6 +652,13 @@ article img {
   display: block;
   border-radius: 6px;
   border: 1px solid #eee;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+}
+article img.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0);
 }
 article h1,
 article h2,
@@ -907,73 +930,43 @@ font.douyin {
   margin: 0 -20px;
   text-align: right;
 }
-.toc-article a {
-  color: #fff;
+.nexmoe-valign {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  height: 100%;
 }
-.toc-article {
-  color: #fff;
-  background-color: #1f2022;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  display: inline;
-  list-style: none;
+.nexmoe-post-right .nexmoe-fixed {
   position: fixed;
   z-index: 1000;
   height: 100vh;
+  display: inline-block;
   top: 0;
-  width: 0;
+}
+.nexmoe-post-right .nexmoe-toc {
+  margin-left: 16px;
+  width: 240px;
   text-align: left;
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
 }
-.toc-article:hover {
-  width: 240px;
+.nexmoe-post-right .nexmoe-toc a {
+  color: rgba(0,0,0,0.6);
 }
-.toc-article .markdownIt-TOC {
-  display: block;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 240px;
-  padding: 10px;
+.nexmoe-post-right .nexmoe-toc ol {
+  padding-left: 1em;
 }
-.toc-article .markdownIt-TOC {
-  opacity: 0;
+.nexmoe-post-right .nexmoe-toc li {
+  margin: 1em 0;
 }
-.toc-article .markdownIt-TOC a {
-  line-height: 52px;
-  width: 100%;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+.nexmoe-post-right .nexmoe-toc > ol {
+  padding-left: 0;
 }
-.toc-article .markdownIt-TOC li {
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.toc-article:hover .markdownIt-TOC {
-  opacity: 1;
-}
-.toc-article::after {
-  background-color: #1f2022;
-  border-radius: 6px 6px 0 0;
-  content: 'TOC';
-  position: absolute;
-  width: 60px;
-  line-height: 30px;
-  top: 50%;
-  right: -16px;
-  text-align: center;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-.toc-article:hover::after {
-  opacity: 0;
+.nexmoe-toc * {
+  list-style: none;
 }
 @-moz-keyframes shake-it {
   0% {
