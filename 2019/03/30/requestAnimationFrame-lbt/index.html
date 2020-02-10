@@ -19,16 +19,16 @@
 <meta property="og:description" content="之前用定时器实现过一个轮播图，轮播图的基本功能都能够满足，但有一个很大的缺点：切换页面，或窗口缩小一段时间后，再切回轮播图所在页面，会发现轮播图有加速效果（图片以更快的速度往前连续滚动多张）。使用requestAnimationFrame()来实现则不会出现这样的问题，在页面处于非激活状态时，动画会自动暂停。html,css部分代码和之前一致：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-30T07:20:57.000Z">
-<meta property="article:modified_time" content="2020-02-06T06:03:55.288Z">
+<meta property="article:modified_time" content="2020-02-10T07:06:19.245Z">
 <meta property="article:author" content="Chise Lee">
-<meta property="article:tag" content="js">
 <meta property="article:tag" content="web">
+<meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1581305506398">
+  <link rel="stylesheet" href="/css/style.css?v=1581324984087">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -275,7 +275,12 @@
     
       <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
     
-    
+	<a>
+		<span id="/2019/03/30/requestAnimationFrame-lbt/" class="leancloud_visitors" data-flag-title="用requestAnimationFrame()实现一个轮播图">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
   </div>
 
   <div class="nexmoe-post-right">
@@ -565,7 +570,7 @@ li.quiet{
         return 0;
     }
 }</code></pre><p>补全<code>html</code>，在指定位置放好图片即可看到效果。</p>
-<p>若你还不了解轮播图的实现原理，欢迎阅读这篇文章：<br><strong><em><a href="https://www.jianshu.com/p/366e374e108d" target="_blank" rel="noopener">简单轮播图的实现及原理讲解（js）</a></em></strong> </p>
+<p>若你还不了解轮播图的实现原理，欢迎阅读这篇文章：<br><strong><em><a href="https://chiselee.github.io/2018/10/25/web-lbt/">简单轮播图的实现及原理讲解（js）</a></em></strong> </p>
 
   </article>
   
@@ -590,7 +595,8 @@ li.quiet{
         el: '.valine',
         appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
         appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
-		visitor: true
+		visitor: 'true',
+		placeholder: '说点什么吧~'
     })
 </script>
 </section>
@@ -602,7 +608,7 @@ li.quiet{
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1581305506401"></script>
+<script src="/js/app.js?v=1581324984091"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

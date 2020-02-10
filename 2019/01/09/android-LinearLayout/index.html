@@ -18,23 +18,23 @@
 <meta property="og:site_name" content="Chise | blog">
 <meta property="og:description" content="前言在安卓的多种布局方式中，LinearLayout(线性布局)和RelativeLayout(相对布局)算是最为常用的两种方式了，这里只讲解线性布局，随后将会更新相对布局的相关知识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-9e46ef7fc835f521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-fe300db84e9f413a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-ad8f186f21ced6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-26faecc15797a297.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-7a767de4a7ccdf5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg1.jpg">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg2.jpg">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg3.jpg">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg4.jpg">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg5.jpg">
+<meta property="og:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg6.jpg">
 <meta property="article:published_time" content="2019-01-09T07:54:42.000Z">
-<meta property="article:modified_time" content="2020-02-06T07:35:24.159Z">
+<meta property="article:modified_time" content="2020-02-10T08:16:00.979Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://chiselee.github.io/2019/01/09/android-LinearLayout/eg1.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1581305506447">
+  <link rel="stylesheet" href="/css/style.css?v=1581324984133">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -281,7 +281,12 @@
     
       <a class="nexmoefont icon-tag-fill -link" href="/tags/android/" rel="tag">android</a>
     
-    
+	<a>
+		<span id="/2019/01/09/android-LinearLayout/" class="leancloud_visitors" data-flag-title="初识安卓之LinearLayout线性布局">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
   </div>
 
   <div class="nexmoe-post-right">
@@ -342,7 +347,8 @@
 <p><code>orientation</code>属性示例</p>
 <p>orientation属性有<code>horizontal</code>和<code>vertical</code>两个参数供选择，参数的值决定了布局方式。</p>
 <p> 水平布局（<code>horizontal</code>）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13713347-152d50447c46f7e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>代码如下：</p>
+<p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg1.jpg" alt="图片未正确加载" class="lazyload"></p>
+<p>代码如下：</p>
 <pre><code> &lt;LinearLayout
         android:layout_width=&quot;match_parent&quot;
         android:layout_height=&quot;match_parent&quot;
@@ -366,7 +372,8 @@
             android:text=&quot;第三个文本框&quot;
             android:background=&quot;#008000&quot;/&gt;
     &lt;/LinearLayout&gt;</code></pre><p>垂直布局（<code>vertical</code>）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13713347-9e46ef7fc835f521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>代码如下：</p>
+<p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg2.jpg" alt="图片未正确加载" class="lazyload"></p>
+<p>代码如下：</p>
 <pre><code>   &lt;LinearLayout
        android:layout_width=&quot;match_parent&quot;
        android:layout_height=&quot;match_parent&quot;
@@ -416,7 +423,11 @@
             android:text=&quot;第三个文本框&quot;
             android:layout_weight=&quot;1&quot;
             android:background=&quot;#008000&quot;/&gt;
-    &lt;/LinearLayout&gt;</code></pre><p>还是之前水平布局的例子，只是我们给每个<code>TextView</code>添加了一句<code>android:layout_weight=&quot;1&quot;</code><br><img src="https://upload-images.jianshu.io/upload_images/13713347-fe300db84e9f413a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>貌似达到了我们的预期，三个<code>TextView</code>按1：1：1分完了总宽度。<br>但有时候可能无法达到预期的效果，请看下面的例子，将三个<code>TextView</code>的<code>android:layout_weight</code>依次设置为’1’，’2’，’3’：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-ad8f186f21ced6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>可以看出三个文本框的大小不一致了，但是明显没有达到我们预期的1：2：3的效果。<br>这是因为我们设置的每个TextView的宽度为<code>wrap_content</code>，每个组件都有本身由text内容决定的宽度，只是将剩余的在宽度上的空间按比例分好后再加在其本身的宽度上。</p>
+    &lt;/LinearLayout&gt;</code></pre><p>还是之前水平布局的例子，只是我们给每个<code>TextView</code>添加了一句<code>android:layout_weight=&quot;1&quot;</code></p>
+<p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg3.jpg" alt="图片未正确加载" class="lazyload"></p>
+<p>貌似达到了我们的预期，三个<code>TextView</code>按1：1：1分完了总宽度。<br>但有时候可能无法达到预期的效果，请看下面的例子，将三个<code>TextView</code>的<code>android:layout_weight</code>依次设置为’1’，’2’，’3’：</p>
+<p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg4.jpg" alt="图片为正确加载" class="lazyload"></p>
+<p>可以看出三个文本框的大小不一致了，但是明显没有达到我们预期的1：2：3的效果。<br>这是因为我们设置的每个TextView的宽度为<code>wrap_content</code>，每个组件都有本身由text内容决定的宽度，只是将剩余的在宽度上的空间按比例分好后再加在其本身的宽度上。</p>
 <p><em>所以说，为达到真正的比例效果：</em><br><strong>水平布局时，将每个组件的宽度（width）设置为<code>0dp</code></strong><br><strong>竖直布局时，将每个组件的高度（height）设置为<code>0dp</code></strong></p>
 <pre><code>    &lt;LinearLayout
         android:layout_width=&quot;match_parent&quot;
@@ -443,7 +454,10 @@
             android:text=&quot;第三个文本框&quot;
             android:layout_weight=&quot;3&quot;
             android:background=&quot;#008000&quot;/&gt;
-    &lt;/LinearLayout&gt;</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/13713347-26faecc15797a297.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>这样的用法用得较多，那么如果再将每个组件的宽度改为<code>match_parent</code>呢，效果如下：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-7a767de4a7ccdf5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>第一个文本框明显比第二个大，而且第三个文本框消失了，像这样的水平布局中且将所有孩子组件的宽度设置为了<code>match_parent</code>，还要使用<code>layout_weight</code>属性，要得知真正的比例，便需要计算了，下面介绍一种计算方式：<br>①用1减去孩子组件的数目(也就是分成的区域数)，得到数m。<br>②计算每个孩子组件的<code>layout_weight</code>对应值占所有<code>layout_weight</code>和的比例n。<br>③用1+m×n计算出的结果即为实际比例。<br>例如上面那个例子：<br>m = 1 - 3 = -2，每个组件的<code>layout_weight</code>所占比例依次为1/6,1/3,1/2，根据公式计算实际比例：<br>第一个文本框：1-2×1/6 = 2/3<br>第二个文本框：1-2×1/3 = 1/3<br>第三个文本框：1-2×1/2 = 0<br>与实际结果一致，多试试就熟练了。</p>
+    &lt;/LinearLayout&gt;</code></pre><p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg5.jpg" alt="图片未正确加载" class="lazyload"></p>
+<p>这样的用法用得较多，那么如果再将每个组件的宽度改为<code>match_parent</code>呢，效果如下：</p>
+<p><img data-sizes="auto" data-src="/2019/01/09/android-LinearLayout/eg6.jpg" alt="图片为正确加载" class="lazyload"></p>
+<p>第一个文本框明显比第二个大，而且第三个文本框消失了，像这样的水平布局中且将所有孩子组件的宽度设置为了<code>match_parent</code>，还要使用<code>layout_weight</code>属性，要得知真正的比例，便需要计算了，下面介绍一种计算方式：<br>①用1减去孩子组件的数目(也就是分成的区域数)，得到数m。<br>②计算每个孩子组件的<code>layout_weight</code>对应值占所有<code>layout_weight</code>和的比例n。<br>③用1+m×n计算出的结果即为实际比例。<br>例如上面那个例子：<br>m = 1 - 3 = -2，每个组件的<code>layout_weight</code>所占比例依次为1/6,1/3,1/2，根据公式计算实际比例：<br>第一个文本框：1-2×1/6 = 2/3<br>第二个文本框：1-2×1/3 = 1/3<br>第三个文本框：1-2×1/2 = 0<br>与实际结果一致，多试试就熟练了。</p>
 <p><em>如有错误，欢迎指正~</em></p>
 
   </article>
@@ -469,7 +483,8 @@
         el: '.valine',
         appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
         appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
-		visitor: true
+		visitor: 'true',
+		placeholder: '说点什么吧~'
     })
 </script>
 </section>
@@ -481,7 +496,7 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1581305506449"></script>
+<script src="/js/app.js?v=1581324984135"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

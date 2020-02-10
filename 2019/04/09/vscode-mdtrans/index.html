@@ -18,24 +18,24 @@
 <meta property="og:site_name" content="Chise | blog">
 <meta property="og:description" content="相信很多人都在使用vscode，虽然启动速度不及sublime text，但仍然也很快了，更重要的是，它的插件很容易地就能安装而且也很强大。废话不多说，强烈安利一款插件：Markdown Preview Enhanced。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-c9e34df4d04769df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-d7ecb284a5fd9a7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-8bf1ba1222ea2201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-b8426a2090c803b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-aa134367f933fd83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-64f46848488d7451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-09c3e34f90dc74ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg0.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg1.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg2.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg3.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg4.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg5.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg6.png">
 <meta property="article:published_time" content="2019-04-09T05:18:52.000Z">
-<meta property="article:modified_time" content="2020-02-06T05:40:06.589Z">
+<meta property="article:modified_time" content="2020-02-10T06:32:40.315Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-c9e34df4d04769df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://chiselee.github.io/2019/04/09/vscode-mdtrans/eg0.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1581305506389">
+  <link rel="stylesheet" href="/css/style.css?v=1581324984080">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -274,7 +274,7 @@
   
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年04月09日</a>
-    <a><i class="nexmoefont icon-areachart"></i>344 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>345 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
@@ -282,7 +282,12 @@
     
       <a class="nexmoefont icon-tag-fill -link" href="/tags/vscode/" rel="tag">vscode</a>
     
-    
+	<a>
+		<span id="/2019/04/09/vscode-mdtrans/" class="leancloud_visitors" data-flag-title="vscode将markdown转换为html或pdf文件">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
   </div>
 
   <div class="nexmoe-post-right">
@@ -290,7 +295,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#before"><span class="toc-number">1.</span> <span class="toc-text">before</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-number">2.</span> <span class="toc-text">安装方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#①点击侧边栏左侧底部的图标"><span class="toc-number">2.1.</span> <span class="toc-text">①点击侧边栏左侧底部的图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#②在搜索框中搜索插件名字Markdown-Preview-Enhanced"><span class="toc-number">2.2.</span> <span class="toc-text">②在搜索框中搜索插件名字Markdown Preview Enhanced</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#③点击安装，完成后重启vscode"><span class="toc-number">2.3.</span> <span class="toc-text">③点击安装，完成后重启vscode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预览与转换"><span class="toc-number">3.</span> <span class="toc-text">预览与转换</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#before"><span class="toc-number">1.</span> <span class="toc-text">before</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方式"><span class="toc-number">2.</span> <span class="toc-text">安装方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预览与转换"><span class="toc-number">3.</span> <span class="toc-text">预览与转换</span></a></li></ol>
             </div>
         </div>
       </div>
@@ -299,10 +304,23 @@
 
   <article>
     <p>相信很多人都在使用<code>vscode</code>，虽然启动速度不及<code>sublime text</code>，但仍然也很快了，更重要的是，它的插件很容易地就能安装而且也很强大。<br>废话不多说，强烈安利一款插件：<strong><em>Markdown Preview Enhanced</em></strong>。<a id="more"></a></p>
-<h2 id="before"><a href="#before" class="headerlink" title="before"></a>before</h2><p>在这之前先说一下，实际上<code>vscode</code>本身不装插件也可以预览<code>markdown</code>，对于一个已打开的<code>.md</code>文件，我们可以直接点击下面的按钮在侧边预览。<br><img src="https://upload-images.jianshu.io/upload_images/13713347-c9e34df4d04769df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>等装好插件后我们再比较一下效果。</p>
-<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><h3 id="①点击侧边栏左侧底部的图标"><a href="#①点击侧边栏左侧底部的图标" class="headerlink" title="①点击侧边栏左侧底部的图标"></a>①点击侧边栏左侧底部的图标</h3><p><img src="https://upload-images.jianshu.io/upload_images/13713347-d7ecb284a5fd9a7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<h3 id="②在搜索框中搜索插件名字Markdown-Preview-Enhanced"><a href="#②在搜索框中搜索插件名字Markdown-Preview-Enhanced" class="headerlink" title="②在搜索框中搜索插件名字Markdown Preview Enhanced"></a>②在搜索框中搜索插件名字<code>Markdown Preview Enhanced</code></h3><p><img src="https://upload-images.jianshu.io/upload_images/13713347-8bf1ba1222ea2201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>(因为我已经装过了，所以没有安装按钮。)</p>
-<h3 id="③点击安装，完成后重启vscode"><a href="#③点击安装，完成后重启vscode" class="headerlink" title="③点击安装，完成后重启vscode"></a>③点击安装，完成后重启vscode</h3><h2 id="预览与转换"><a href="#预览与转换" class="headerlink" title="预览与转换"></a>预览与转换</h2><p>这里我将刚才写的内容保存为<code>test.md</code>。<br>可以发现，装了插件过后，这里多了一个类似之前的预览图标。<br><img data-sizes="auto" data-src="https://upload-images.jianshu.io/upload_images/13713347-b8426a2090c803b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>鼠标移动到这里显示的提示信息可以知道这是<code>Markdown Preview Enhanced</code>插件安装后提供的。下面看下自带的预览和装插件后的预览：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-aa134367f933fd83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="自带效果" class="lazyload"><br><img data-sizes="auto" data-src="https://upload-images.jianshu.io/upload_images/13713347-64f46848488d7451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="插件效果" class="lazyload"><br>当然，装这款插件是为了它强大的转换功能：<br>在预览区域右键将会跳出下面的菜单：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-09c3e34f90dc74ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>点击<code>html</code>或<code>pdf</code>就能转成对应的文件。<br>该插件的更多功能请查看<a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener"><em>官方文档</em></a>。</p>
+<h2 id="before"><a href="#before" class="headerlink" title="before"></a>before</h2><p>在这之前先说一下，实际上<code>vscode</code>本身不装插件也可以预览<code>markdown</code>，对于一个已打开的<code>.md</code>文件，我们可以直接点击下面的按钮在侧边预览。</p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg0.png" alt="图片未正确显示" class="lazyload"></p>
+<p>等装好插件后我们再比较一下效果。</p>
+<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p><strong>点击侧边栏左侧底部的图标</strong></p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg1.png" alt="图片未正确显示" class="lazyload"></p>
+<p><strong>在搜索框中搜索插件名字<code>Markdown Preview Enhanced</code></strong></p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg2.png" alt="图片未正确显示" class="lazyload"></p>
+<p>(因为我已经装过了，所以没有安装按钮。)</p>
+<p><strong>点击安装，完成后重启vscode</strong></p>
+<h2 id="预览与转换"><a href="#预览与转换" class="headerlink" title="预览与转换"></a>预览与转换</h2><p>这里我将刚才写的内容保存为<code>test.md</code>。<br>可以发现，装了插件过后，这里多了一个类似之前的预览图标。</p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg3.png" alt="图片未正确显示" class="lazyload"></p>
+<p>鼠标移动到这里显示的提示信息可以知道这是<code>Markdown Preview Enhanced</code>插件安装后提供的。下面看下自带的预览和装插件后的预览：</p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg4.png" alt="自带效果" class="lazyload"></p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg5.png" alt="插件效果" class="lazyload"></p>
+<p>当然，装这款插件是为了它强大的转换功能：<br>在预览区域右键将会跳出下面的菜单：</p>
+<p><img data-sizes="auto" data-src="/2019/04/09/vscode-mdtrans/eg6.png" alt="图片未正确显示" class="lazyload"></p>
+<p>点击<code>html</code>或<code>pdf</code>就能转成对应的文件。<br>该插件的更多功能请查看<a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/" target="_blank" rel="noopener"><em>官方文档</em></a>。</p>
 
   </article>
   
@@ -327,7 +345,8 @@
         el: '.valine',
         appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
         appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
-		visitor: true
+		visitor: 'true',
+		placeholder: '说点什么吧~'
     })
 </script>
 </section>
@@ -339,7 +358,7 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1581305506393"></script>
+<script src="/js/app.js?v=1581324984083"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

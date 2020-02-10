@@ -18,20 +18,20 @@
 <meta property="og:site_name" content="Chise | blog">
 <meta property="og:description" content="也许你在浏览一些网页的时候会遇到这种情况，有的网页的内容会设置为登录可见。如果想要用driver去驱动浏览器浏览隐藏内容的话，就需要事先给它添加cookie信息，这几天使用的时候遇到了一些坑，简单说明下。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-089d76eccc1e74a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-6aa9dab595455fd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://chiselee.github.io/2019/08/18/python-selenium-cookie/eg0.png">
+<meta property="og:image" content="https://chiselee.github.io/2019/08/18/python-selenium-cookie/eg.png">
 <meta property="article:published_time" content="2019-08-18T08:38:22.000Z">
-<meta property="article:modified_time" content="2020-02-06T04:03:06.685Z">
+<meta property="article:modified_time" content="2020-02-10T05:58:32.234Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="selenium">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-089d76eccc1e74a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://chiselee.github.io/2019/08/18/python-selenium-cookie/eg0.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1581305506368">
+  <link rel="stylesheet" href="/css/style.css?v=1581324984061">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -278,7 +278,12 @@
     
       <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/selenium/" rel="tag">selenium</a>
     
-    
+	<a>
+		<span id="/2019/08/18/python-selenium-cookie/" class="leancloud_visitors" data-flag-title="Python使用selenium库为driver添加cookie信息的一些坑">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
   </div>
 
   <div class="nexmoe-post-right">
@@ -286,7 +291,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#坑三"><span class="toc-number">1.</span> <span class="toc-text">坑三</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#坑一"><span class="toc-number">1.</span> <span class="toc-text">坑一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坑二"><span class="toc-number">2.</span> <span class="toc-text">坑二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坑三"><span class="toc-number">3.</span> <span class="toc-text">坑三</span></a></li></ol>
             </div>
         </div>
       </div>
@@ -297,7 +302,13 @@
     <p>也许你在浏览一些网页的时候会遇到这种情况，有的网页的内容会设置为登录可见。<br>如果想要用driver去驱动浏览器浏览隐藏内容的话，就需要事先给它添加cookie信息，这几天使用的时候遇到了一些坑，简单说明下。<a id="more"></a></p>
 <p>首先，我们先创建一个driver：</p>
 <pre><code>from selenium import webdriver
-driver = webdriver.Chrome()</code></pre><p>创建出来的driver专门有一个添加cookie信息的方法<code>driver.add_cookie()</code>,他接受的参数是一个字典。回到本文正题，下面说说坑。<br>##坑一<br><strong><code>add_cookie()</code>方法接受的字典参数的键名不是随意起的。</strong><br>不能想当然地分解获取到内容的等号左右的信息。他的键名都是有意义的，一般记住<code>name</code>和<code>value</code>即可，分别代表cookie的名称和动态生成的值。<br>##坑二<br><strong>确保获取到的cookie内容是有效的。</strong><br>举个栗子，这是我在登陆某网站后看到的cookie内容：<img src="https://upload-images.jianshu.io/upload_images/13713347-089d76eccc1e74a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>到底哪一组<code>name</code>和<code>value</code>是有效的呢，对了忘了告诉你们，我在这网站的id叫rin，而正好有两组中value是以rin开头的：<br><img src="https://upload-images.jianshu.io/upload_images/13713347-6aa9dab595455fd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>第一组中的Name中的log in又像是在暗示我一样，于是我的字典决定了：</p>
+driver = webdriver.Chrome()</code></pre><p>创建出来的driver专门有一个添加cookie信息的方法<code>driver.add_cookie()</code>,他接受的参数是一个字典。回到本文正题，下面说说坑。</p>
+<h2 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h2><p><strong><code>add_cookie()</code>方法接受的字典参数的键名不是随意起的。</strong><br>不能想当然地分解获取到内容的等号左右的信息。他的键名都是有意义的，一般记住<code>name</code>和<code>value</code>即可，分别代表cookie的名称和动态生成的值。</p>
+<h2 id="坑二"><a href="#坑二" class="headerlink" title="坑二"></a>坑二</h2><p><strong>确保获取到的cookie内容是有效的。</strong><br>举个栗子，这是我在登陆某网站后看到的cookie内容：</p>
+<p><img data-sizes="auto" data-src="/2019/08/18/python-selenium-cookie/eg0.png" alt="图片未正确加载" class="lazyload"></p>
+<p>到底哪一组<code>name</code>和<code>value</code>是有效的呢，对了忘了告诉你们，我在这网站的id叫rin，而正好有两组中value是以rin开头的：</p>
+<p><img data-sizes="auto" data-src="/2019/08/18/python-selenium-cookie/eg.png" alt="图片未正确加载" class="lazyload"></p>
+<p>第一组中的Name中的log in又像是在暗示我一样，于是我的字典决定了：</p>
 <pre><code>cook_dict = {
     &#39;name&#39;: &#39;wordpress_logged_in_XXXXXXXXXXXXXXXXXXf&#39;,
     &#39;value&#39;: &#39;rin%7C156620073XXXXXXXXXXXXXXXc53bab6&#39;
@@ -332,7 +343,8 @@ driver.get(&#39;目标网址&#39;)</code></pre><p>就是说，在登录页面添
         el: '.valine',
         appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
         appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
-		visitor: true
+		visitor: 'true',
+		placeholder: '说点什么吧~'
     })
 </script>
 </section>
@@ -344,7 +356,7 @@ driver.get(&#39;目标网址&#39;)</code></pre><p>就是说，在登录页面添
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1581305506371"></script>
+<script src="/js/app.js?v=1581324984066"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

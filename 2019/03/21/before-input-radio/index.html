@@ -11,26 +11,26 @@
   
 
   <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
-  <meta name="description" content="0.默认样式和改动后效果对比 1.CSS代码">
+  <meta name="description" content="默认样式和改动后效果对比 CSS代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用before伪元素更改input radio样式">
 <meta property="og:url" content="https://chiselee.github.io/2019/03/21/before-input-radio/index.html">
 <meta property="og:site_name" content="Chise | blog">
-<meta property="og:description" content="0.默认样式和改动后效果对比 1.CSS代码">
+<meta property="og:description" content="默认样式和改动后效果对比 CSS代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13713347-031859263a22e49f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://chiselee.github.io/2019/03/21/before-input-radio/eg1.jpg">
 <meta property="article:published_time" content="2019-03-21T06:07:17.000Z">
-<meta property="article:modified_time" content="2020-02-06T06:34:01.050Z">
+<meta property="article:modified_time" content="2020-02-10T07:29:52.304Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="css">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13713347-031859263a22e49f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://chiselee.github.io/2019/03/21/before-input-radio/eg1.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1581305506416">
+  <link rel="stylesheet" href="/css/style.css?v=1581324984106">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -269,7 +269,7 @@
   
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月21日</a>
-    <a><i class="nexmoefont icon-areachart"></i>232 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>229 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
@@ -277,7 +277,12 @@
     
       <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
     
-    
+	<a>
+		<span id="/2019/03/21/before-input-radio/" class="leancloud_visitors" data-flag-title="使用before伪元素更改input radio样式">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
   </div>
 
   <div class="nexmoe-post-right">
@@ -285,7 +290,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-默认样式和改动后效果对比"><span class="toc-number">1.</span> <span class="toc-text">0.默认样式和改动后效果对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-CSS代码"><span class="toc-number">2.</span> <span class="toc-text">1.CSS代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-简要分析"><span class="toc-number">3.</span> <span class="toc-text">2.简要分析</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#默认样式和改动后效果对比"><span class="toc-number">1.</span> <span class="toc-text">默认样式和改动后效果对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS代码"><span class="toc-number">2.</span> <span class="toc-text">CSS代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简要分析"><span class="toc-number">3.</span> <span class="toc-text">简要分析</span></a></li></ol>
             </div>
         </div>
       </div>
@@ -293,8 +298,8 @@
   </div>
 
   <article>
-    <h2 id="0-默认样式和改动后效果对比"><a href="#0-默认样式和改动后效果对比" class="headerlink" title="0.默认样式和改动后效果对比"></a>0.默认样式和改动后效果对比</h2><p><img data-sizes="auto" data-src="https://upload-images.jianshu.io/upload_images/13713347-031859263a22e49f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果对比" class="lazyload"></p>
-<h2 id="1-CSS代码"><a href="#1-CSS代码" class="headerlink" title="1.CSS代码"></a>1.CSS代码</h2><a id="more"></a>
+    <h2 id="默认样式和改动后效果对比"><a href="#默认样式和改动后效果对比" class="headerlink" title="默认样式和改动后效果对比"></a>默认样式和改动后效果对比</h2><p><img data-sizes="auto" data-src="/2019/03/21/before-input-radio/eg1.jpg" alt="效果对比" class="lazyload"></p>
+<h2 id="CSS代码"><a href="#CSS代码" class="headerlink" title="CSS代码"></a>CSS代码</h2><a id="more"></a>
 
 <pre><code>input[type=&quot;radio&quot;]{
     position: relative;
@@ -318,7 +323,7 @@ input[type=&quot;radio&quot;]:checked::before{
     color: white;
     background-color: #0099ff;
 }</code></pre><p>将对所有类型为<code>radio</code>的<code>input</code>标签生效。也可以指定<code>class</code>来对某一类的<code>input</code>生效。</p>
-<h2 id="2-简要分析"><a href="#2-简要分析" class="headerlink" title="2.简要分析"></a>2.简要分析</h2><p>实际上默认的样式还在，但它被设计的新样式覆盖了。<br><code>input[type=&quot;radio&quot;]::before{...}</code>设置的为单选框未被点击时样式，<br><code>input[type=&quot;radio&quot;]:checked::before{...}</code>’设置的是单选框被点击后的样式。<br><strong>在设计这两种样式之前一定要把<code>input[type=&quot;radio&quot;]</code>的<code>position</code>值设为<code>relative</code>。</strong><br>“\2713”是特殊字符“✓”，在css中即用<code>\2713</code>表示。</p>
+<h2 id="简要分析"><a href="#简要分析" class="headerlink" title="简要分析"></a>简要分析</h2><p>实际上默认的样式还在，但它被设计的新样式覆盖了。<br><code>input[type=&quot;radio&quot;]::before{...}</code>设置的为单选框未被点击时样式，<br><code>input[type=&quot;radio&quot;]:checked::before{...}</code>’设置的是单选框被点击后的样式。<br><strong>在设计这两种样式之前一定要把<code>input[type=&quot;radio&quot;]</code>的<code>position</code>值设为<code>relative</code>。</strong><br>“\2713”是特殊字符“✓”，在css中即用<code>\2713</code>表示。</p>
 <p>懂得了更改样式的方式，相信你能设计出更好看的按钮！</p>
 
   </article>
@@ -344,7 +349,8 @@ input[type=&quot;radio&quot;]:checked::before{
         el: '.valine',
         appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
         appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
-		visitor: true
+		visitor: 'true',
+		placeholder: '说点什么吧~'
     })
 </script>
 </section>
@@ -356,7 +362,7 @@ input[type=&quot;radio&quot;]:checked::before{
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1581305506419"></script>
+<script src="/js/app.js?v=1581324984110"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
