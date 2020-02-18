@@ -14,36 +14,36 @@
   <meta name="description" content="安装openpyxl库：pip install openpyxl 创建并保存一个.xlsx文件import openpyxl wb &#x3D; openpyxl.Workbook() wb.save(&#39;test.xlsx&#39;)如果只是单纯的创建一个Excel文件是非常简单的，只需要先实例化一个Workbook对象，然后用save()方法保存即可。并且可以看到创建的文件默认有一个Sheet工作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python使用openpyxl库对Excel的简单操作">
-<meta property="og:url" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/index.html">
+<meta property="og:url" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/index.html">
 <meta property="og:site_name" content="Chise | blog">
 <meta property="og:description" content="安装openpyxl库：pip install openpyxl 创建并保存一个.xlsx文件import openpyxl wb &#x3D; openpyxl.Workbook() wb.save(&#39;test.xlsx&#39;)如果只是单纯的创建一个Excel文件是非常简单的，只需要先实例化一个Workbook对象，然后用save()方法保存即可。并且可以看到创建的文件默认有一个Sheet工作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg1.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg2.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg3.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg4.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg5.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg6.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg7.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg14.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg8.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg9.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg10.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg11.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg12.jpg">
-<meta property="og:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg13.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg1.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg2.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg3.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg4.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg5.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg6.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg7.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg14.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg8.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg9.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg10.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg11.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg12.jpg">
+<meta property="og:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg13.jpg">
 <meta property="article:published_time" content="2018-11-08T09:08:14.000Z">
 <meta property="article:modified_time" content="2020-02-10T08:38:57.838Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="excel">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/eg1.jpg">
+<meta name="twitter:image" content="https://chiselee.cn/2018/11/08/python-openpyxl-excel/eg1.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1582015862427">
+  <link rel="stylesheet" href="/css/style.css?v=1582030105607">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -391,7 +391,7 @@ print(openpyxl.cell.cell.column_index_from_string(&#39;ZH&#39;))
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.github.io/2018/11/08/python-openpyxl-excel/" title="https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;08&#x2F;python-openpyxl-excel&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.github.io&#x2F;2018&#x2F;11&#x2F;08&#x2F;python-openpyxl-excel&#x2F;</a><br>
+<strong>本文链接：</strong><a href="https://chiselee.cn/2018/11/08/python-openpyxl-excel/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;11&#x2F;08&#x2F;python-openpyxl-excel&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;11&#x2F;08&#x2F;python-openpyxl-excel&#x2F;</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -421,13 +421,15 @@ print(openpyxl.cell.cell.column_index_from_string(&#39;ZH&#39;))
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
-<script src="/js/app.js?v=1582015862429"></script>
+<script src="/js/app.js?v=1582030105610"></script>
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   
 
 
