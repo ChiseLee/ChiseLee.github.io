@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>简单轮播图的实现及原理讲解（js） - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -21,19 +22,17 @@
 <meta property="og:image" content="https://chiselee.cn/2018/10/25/web-lbt/eg1.png">
 <meta property="og:image" content="https://chiselee.cn/2018/10/25/web-lbt/eg2.png">
 <meta property="article:published_time" content="2018-10-25T15:15:41.000Z">
-<meta property="article:modified_time" content="2020-02-10T05:45:50.848Z">
+<meta property="article:modified_time" content="2018-10-25T15:15:41.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="css">
 <meta property="article:tag" content="web">
-<meta property="article:tag" content="html">
 <meta property="article:tag" content="js">
+<meta property="article:tag" content="html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://chiselee.cn/2018/10/25/web-lbt/eg1.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387412">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564263">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -44,10 +43,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -55,7 +54,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -63,7 +62,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -100,13 +99,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -236,16 +235,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -258,28 +247,23 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="简单轮播图的实现及原理讲解（js）" class="lazyload">
           <h1>简单轮播图的实现及原理讲解（js）</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2018年10月25日</a>
     <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-    
 	<a>
 		<span id="/2018/10/25/web-lbt/" class="leancloud_visitors" data-flag-title="简单轮播图的实现及原理讲解（js）">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
@@ -303,7 +287,6 @@
 <li>自动无缝滚动</li>
 <li>左右按钮控制滚动</li>
 <li>点击圆点切换图片<a id="more"></a>
-
 </li>
 </ul>
 <h2 id="整体结构与思路"><a href="#整体结构与思路" class="headerlink" title="整体结构与思路"></a><em>整体结构与思路</em></h2><h3 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h3><pre><code>&lt;body&gt;
@@ -323,7 +306,8 @@
             &lt;span id=&quot;right&quot;&gt;&amp;gt;&lt;/span&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;/body&gt;</code></pre><p>三个div，最外层id为<code>parent</code>的大div内包含了<code>uls</code>和<code>buttons</code>两个div，div<code>uls</code>中包含了两个列表<code>img_ul</code>（图片列表）, <code>litCir_ul</code>（小圆点列表），div<code>buttons</code>里则包含了“左”， “右”两个按钮。</p>
+&lt;/body&gt;
+</code></pre><p>三个div，最外层id为<code>parent</code>的大div内包含了<code>uls</code>和<code>buttons</code>两个div，div<code>uls</code>中包含了两个列表<code>img_ul</code>（图片列表）, <code>litCir_ul</code>（小圆点列表），div<code>buttons</code>里则包含了“左”， “右”两个按钮。</p>
 <h3 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h3><pre><code>#parent{
     position: relative;
     margin: 50px auto;
@@ -418,7 +402,8 @@ li.quiet{
 #right{
     left: 100%;
     margin-left: -45px;
-}</code></pre><p><strong><em>需要注意的地方</em></strong></p>
+}
+</code></pre><p><strong><em>需要注意的地方</em></strong></p>
 <ul>
 <li>图片的宽，高度应和<code>img_ul</code>中的<code>li</code>标签， 以及div<code>#parent</code>， div<code>#uls</code>的宽，高度一致。</li>
 <li><code>img_ul</code>的宽度应为(图片数目+1）*每张图片的宽度。也就是要多留出一张图片的宽度（下一部分解释）。</li>
@@ -439,13 +424,15 @@ li.quiet{
     var timer = null;                     //初始化一个定时器
     var picN = 0;                         //当前显示的图片下标
     var cirN = 0;                         //当前显示图片的小圆点下标
-    var temp;</code></pre><h3 id="添加小圆点"><a href="#添加小圆点" class="headerlink" title="添加小圆点"></a>添加小圆点</h3><p>之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。</p>
+    var temp;
+</code></pre><h3 id="添加小圆点"><a href="#添加小圆点" class="headerlink" title="添加小圆点"></a>添加小圆点</h3><p>之所用js添加小圆点，是因为小圆点的数量是由图片张数决定的。</p>
 <pre><code>    for (var i=0; i&lt;len; i++){
         var a_li = document.createElement(&quot;li&quot;);
         a_li.className = &#39;quiet&#39;;
         litCir_ul.appendChild(a_li);
     }
-    litCir_ul.children[0].className = &quot;active&quot;;</code></pre><p>默认<code>li</code>的<code>class</code>为<code>quiet</code>, 第一张默认为<code>active</code>。</p>
+    litCir_ul.children[0].className = &quot;active&quot;;
+</code></pre><p>默认<code>li</code>的<code>class</code>为<code>quiet</code>, 第一张默认为<code>active</code>。</p>
 <h3 id="无缝滚动是怎么实现的？"><a href="#无缝滚动是怎么实现的？" class="headerlink" title="无缝滚动是怎么实现的？"></a>无缝滚动是怎么实现的？</h3><p>首先先理解该轮播图如何滚动，这里是通过控制<strong><code>img_ul</code>的<code>left</code>值来控制显示某张图片，</strong> 为了实现“滚动”的效果，我们需要<strong>逐渐</strong>改变<code>img_ul</code>的<code>left</code>值，而不能直接使该值变化图片宽度的倍数。这里我们定义一个动画效果函数<code>Roll()</code>。</p>
 <pre><code>function Roll(distance){                                         //参数distance：滚动的目标点（必为图片宽度的倍数）
 clearInterval(img_ul.timer);                                     //每次运行该函数必须清除之前的定时器！
@@ -460,9 +447,11 @@ img_ul.timer = setInterval(function(){                           //设置定时�
         img_ul.style.left = distance + &quot;px&quot;;
     }
 },10);
-}</code></pre><p>试想下面的情况，当图片从最后一张切换到第一张时，这时就不能通过逐渐改变<code>img_ul</code>的<code>left</code>值来实现滚动的效果，于是<strong>克隆第一张图片至列表尾部，当滚动完最后一张图片时，继续滚动到克隆的第一张，然后将<code>img_ul</code>的<code>left</code>值置为0。</strong></p>
+}
+</code></pre><p>试想下面的情况，当图片从最后一张切换到第一张时，这时就不能通过逐渐改变<code>img_ul</code>的<code>left</code>值来实现滚动的效果，于是<strong>克隆第一张图片至列表尾部，当滚动完最后一张图片时，继续滚动到克隆的第一张，然后将<code>img_ul</code>的<code>left</code>值置为0。</strong></p>
 <pre><code>    /*克隆第一个li到列表末*/
-    img_ul.appendChild(img_ul.children[0].cloneNode(true));</code></pre><h3 id="自动滚动"><a href="#自动滚动" class="headerlink" title="自动滚动"></a>自动滚动</h3><pre><code>function autoRun(){
+    img_ul.appendChild(img_ul.children[0].cloneNode(true));
+</code></pre><h3 id="自动滚动"><a href="#自动滚动" class="headerlink" title="自动滚动"></a>自动滚动</h3><pre><code>function autoRun(){
     picN++;
     cirN++;
     if(picN &gt; len){                  //滚动完克隆项后
@@ -478,7 +467,8 @@ img_ul.timer = setInterval(function(){                           //设置定时�
         cLis[i].className = &quot;quiet&quot;;
     }
     cLis[cirN].className = &quot;active&quot;;
-}</code></pre><p>需要注意的是小圆点和图片列表的<code>li</code>数目是不一样的，当滚动到最后一个克隆项时，此时小圆点实际上在第一个位置。</p>
+}
+</code></pre><p>需要注意的是小圆点和图片列表的<code>li</code>数目是不一样的，当滚动到最后一个克隆项时，此时小圆点实际上在第一个位置。</p>
 <p>开始自动滚动：<br><code>timer = setInterval(autoRun, gap);</code></p>
 <h3 id="触及小圆点时切换至对应图片"><a href="#触及小圆点时切换至对应图片" class="headerlink" title="触及小圆点时切换至对应图片"></a>触及小圆点时切换至对应图片</h3><pre><code>    for(var i=0; i&lt;len; i++){
         cLis[i].index = i;
@@ -494,7 +484,8 @@ img_ul.timer = setInterval(function(){                           //设置定时�
             Roll(-this.index * width);
             rate = 15;
         }
-    }</code></pre><p>给每个小圆点绑定了onmouseover事件，这个方法有个细节，会根据两次小圆点的距离差调整速率为<code>rate*times</code>，使切换效果更自然（也就是说每次切换说花的时间基本一致，无论是第一张到第二张，还是第一张到最后一张）。</p>
+    }
+</code></pre><p>给每个小圆点绑定了onmouseover事件，这个方法有个细节，会根据两次小圆点的距离差调整速率为<code>rate*times</code>，使切换效果更自然（也就是说每次切换说花的时间基本一致，无论是第一张到第二张，还是第一张到最后一张）。</p>
 <h3 id="触及轮播图区域和离开该区域时"><a href="#触及轮播图区域和离开该区域时" class="headerlink" title="触及轮播图区域和离开该区域时"></a>触及轮播图区域和离开该区域时</h3><pre><code>    parent.onmouseover = function(){
         clearInterval(timer);
         buttons.style.display = &#39;block&#39;;
@@ -502,7 +493,8 @@ img_ul.timer = setInterval(function(){                           //设置定时�
     parent.onmouseout = function(){
         timer = setInterval(autoRun, gap);
         buttons.style.display = &#39;none&#39;;
-    }</code></pre><p>触及区域，清除定时器，显示按钮。<br>离开区域，添加定时器，隐藏按钮。</p>
+    }
+</code></pre><p>触及区域，清除定时器，显示按钮。<br>离开区域，添加定时器，隐藏按钮。</p>
 <h3 id="给两个按钮添加onclick事件"><a href="#给两个按钮添加onclick事件" class="headerlink" title="给两个按钮添加onclick事件"></a>给两个按钮添加onclick事件</h3><pre><code>    /*上一张*/
     buttons.children[0].onclick = function(){ 
         picN--;
@@ -522,24 +514,35 @@ img_ul.timer = setInterval(function(){                           //设置定时�
         cLis[cirN].className = &quot;active&quot;;
     }
     /*下一张*/
-    buttons.children[1].onclick = autoRun;</code></pre><p>自动播放就是间隔一定时间不断调用函数“下一张”的过程，所以这里的按钮<code>right</code>下一张的实现就是上面的<code>autoRun</code>函数。</p>
+    buttons.children[1].onclick = autoRun;
+</code></pre><p>自动播放就是间隔一定时间不断调用函数“下一张”的过程，所以这里的按钮<code>right</code>下一张的实现就是上面的<code>autoRun</code>函数。</p>
 <p><em>以上就是轮播图各部分的实现原理，如果你有其他的方法，欢迎一起交流！</em><br>2019.3.30更新：<br><strong><em><a href="https://chiselee.github.io/2019/03/30/requestAnimationFrame-lbt/" target="_blank" rel="noopener">用requestAnimationFrame()实现一个轮播图</a></em></strong></p>
 
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2018/10/25/web-lbt/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;10&#x2F;25&#x2F;web-lbt&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;10&#x2F;25&#x2F;web-lbt&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2018/10/25/web-lbt/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;10&#x2F;25&#x2F;web-lbt&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2018&#x2F;10&#x2F;25&#x2F;web-lbt&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -553,28 +556,40 @@ img_ul.timer = setInterval(function(){                           //设置定时�
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387415"></script>
+<!--<script src="/js/app.js?v=1583323564267"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

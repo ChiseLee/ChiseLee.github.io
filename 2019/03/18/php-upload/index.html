@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>PHP文件上传（以图片为例） - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -22,16 +23,14 @@
 <meta property="og:image" content="https://chiselee.cn/2019/03/18/php-upload/eg2.jpg">
 <meta property="og:image" content="https://chiselee.cn/2019/03/18/php-upload/eg3.jpg">
 <meta property="article:published_time" content="2019-03-18T12:38:55.000Z">
-<meta property="article:modified_time" content="2020-02-10T07:34:14.090Z">
+<meta property="article:modified_time" content="2019-03-18T12:38:55.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://chiselee.cn/2019/03/18/php-upload/eg1.jpg">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387349">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564202">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -42,10 +41,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -53,7 +52,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -61,7 +60,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -98,13 +97,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -234,16 +233,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -256,28 +245,23 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="PHP文件上传（以图片为例）" class="lazyload">
           <h1>PHP文件上传（以图片为例）</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月18日</a>
     <a><i class="nexmoefont icon-areachart"></i>980 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/php/">php</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/php/" rel="tag">php</a>
-    
 	<a>
 		<span id="/2019/03/18/php-upload/" class="leancloud_visitors" data-flag-title="PHP文件上传（以图片为例）">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
@@ -296,7 +280,8 @@
 <pre><code>    &lt;form method=&#39;post&#39; action=&#39;test.php&#39; enctype=&#39;multipart/form-data&#39;&gt; 
       &lt;input type=&#39;file&#39; name=&#39;fn&#39;&gt;&lt;br&gt;&lt;br&gt;
       &lt;input type=&#39;submit&#39; value=&quot;上传&quot;&gt;
-    &lt;/form&gt;</code></pre><p><img data-sizes="auto" data-src="/2019/03/18/php-upload/eg1.jpg" alt="图片未正确显示" class="lazyload"></p>
+    &lt;/form&gt;
+</code></pre><p><img data-sizes="auto" data-src="/2019/03/18/php-upload/eg1.jpg" alt="图片未正确显示" class="lazyload"></p>
 <p>这里使用了含文件上传控件的表单，必须将<code>form</code>标签的<code>enctype</code>属性设置为<code>multipart/form-data</code>。通过点击<em>选择文件</em>按钮在本地选择单个待上传文件，点击<em>上传</em>按钮，即会由`test.php’来处理。<br>下面是上传一个单文件的完整代码：<br><strong>test.php</strong></p>
 <pre><code>&lt;?php
 echo &lt;&lt;&lt;_END
@@ -309,48 +294,56 @@ _END;
         $n = $_FILES[&#39;fn&#39;][&#39;name&#39;];
         move_uploaded_file($_FILES[&#39;fn&#39;][&#39;tmp_name&#39;],$n);
     }
-?&gt;</code></pre><p>这里表单也是通过php文件输出，如果操作成功，将会在test.php所在目录看到之前上传的文件。<br>要想弄懂代码含义，还需要弄明白<code>$_FILES</code>这个数组,在移动文件<code>move_upload_file()</code>之前，我们先用<code>print_r()</code>观察一下数组内容。</p>
+?&gt;
+</code></pre><p>这里表单也是通过php文件输出，如果操作成功，将会在test.php所在目录看到之前上传的文件。<br>要想弄懂代码含义，还需要弄明白<code>$_FILES</code>这个数组,在移动文件<code>move_upload_file()</code>之前，我们先用<code>print_r()</code>观察一下数组内容。</p>
 <pre><code>        echo &#39;&lt;pre&gt;&#39;;
         print_r($_FILES);
-        echo &#39;&lt;/pre&gt;&#39;;</code></pre><p>上传文件后，我们将会看到页面输出了以下内容：</p>
+        echo &#39;&lt;/pre&gt;&#39;;
+</code></pre><p>上传文件后，我们将会看到页面输出了以下内容：</p>
 <p><img data-sizes="auto" data-src="/2019/03/18/php-upload/eg2.jpg" alt="图片未正确显示" class="lazyload"></p>
 <p>想必你已经发现了，’fn’即是之前表单中<code>type</code>属性设置为<code>file</code>的input标签的<code>name</code>值。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">数组元素</th>
-<th align="center">内容含义</th>
+<th style="text-align:center">数组元素</th>
+<th style="text-align:center">内容含义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">$_FILES[‘fn’][‘name’]</td>
-<td align="center">上传文件的名字</td>
+<tbody>
+<tr>
+<td style="text-align:center">$_FILES[‘fn’][‘name’]</td>
+<td style="text-align:center">上传文件的名字</td>
 </tr>
 <tr>
-<td align="center">$_FILES[‘fn’][‘type’]</td>
-<td align="center">上传文件的类型</td>
+<td style="text-align:center">$_FILES[‘fn’][‘type’]</td>
+<td style="text-align:center">上传文件的类型</td>
 </tr>
 <tr>
-<td align="center">$_FILES[‘fn’][‘tmp_name’]</td>
-<td align="center">存储在服务器上的临时文件名</td>
+<td style="text-align:center">$_FILES[‘fn’][‘tmp_name’]</td>
+<td style="text-align:center">存储在服务器上的临时文件名</td>
 </tr>
 <tr>
-<td align="center">$_FILES[‘fn’][‘error’]</td>
-<td align="center">上传文件导致的错误代码</td>
+<td style="text-align:center">$_FILES[‘fn’][‘error’]</td>
+<td style="text-align:center">上传文件导致的错误代码</td>
 </tr>
 <tr>
-<td align="center">$_FILES[‘fn’][‘size’]</td>
-<td align="center">上传文件的大小（单位为字节）</td>
+<td style="text-align:center">$_FILES[‘fn’][‘size’]</td>
+<td style="text-align:center">上传文件的大小（单位为字节）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>现在再来看下这个if语句：</p>
 <pre><code>    if($_FILES){
         $n = $_FILES[&#39;fn&#39;][&#39;name&#39;];
         move_uploaded_file($_FILES[&#39;fn&#39;][&#39;tmp_name&#39;],$n);
-    }</code></pre><p>当没有上传文件的时候，尝试用<code>print_r()</code>输出$_FILES只会得到一个空数组，即在上面的代码中，如果没有文件上传，将不会进入if语句内。然后我们使用<code>move_uploaded_file()</code>函数将临时文件保存到了指定目录下。</p>
+    }
+</code></pre><p>当没有上传文件的时候，尝试用<code>print_r()</code>输出$_FILES只会得到一个空数组，即在上面的代码中，如果没有文件上传，将不会进入if语句内。然后我们使用<code>move_uploaded_file()</code>函数将临时文件保存到了指定目录下。</p>
 <h2 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h2><p>上面的例子中，选中了一个文件就不允许继续选择其他文件，有时候我们想一次上传多个文件，只需对此<code>input</code>按钮稍作改动：</p>
 <pre><code>&lt;input type=&quot;file&quot; name=&quot;fn[]&quot; multiple=&quot;multiple&quot;&gt;
-//也可以简写为：&lt;input type=&quot;file&quot; name=&quot;fn[]&quot; multiple&gt;</code></pre><ul>
+//也可以简写为：&lt;input type=&quot;file&quot; name=&quot;fn[]&quot; multiple&gt;
+</code></pre><ul>
 <li><p>name设置的值后加上一个中括号<code>[]</code>。</p>
 </li>
 <li><p>设置multiple属性的值为<code>multiple</code>。<br>多文件上传后再试试用<code>print_r()</code>打印$_FILES：</p>
@@ -371,7 +364,8 @@ _END;
         if($ext)
         {
             //将执行的操作
-        }</code></pre><p>如果上传的文件类型符合要求才会进入if语句执行接下来的操作。</p>
+        }
+</code></pre><p>如果上传的文件类型符合要求才会进入if语句执行接下来的操作。</p>
 <h2 id="多文件上传并验证的实例"><a href="#多文件上传并验证的实例" class="headerlink" title="多文件上传并验证的实例"></a>多文件上传并验证的实例</h2><p>完整代码如下：（含选择图片后的网页预览）</p>
 <pre><code>&lt;?php
 echo &lt;&lt;&lt;_END
@@ -399,22 +393,33 @@ if($_FILES) {
         }
     }
 }
-?&gt;</code></pre>
+?&gt;
+</code></pre>
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/18/php-upload/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;18&#x2F;php-upload&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;18&#x2F;php-upload&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/php/">php</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/php/" rel="tag">php</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/18/php-upload/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;18&#x2F;php-upload&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;18&#x2F;php-upload&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -428,28 +433,40 @@ if($_FILES) {
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387352"></script>
+<!--<script src="/js/app.js?v=1583323564204"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

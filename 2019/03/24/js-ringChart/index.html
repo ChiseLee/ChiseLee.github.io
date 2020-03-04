@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>使用JS绘制一个圆环统计图 - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -21,17 +22,15 @@
 <meta property="og:image" content="https://chiselee.cn/2019/03/24/js-ringChart/eg1.jpg">
 <meta property="og:image" content="https://chiselee.cn/2019/03/24/js-ringChart/eg2.gif">
 <meta property="article:published_time" content="2019-03-24T14:44:31.000Z">
-<meta property="article:modified_time" content="2020-02-10T07:16:43.582Z">
+<meta property="article:modified_time" content="2019-03-24T14:44:31.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://chiselee.cn/2019/03/24/js-ringChart/eg1.jpg">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387342">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564188">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -42,10 +41,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -53,7 +52,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -61,7 +60,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -98,13 +97,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -234,16 +233,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -256,28 +245,23 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="使用JS绘制一个圆环统计图" class="lazyload">
           <h1>使用JS绘制一个圆环统计图</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月24日</a>
     <a><i class="nexmoefont icon-areachart"></i>2.8k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-    
 	<a>
 		<span id="/2019/03/24/js-ringChart/" class="leancloud_visitors" data-flag-title="使用JS绘制一个圆环统计图">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
@@ -411,7 +395,8 @@ function pieChart(title, data, radius, width){
             ctx.fillText(sum, (canvas.width - ctx.measureText(sum).width)/2,canvas.height/2+radius/10);
         }
     };
-}</code></pre><p>在一个空白<code>html</code>文件中导入该js文件即可使用(基本的<code>html</code>,<code>body</code>标签要有)，不需导入其他的<code>css</code>文件。新建一个<code>pieChart</code>对象，调用<code>add_data()</code>和<code>draw()</code>方法即可。<br>下面是实现思路的分享。</p>
+}
+</code></pre><p>在一个空白<code>html</code>文件中导入该js文件即可使用(基本的<code>html</code>,<code>body</code>标签要有)，不需导入其他的<code>css</code>文件。新建一个<code>pieChart</code>对象，调用<code>add_data()</code>和<code>draw()</code>方法即可。<br>下面是实现思路的分享。</p>
 <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>使用JS绘制图形，那自然离不开<code>canvas</code>标签，这里我们最终绘制的是一个圆环，我的大体思路是：</p>
 <ol>
 <li>根据数据计算所占比例，再根据所占比例使用较大半径绘制每部分的扇形。</li>
@@ -421,20 +406,12 @@ function pieChart(title, data, radius, width){
 <p>也就是说，实际上我先是绘制的一个扇形统计图，然后用一个白底的较小的圆将其覆盖，这样看上去就是一个环形统计图了。<br>下面结合代码详细讲解；<br>在<code>window.onload</code>外我封装了一个<code>pieChart</code>类，他有四个变量和两个方法：</p>
 <h3 id="四个变量"><a href="#四个变量" class="headerlink" title="四个变量"></a>四个变量</h3><blockquote>
 <p>title：统计图的标题。</p>
-</blockquote>
-<blockquote>
 <p>data：统计图的数据，每一条数据含下面五个内容：<br>    ①id：该项数据在html中的id值。<br>    ②text：该项数据在统计图下方显示的文本。<br>    ③num：该项数据的值(数量)。<br>    ④color：该项数据在统计图中对应的颜色。<br>    ⑤isdraw：是否绘制该项数据，只能填为1或0，默认填1，表示要绘制(在点击重绘时会用到该值)。</p>
-</blockquote>
-<blockquote>
 <p>radius：外层圆的半径，单位为px。</p>
-</blockquote>
-<blockquote>
 <p>width：圆环宽度，单位为px，可理解为外层圆与内层圆半径的差值。</p>
 </blockquote>
 <h3 id="两个方法"><a href="#两个方法" class="headerlink" title="两个方法"></a>两个方法</h3><blockquote>
 <p>add_data()方法：负责添加统计图下方的每行内容。</p>
-</blockquote>
-<blockquote>
 <p>draw()方法：绘制圆环的方法，同时也会绑定到每一行数据中。</p>
 </blockquote>
 <h2 id="3-方法详解"><a href="#3-方法详解" class="headerlink" title="3.方法详解"></a>3.方法详解</h2><h3 id="add-data"><a href="#add-data" class="headerlink" title="add_data()"></a><em>add_data()</em></h3><pre><code>    this.add_data = function(){
@@ -471,7 +448,8 @@ function pieChart(title, data, radius, width){
         chart.appendChild(circle);
         chart.appendChild(list);
         document.body.appendChild(chart);
-    }</code></pre><p>实际上最终的页面结构为一个<code>父div</code>，包含三个部分：标题区域<code>div &#39;top&#39;</code>，图形区域<code>canvas &#39;circle&#39;</code>，数据区域<code>div &#39;list&#39;</code>;数据区域<code>div &#39;list&#39;</code>包含一个无序列表<code>ul</code>，根据创建对象的数据条数创建一个个<code>li</code>，向其写入数据并绑定<code>onclick</code>事件<code>draw()</code>;每个<code>li</code>又含三个<code>span</code>标签，分别代表：数据前缀(指定该行和统计图中哪个颜色对应)，数据文本，文本对应的数量。<br>页面结构如下：</p>
+    }
+</code></pre><p>实际上最终的页面结构为一个<code>父div</code>，包含三个部分：标题区域<code>div &#39;top&#39;</code>，图形区域<code>canvas &#39;circle&#39;</code>，数据区域<code>div &#39;list&#39;</code>;数据区域<code>div &#39;list&#39;</code>包含一个无序列表<code>ul</code>，根据创建对象的数据条数创建一个个<code>li</code>，向其写入数据并绑定<code>onclick</code>事件<code>draw()</code>;每个<code>li</code>又含三个<code>span</code>标签，分别代表：数据前缀(指定该行和统计图中哪个颜色对应)，数据文本，文本对应的数量。<br>页面结构如下：</p>
 <pre><code>&lt;div&gt;
     &lt;div&gt;&lt;/div&gt;
     &lt;canvas&gt;&lt;/canvas&gt;
@@ -483,7 +461,8 @@ function pieChart(title, data, radius, width){
             &lt;!--...--&gt;
         &lt;/ul&gt;
     &lt;/div&gt;
-&lt;/div&gt;</code></pre><h3 id="draw"><a href="#draw" class="headerlink" title="draw()"></a><em>draw()</em></h3><h4 id="代码片段一："><a href="#代码片段一：" class="headerlink" title="代码片段一："></a>代码片段一：</h4><pre><code>        var id = this.id;
+&lt;/div&gt;
+</code></pre><h3 id="draw"><a href="#draw" class="headerlink" title="draw()"></a><em>draw()</em></h3><h4 id="代码片段一："><a href="#代码片段一：" class="headerlink" title="代码片段一："></a>代码片段一：</h4><pre><code>        var id = this.id;
         for(var i=0; i&lt;len; i++){
             if(data[i].id == id){
                 data[i].isdraw = data[i].isdraw? 0:1;
@@ -491,8 +470,10 @@ function pieChart(title, data, radius, width){
                 var span = this.children[2];
                 span.style.display = span.style.display==&#39;none&#39;? &#39;inline&#39;:&#39;none&#39;;  
             }
-        }</code></pre><p>实际上<code>draw()</code>是为数据区域中的每一个<code>li</code>量身定做的，每一次对<code>li</code>标签的点击都会重绘图形，这时<code>this</code>指向的是被点击的<code>li</code>标签，如果它正在统计图中显示将会去除它，前缀变为灰色，数据值隐藏，<code>isdraw</code>标记为0，接下来的重绘将跳过对此项的绘制。<br>虽说<code>draw()</code>方法是为<code>li</code>服务的，但第一次生成统计图时也不用担心报错，这时的<code>this</code>标签并不会指向任何一个<code>li</code>标签，<code>id</code>赋值为<code>undefined</code>，虽然也会进入for循环，但始终不会进入if语句，对绘制不会产生任何影响。</p>
-<h4 id="代码片段二："><a href="#代码片段二：" class="headerlink" title="代码片段二："></a>代码片段二：</h4><pre><code>canvas.height = canvas.height;</code></pre><p>每次重绘都会先清空画布，这里有个小技巧，<strong>重新设置画布的宽度或高度都会使画布清空。</strong></p>
+        }
+</code></pre><p>实际上<code>draw()</code>是为数据区域中的每一个<code>li</code>量身定做的，每一次对<code>li</code>标签的点击都会重绘图形，这时<code>this</code>指向的是被点击的<code>li</code>标签，如果它正在统计图中显示将会去除它，前缀变为灰色，数据值隐藏，<code>isdraw</code>标记为0，接下来的重绘将跳过对此项的绘制。<br>虽说<code>draw()</code>方法是为<code>li</code>服务的，但第一次生成统计图时也不用担心报错，这时的<code>this</code>标签并不会指向任何一个<code>li</code>标签，<code>id</code>赋值为<code>undefined</code>，虽然也会进入for循环，但始终不会进入if语句，对绘制不会产生任何影响。</p>
+<h4 id="代码片段二："><a href="#代码片段二：" class="headerlink" title="代码片段二："></a>代码片段二：</h4><pre><code>canvas.height = canvas.height;
+</code></pre><p>每次重绘都会先清空画布，这里有个小技巧，<strong>重新设置画布的宽度或高度都会使画布清空。</strong></p>
 <h4 id="代码片段三："><a href="#代码片段三：" class="headerlink" title="代码片段三："></a>代码片段三：</h4><pre><code>        /*绘制部分*/
         if (canvas.getContext) {
             var ctx = canvas.getContext(&#39;2d&#39;);
@@ -550,24 +531,35 @@ function pieChart(title, data, radius, width){
             ctx.font = (radius/5)+&#39;px Simsun&#39;;
             ctx.fillText(&#39;总计&#39;,(canvas.width - ctx.measureText(&#39;总计&#39;).width)/2,canvas.height/2-radius/10);
             ctx.fillText(sum, (canvas.width - ctx.measureText(sum).width)/2,canvas.height/2+radius/10);
-        }</code></pre><p>务必理解到<code>pros</code>这个变量的意义，在之前的预览图里大家可以看到，每两个数据间是有空隙的，每次扇形比例的计算都是在去掉这些空白区域的前提下进行的，<code>pros</code>为【全部内容】在圆环上的比例，即除去空隙部分后剩余部分所占比例。<br>当数据显示项大于1时，间隙数等于数据数，只剩一项数据显示时，间隙数为0，该项内容占比100%。<br>若你对<code>canvas</code>的用法不够熟悉，建议先作一定了解，过程中多百度也是很好的选择。</p>
+        }
+</code></pre><p>务必理解到<code>pros</code>这个变量的意义，在之前的预览图里大家可以看到，每两个数据间是有空隙的，每次扇形比例的计算都是在去掉这些空白区域的前提下进行的，<code>pros</code>为【全部内容】在圆环上的比例，即除去空隙部分后剩余部分所占比例。<br>当数据显示项大于1时，间隙数等于数据数，只剩一项数据显示时，间隙数为0，该项内容占比100%。<br>若你对<code>canvas</code>的用法不够熟悉，建议先作一定了解，过程中多百度也是很好的选择。</p>
 <p><em>对代码有疑问，欢迎评论；若你有其他的实现一个圆环的方式，欢迎评论；若你发现我文章中的错误，欢迎评论！感激不尽~</em></p>
 
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/24/js-ringChart/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;24&#x2F;js-ringChart&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;24&#x2F;js-ringChart&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/24/js-ringChart/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;24&#x2F;js-ringChart&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;24&#x2F;js-ringChart&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -581,28 +573,40 @@ function pieChart(title, data, radius, width){
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387345"></script>
+<!--<script src="/js/app.js?v=1583323564191"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

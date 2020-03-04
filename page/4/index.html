@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -24,11 +25,9 @@
 <meta property="article:tag" content="赤色">
 <meta property="article:tag" content="个人博客">
 <meta name="twitter:card" content="summary">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387764">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564445">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -39,10 +38,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -50,7 +49,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -58,7 +57,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -95,13 +94,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -231,16 +230,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -262,17 +251,13 @@
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月17日</a>
             <a><i class="nexmoefont icon-areachart"></i>547 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/C-C/">C/C++</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/C-C/" rel="tag">C/C++</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <p><strong>栈</strong>是一种只允许在一端进行插入和删除操作的线性表，允许操作的一端叫栈顶，另一端叫栈底。</p>
@@ -289,23 +274,20 @@
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月08日</a>
             <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/excel/" rel="tag">excel</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <p>安装openpyxl库：<em><code>pip install openpyxl</code></em></p>
 <h2 id="创建并保存一个-xlsx文件"><a href="#创建并保存一个-xlsx文件" class="headerlink" title="创建并保存一个.xlsx文件"></a>创建并保存一个.xlsx文件</h2><pre><code>import openpyxl
 wb = openpyxl.Workbook()
-wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Excel文件是非常简单的，只需要先实例化一个<code>Workbook</code>对象，然后用<code>save()</code>方法保存即可。<br>并且可以看到创建的文件默认有一个Sheet工作表。</p>
+wb.save(&#39;test.xlsx&#39;)
+</code></pre><p>如果只是单纯的创建一个Excel文件是非常简单的，只需要先实例化一个<code>Workbook</code>对象，然后用<code>save()</code>方法保存即可。<br>并且可以看到创建的文件默认有一个Sheet工作表。</p>
             
         </article>
     </div>
@@ -319,21 +301,17 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月06日</a>
             <a><i class="nexmoefont icon-areachart"></i>986 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <p>虽然经常会听到一些不推荐使用<code>eval()</code>的声音， 但不得不承认<code>eval()</code>的功能十分强大，下面介绍一个我最近用<code>eval()</code>函数实现一个简单计算器的例子。</p>
-<h2 id="样式预览"><a href="#样式预览" class="headerlink" title="样式预览"></a>样式预览</h2><p><img data-sizes="auto" data-src="/2018/11/06/js-eval-calc/eg1.jpg" alt="html+css部分" class="lazyload"></p>
+<h2 id="样式预览"><a href="#样式预览" class="headerlink" title="样式预览"></a>样式预览</h2><p><img data-sizes="auto" data-src="/2018/11/06/js-eval-calc/eg1.jpg" alt="html+css部分" class="lazyload"><br></p>
             
         </article>
     </div>
@@ -347,17 +325,13 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年11月02日</a>
             <a><i class="nexmoefont icon-areachart"></i>414 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img data-sizes="auto" data-src="/2018/11/02/canvas-js-snow/eg.gif" alt="实际效果要更流畅一些" class="lazyload"></p>
@@ -374,17 +348,13 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年10月30日</a>
             <a><i class="nexmoefont icon-areachart"></i>591 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img data-sizes="auto" data-src="/2018/10/30/canvas-js-digrain/eg.gif" alt="数字雨.gif" class="lazyload"></p>
@@ -401,24 +371,21 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年10月26日</a>
             <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <p><em>Python版本：3.7.0</em></p>
 <h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><h3 id="capitalize"><a href="#capitalize" class="headerlink" title="capitalize()"></a>capitalize()</h3><p><code>capitalize() #字符串首字母大写</code></p>
 <pre><code>&gt;&gt;&gt; str0 = &#39;hello World&#39;
 &gt;&gt;&gt; str0.capitalize()
-&#39;Hello world&#39;</code></pre>
+&#39;Hello world&#39;
+</code></pre>
             
         </article>
     </div>
@@ -432,17 +399,13 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
                 </div>
             
         </a>
+
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2018年10月25日</a>
             <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
-			
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/css/">css</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/html/">html</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/css/" rel="tag">css</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/html/" rel="tag">html</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
-            
-		</div>
+        </div>
+
         <article>
             
                 <h2 id="最终效果预览"><a href="#最终效果预览" class="headerlink" title="最终效果预览"></a><em>最终效果预览</em></h2><p><img data-sizes="auto" data-src="/2018/10/25/web-lbt/eg1.png" alt="鼠标未触及区域时（自动滚动中）" class="lazyload"></p>
@@ -466,25 +429,36 @@ wb.save(&#39;test.xlsx&#39;)</code></pre><p>如果只是单纯的创建一个Exc
   
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387769"></script>
+<!--<script src="/js/app.js?v=1583323564447"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

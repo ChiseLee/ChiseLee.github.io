@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>初识安卓之RelativeLayout相对布局 - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -22,16 +23,14 @@
 <meta property="og:image" content="https://chiselee.cn/2019/01/11/android-RelativeLayout/eg2.jpg">
 <meta property="og:image" content="https://chiselee.cn/2019/01/11/android-RelativeLayout/eg3.jpg">
 <meta property="article:published_time" content="2019-01-11T09:29:12.000Z">
-<meta property="article:modified_time" content="2020-02-10T08:19:22.758Z">
+<meta property="article:modified_time" content="2019-01-11T09:29:12.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="android">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://chiselee.cn/2019/01/11/android-RelativeLayout/eg1.jpg">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387370">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564219">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -42,10 +41,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -53,7 +52,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -61,7 +60,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -98,13 +97,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -234,16 +233,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -256,28 +245,23 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="初识安卓之RelativeLayout相对布局" class="lazyload">
           <h1>初识安卓之RelativeLayout相对布局</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年01月11日</a>
     <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/android/" rel="tag">android</a>
-    
 	<a>
 		<span id="/2019/01/11/android-RelativeLayout/" class="leancloud_visitors" data-flag-title="初识安卓之RelativeLayout相对布局">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
@@ -293,139 +277,159 @@
 
   <article>
     <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前简要总结了LinearLayout(线性布局)的一些知识，今天来分享一个更容易满足平时的一些需求的布局方式——RelativeLayout(相对布局)<a id="more"></a></p>
-<h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><table>
-<thead>
-<tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">gravity</td>
-<td align="center">该组件所含子组件在其内部的对齐方式</td>
-</tr>
-<tr>
-<td align="left">ignoreGravity</td>
-<td align="center">若设置为true，该组件将不会受之前父容器gravity设置值的影响</td>
-</tr>
-</tbody></table>
-<p><em>下面是一些根据 <strong>父元素(RelativeLayout)</strong> 定位的常用属性：</em></p>
+<h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">layout_margin</td>
-<td align="center">相对父元素上、下、左、右的偏移值</td>
+<tbody>
+<tr>
+<td style="text-align:left">gravity</td>
+<td style="text-align:center">该组件所含子组件在其内部的对齐方式</td>
 </tr>
 <tr>
-<td align="left">layout_marginTop</td>
-<td align="center">相对父元素上侧的偏移值</td>
+<td style="text-align:left">ignoreGravity</td>
+<td style="text-align:center">若设置为true，该组件将不会受之前父容器gravity设置值的影响</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>下面是一些根据 <strong>父元素(RelativeLayout)</strong> 定位的常用属性：</em></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">layout_margin</td>
+<td style="text-align:center">相对父元素上、下、左、右的偏移值</td>
 </tr>
 <tr>
-<td align="left">layout_marginLeft</td>
-<td align="center">相对父元素左侧的偏移值</td>
+<td style="text-align:left">layout_marginTop</td>
+<td style="text-align:center">相对父元素上侧的偏移值</td>
 </tr>
 <tr>
-<td align="left">layout_marginBottom</td>
-<td align="center">相对父元素下侧的偏移值</td>
+<td style="text-align:left">layout_marginLeft</td>
+<td style="text-align:center">相对父元素左侧的偏移值</td>
 </tr>
 <tr>
-<td align="left">layout_marginRight</td>
-<td align="center">相对父元素右侧的偏移值</td>
+<td style="text-align:left">layout_marginBottom</td>
+<td style="text-align:center">相对父元素下侧的偏移值</td>
 </tr>
-</tbody></table>
+<tr>
+<td style="text-align:left">layout_marginRight</td>
+<td style="text-align:center">相对父元素右侧的偏移值</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>在未设置<code>margin</code>相关的属性时，组件是默认出现在左上方的，特别需要注意的是: 在使用<code>marginBottom</code>和<code>marginRight</code>的时候，如果设置的值过小，组件依然会出现在左上方。</p>
 <p><em>下面的属性也是相对父元素的，设置为<code>true</code>生效：</em></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">layout_centerInParent</td>
-<td align="center">使组件处于父元素正中心</td>
+<tbody>
+<tr>
+<td style="text-align:left">layout_centerInParent</td>
+<td style="text-align:center">使组件处于父元素正中心</td>
 </tr>
 <tr>
-<td align="left">layout_centerHorizontal</td>
-<td align="center">使组件水平居中</td>
+<td style="text-align:left">layout_centerHorizontal</td>
+<td style="text-align:center">使组件水平居中</td>
 </tr>
 <tr>
-<td align="left">layout_centerVertical</td>
-<td align="center">使组件垂直居中</td>
+<td style="text-align:left">layout_centerVertical</td>
+<td style="text-align:center">使组件垂直居中</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>对齐方式：</em></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">layout_alignParentLeft</td>
-<td align="center">左对齐</td>
+<tbody>
+<tr>
+<td style="text-align:left">layout_alignParentLeft</td>
+<td style="text-align:center">左对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignParentRight</td>
-<td align="center">右对齐</td>
+<td style="text-align:left">layout_alignParentRight</td>
+<td style="text-align:center">右对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignParentTop</td>
-<td align="center">顶部对齐</td>
+<td style="text-align:left">layout_alignParentTop</td>
+<td style="text-align:center">顶部对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignParentBottom</td>
-<td align="center">底部对齐</td>
+<td style="text-align:left">layout_alignParentBottom</td>
+<td style="text-align:center">底部对齐</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><em>下面是相对兄弟组件定位的属性，这类属性在使用时需指明参考组件的id：</em></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">layout_above</td>
-<td align="center">相对兄弟组件的上方</td>
+<tbody>
+<tr>
+<td style="text-align:left">layout_above</td>
+<td style="text-align:center">相对兄弟组件的上方</td>
 </tr>
 <tr>
-<td align="left">layout_below</td>
-<td align="center">相对兄弟组件的下方</td>
+<td style="text-align:left">layout_below</td>
+<td style="text-align:center">相对兄弟组件的下方</td>
 </tr>
 <tr>
-<td align="left">layout_toLeftOf</td>
-<td align="center">相对兄弟组件的左侧</td>
+<td style="text-align:left">layout_toLeftOf</td>
+<td style="text-align:center">相对兄弟组件的左侧</td>
 </tr>
 <tr>
-<td align="left">layout_toRightOf</td>
-<td align="center">相对兄弟组件的右侧</td>
+<td style="text-align:left">layout_toRightOf</td>
+<td style="text-align:center">相对兄弟组件的右侧</td>
 </tr>
 <tr>
-<td align="left">layout_alignTop</td>
-<td align="center">相对兄弟组件的上边界对齐</td>
+<td style="text-align:left">layout_alignTop</td>
+<td style="text-align:center">相对兄弟组件的上边界对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignBottom</td>
-<td align="center">相对兄弟组件的下边界对齐</td>
+<td style="text-align:left">layout_alignBottom</td>
+<td style="text-align:center">相对兄弟组件的下边界对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignLeft</td>
-<td align="center">相对兄弟组件的左边界对齐</td>
+<td style="text-align:left">layout_alignLeft</td>
+<td style="text-align:center">相对兄弟组件的左边界对齐</td>
 </tr>
 <tr>
-<td align="left">layout_alignRight</td>
-<td align="center">相对兄弟组件的右边界对齐</td>
+<td style="text-align:left">layout_alignRight</td>
+<td style="text-align:center">相对兄弟组件的右边界对齐</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>上面四种和下面四种是完全不同的属性，举个栗子：</p>
 <pre><code>    &lt;RelativeLayout
         android:layout_width=&quot;match_parent&quot;
@@ -448,37 +452,42 @@
             android:layout_width=&quot;80dp&quot;
             android:layout_height=&quot;80dp&quot;
             android:background=&quot;#0000cd&quot; /&gt;
-    &lt;/RelativeLayout&gt;</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg1.jpg" alt="图片未正确显示" class="lazyload"></p>
+    &lt;/RelativeLayout&gt;
+</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg1.jpg" alt="图片未正确显示" class="lazyload"></p>
 <p>而且我们还可以发现，并不是设置了<code>layout_below</code>的参考组件id，该组件就会出现在参考组件的正下方，而是下方的左侧，若想实现正下方效果，<br>还得加个在父元素中水平居中：<code>android:layout_centerHorizontal=&quot;true&quot;</code></p>
 <p><em>下面是设置内边距的属性，可以个margin系列的属性类比：</em></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">属性名</th>
-<th align="center">意义</th>
+<th style="text-align:left">属性名</th>
+<th style="text-align:center">意义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">padding</td>
-<td align="center">上下左右的内边距</td>
+<tbody>
+<tr>
+<td style="text-align:left">padding</td>
+<td style="text-align:center">上下左右的内边距</td>
 </tr>
 <tr>
-<td align="left">paddingLeft</td>
-<td align="center">左侧的内边距</td>
+<td style="text-align:left">paddingLeft</td>
+<td style="text-align:center">左侧的内边距</td>
 </tr>
 <tr>
-<td align="left">paddingRight</td>
-<td align="center">右侧的内边距</td>
+<td style="text-align:left">paddingRight</td>
+<td style="text-align:center">右侧的内边距</td>
 </tr>
 <tr>
-<td align="left">paddingTop</td>
-<td align="center">上侧的内边距</td>
+<td style="text-align:left">paddingTop</td>
+<td style="text-align:center">上侧的内边距</td>
 </tr>
 <tr>
-<td align="left">paddingBottom</td>
-<td align="center">下侧的内边距</td>
+<td style="text-align:left">paddingBottom</td>
+<td style="text-align:center">下侧的内边距</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>举个栗子：</p>
 <pre><code>    &lt;RelativeLayout
         android:layout_width=&quot;match_parent&quot;
@@ -495,7 +504,8 @@
             android:layout_width=&quot;wrap_content&quot;
             android:layout_height=&quot;wrap_content&quot;
             android:text=&quot;改动的TextView&quot;/&gt;
-    &lt;/RelativeLayout&gt;</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg2.jpg" alt="preview2" class="lazyload"></p>
+    &lt;/RelativeLayout&gt;
+</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg2.jpg" alt="preview2" class="lazyload"></p>
 <h2 id="一个案列"><a href="#一个案列" class="headerlink" title="一个案列"></a>一个案列</h2><p><strong>使用相对布局实现一个九宫格效果</strong></p>
 <pre><code>    &lt;RelativeLayout
         android:layout_width=&quot;match_parent&quot;
@@ -559,24 +569,35 @@
             android:background=&quot;#00ff00&quot;
             android:layout_below=&quot;@id/rightB&quot;
             android:layout_toRightOf=&quot;@id/bottomB&quot;/&gt;
-    &lt;/RelativeLayout&gt;</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg3.jpg" alt="preview3" class="lazyload"></p>
+    &lt;/RelativeLayout&gt;
+</code></pre><p><img data-sizes="auto" data-src="/2019/01/11/android-RelativeLayout/eg3.jpg" alt="preview3" class="lazyload"></p>
 <p><em>如有错误，欢迎指正~</em></p>
 
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2019/01/11/android-RelativeLayout/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;01&#x2F;11&#x2F;android-RelativeLayout&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;01&#x2F;11&#x2F;android-RelativeLayout&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/android/" rel="tag">android</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2019/01/11/android-RelativeLayout/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;01&#x2F;11&#x2F;android-RelativeLayout&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;01&#x2F;11&#x2F;android-RelativeLayout&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -590,28 +611,40 @@
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387373"></script>
+<!--<script src="/js/app.js?v=1583323564222"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

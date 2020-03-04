@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>PHP对文件的基本操作 - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
   <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
-  <meta name="description" content="创建文件$fh &#x3D; fopen(&#39;test.txt&#39;,&#39;w&#39;); $text &#x3D; &lt;&lt;&lt; _END 这是第一行 这是第二行 这是第三行 _END; fwrite($fh, $text); fclose($fh);fopen()用来打开文件，上面的例子以只写&#39;w&#39;的方式打开（创建）了一个文本文件，并写入了三行内容，关于fopen()的">
+  <meta name="description" content="创建文件$fh &#x3D; fopen(&#39;test.txt&#39;,&#39;w&#39;); $text &#x3D; &lt;&lt;&lt; _END 这是第一行 这是第二行 这是第三行 _END; fwrite($fh, $text); fclose($fh); fopen()用来打开文件，上面的例子以只写&#39;w&#39;的方式打开（创建）了一个文本文件，并写入了三行内容，关于fopen()">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP对文件的基本操作">
 <meta property="og:url" content="https://chiselee.cn/2019/03/17/php-file/index.html">
 <meta property="og:site_name" content="Chise | blog">
-<meta property="og:description" content="创建文件$fh &#x3D; fopen(&#39;test.txt&#39;,&#39;w&#39;); $text &#x3D; &lt;&lt;&lt; _END 这是第一行 这是第二行 这是第三行 _END; fwrite($fh, $text); fclose($fh);fopen()用来打开文件，上面的例子以只写&#39;w&#39;的方式打开（创建）了一个文本文件，并写入了三行内容，关于fopen()的">
+<meta property="og:description" content="创建文件$fh &#x3D; fopen(&#39;test.txt&#39;,&#39;w&#39;); $text &#x3D; &lt;&lt;&lt; _END 这是第一行 这是第二行 这是第三行 _END; fwrite($fh, $text); fclose($fh); fopen()用来打开文件，上面的例子以只写&#39;w&#39;的方式打开（创建）了一个文本文件，并写入了三行内容，关于fopen()">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-17T14:27:55.000Z">
-<meta property="article:modified_time" content="2020-02-06T07:02:56.099Z">
+<meta property="article:modified_time" content="2019-03-17T14:27:55.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387356">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564205">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -38,10 +37,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -49,7 +48,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -57,7 +56,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -94,13 +93,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -230,16 +229,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -252,35 +241,30 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="PHP对文件的基本操作" class="lazyload">
           <h1>PHP对文件的基本操作</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年03月17日</a>
-    <a><i class="nexmoefont icon-areachart"></i>551 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>517 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/php/">php</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/php/" rel="tag">php</a>
-    
 	<a>
 		<span id="/2019/03/17/php-file/" class="leancloud_visitors" data-flag-title="PHP对文件的基本操作">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建文件"><span class="toc-number">1.</span> <span class="toc-text">创建文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fopen-的几种模式"><span class="toc-number">1.1.</span> <span class="toc-text">fopen() 的几种模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检验文件是否存在"><span class="toc-number">2.</span> <span class="toc-text">检验文件是否存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取文件"><span class="toc-number">3.</span> <span class="toc-text">读取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用fgets-读取文件"><span class="toc-number">3.1.</span> <span class="toc-text">使用fgets()读取文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用fread-读文件"><span class="toc-number">3.2.</span> <span class="toc-text">使用fread()读文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复制文件：copy"><span class="toc-number">4.</span> <span class="toc-text">复制文件：copy()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重命名文件：rename"><span class="toc-number">5.</span> <span class="toc-text">重命名文件：rename()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件：unlink"><span class="toc-number">6.</span> <span class="toc-text">删除文件：unlink()</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建文件"><span class="toc-number">1.</span> <span class="toc-text">创建文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fopen-的几种模式"><span class="toc-number">1.1.</span> <span class="toc-text">fopen() 的几种模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检验文件是否存在"><span class="toc-number">2.</span> <span class="toc-text">检验文件是否存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取文件"><span class="toc-number">3.</span> <span class="toc-text">读取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用fgets-读取文件"><span class="toc-number">3.1.</span> <span class="toc-text">使用fgets()读取文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用fread-读文件"><span class="toc-number">3.2.</span> <span class="toc-text">使用fread()读文件</span></a></li></ol></li></ol>
             </div>
         </div>
       </div>
@@ -295,98 +279,112 @@ $text = &lt;&lt;&lt; _END
 这是第三行
 _END;
 fwrite($fh, $text);
-fclose($fh);</code></pre><p><code>fopen()</code>用来打开文件，上面的例子以只写<code>&#39;w&#39;</code>的方式打开（创建）了一个文本文件，并写入了三行内容，关于<code>fopen()</code>的几种模式见下表。<a id="more"></a></p>
-<h3 id="fopen-的几种模式"><a href="#fopen-的几种模式" class="headerlink" title="fopen() 的几种模式"></a>fopen() 的几种模式</h3><table>
+fclose($fh);
+</code></pre><p><code>fopen()</code>用来打开文件，上面的例子以只写<code>&#39;w&#39;</code>的方式打开（创建）了一个文本文件，并写入了三行内容，关于<code>fopen()</code>的几种模式见下表。<a id="more"></a></p>
+<h3 id="fopen-的几种模式"><a href="#fopen-的几种模式" class="headerlink" title="fopen() 的几种模式"></a>fopen() 的几种模式</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">模式</th>
-<th align="center">说明</th>
-<th align="center">文件指针的位置</th>
-<th align="center">如果文件不存在</th>
+<th style="text-align:center">模式</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">文件指针的位置</th>
+<th style="text-align:center">如果文件不存在</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">‘r’</td>
-<td align="center">只读模式</td>
-<td align="center">文件的开始</td>
-<td align="center">返回false</td>
+<tbody>
+<tr>
+<td style="text-align:center">‘r’</td>
+<td style="text-align:center">只读模式</td>
+<td style="text-align:center">文件的开始</td>
+<td style="text-align:center">返回false</td>
 </tr>
 <tr>
-<td align="center">‘r+’</td>
-<td align="center">读写模式</td>
-<td align="center">文件的开始</td>
-<td align="center">返回false</td>
+<td style="text-align:center">‘r+’</td>
+<td style="text-align:center">读写模式</td>
+<td style="text-align:center">文件的开始</td>
+<td style="text-align:center">返回false</td>
 </tr>
 <tr>
-<td align="center">‘w’</td>
-<td align="center">只写模式</td>
-<td align="center">文件的开始</td>
-<td align="center">创建文件</td>
+<td style="text-align:center">‘w’</td>
+<td style="text-align:center">只写模式</td>
+<td style="text-align:center">文件的开始</td>
+<td style="text-align:center">创建文件</td>
 </tr>
 <tr>
-<td align="center">‘w+’</td>
-<td align="center">读写模式</td>
-<td align="center">文件的开始</td>
-<td align="center">创建文件</td>
+<td style="text-align:center">‘w+’</td>
+<td style="text-align:center">读写模式</td>
+<td style="text-align:center">文件的开始</td>
+<td style="text-align:center">创建文件</td>
 </tr>
 <tr>
-<td align="center">‘a’</td>
-<td align="center">只写模式</td>
-<td align="center">文件的末端</td>
-<td align="center">创建文件</td>
+<td style="text-align:center">‘a’</td>
+<td style="text-align:center">只写模式</td>
+<td style="text-align:center">文件的末端</td>
+<td style="text-align:center">创建文件</td>
 </tr>
 <tr>
-<td align="center">‘a+’</td>
-<td align="center">读写模式</td>
-<td align="center">文件的末端</td>
-<td align="center">创建文件</td>
+<td style="text-align:center">‘a+’</td>
+<td style="text-align:center">读写模式</td>
+<td style="text-align:center">文件的末端</td>
+<td style="text-align:center">创建文件</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="检验文件是否存在"><a href="#检验文件是否存在" class="headerlink" title="检验文件是否存在"></a>检验文件是否存在</h2><p><code>file_exists()</code></p>
-<pre><code>if(file_exists(&quot;test.txt&quot;)) echo &quot;File exists&quot;;</code></pre><h2 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h2><h3 id="使用fgets-读取文件"><a href="#使用fgets-读取文件" class="headerlink" title="使用fgets()读取文件"></a>使用<code>fgets()</code>读取文件</h3><pre><code>$fh = fopen(&quot;test.txt&quot;,&#39;r&#39;);
+<pre><code>if(file_exists(&quot;test.txt&quot;)) echo &quot;File exists&quot;;
+</code></pre><h2 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h2><h3 id="使用fgets-读取文件"><a href="#使用fgets-读取文件" class="headerlink" title="使用fgets()读取文件"></a>使用<code>fgets()</code>读取文件</h3><pre><code>$fh = fopen(&quot;test.txt&quot;,&#39;r&#39;);
 $text = fgets($fh);
 fclose($fh);
-echo $text;</code></pre><p>这样实际只读取到了文件的一行数据。</p>
-<h3 id="使用fread-读文件"><a href="#使用fread-读文件" class="headerlink" title="使用fread()读文件"></a>使用<code>fread()</code>读文件</h3><pre><code class="/*$fh">$text = fread($fh, 5);
-fclose($fh);
-echo $text;</code></pre>
-<p>这样实际上只读取到了文件的前5个字符。<br><strong>使用<code>feof()</code>函数检验是否到达文件末尾并实现文件所有内容的读取</strong></p>
-<pre><code>//逐行读取
-$fh = fopen(&quot;test.txt&quot;, &quot;r&quot;);
-while(!feof($fh))
-{
-    echo fgets($file).&quot;&lt;br&gt;&quot;;
-}
-fclose($file);
-//逐字符读取
-$fh = fopen(&quot;test.txt&quot;,&quot;r&quot;);
-while (!feof($file))
-{
-    echo fgetc($file);
-}
-fclose($file);</code></pre><p><strong>也有不使用<code>feof()</code>函数依然能够读取文件所有内容的方法：<code>file_get_content()</code></strong></p>
-<pre><code>echo &quot;&lt;pre&gt;&quot;;
-echo file_get_contents(&quot;test.txt&quot;);
-echo &quot;&lt;/pre&gt;&quot;;</code></pre><p>内容用<code>pre</code>标签包围，确定内容在浏览器正常显示。</p>
-<h2 id="复制文件：copy"><a href="#复制文件：copy" class="headerlink" title="复制文件：copy()"></a>复制文件：<code>copy()</code></h2><pre><code>copy(&#39;test.txt&#39;,&#39;new.txt&#39;);</code></pre><p>创建文件‘test.txt’的副本并保存为‘new.txt’<br>也可以指定一下路径(文件夹必须存在)：</p>
-<pre><code>copy(&#39;test.txt&#39;,&#39;test/new.txt&#39;);</code></pre><h2 id="重命名文件：rename"><a href="#重命名文件：rename" class="headerlink" title="重命名文件：rename()"></a>重命名文件：<code>rename()</code></h2><pre><code>rename(&#39;test.txt&#39;,&#39;rename.txt&#39;);</code></pre><p>将文件‘test.txt’改名为了‘rename.txt’</p>
-<h2 id="删除文件：unlink"><a href="#删除文件：unlink" class="headerlink" title="删除文件：unlink()"></a>删除文件：<code>unlink()</code></h2><pre><code>unlink(&#39;rename.new&#39;);</code></pre><p><em>在使用<code>rename()</code>和<code>unlink()</code>函数时，如果文件不存在系统会给出警告，建议先用<code>file_exists()</code>函数检查。</em></p>
+echo $text;
+</code></pre><p>这样实际只读取到了文件的一行数据。</p>
+<h3 id="使用fread-读文件"><a href="#使用fread-读文件" class="headerlink" title="使用fread()读文件"></a>使用<code>fread()</code>读文件</h3><p>```/*$fh = fopen(“testfile.txt”,’r’);<br>$text = fread($fh, 5);<br>fclose($fh);<br>echo $text;</p>
+<pre><code>这样实际上只读取到了文件的前5个字符。
+**使用`feof()`函数检验是否到达文件末尾并实现文件所有内容的读取**
+</code></pre><p>//逐行读取<br>$fh = fopen(“test.txt”, “r”);<br>while(!feof($fh))<br>{<br>    echo fgets($file).”<br>“;<br>}<br>fclose($file);<br>//逐字符读取<br>$fh = fopen(“test.txt”,”r”);<br>while (!feof($file))<br>{<br>    echo fgetc($file);<br>}<br>fclose($file);</p>
+<pre><code>**也有不使用`feof()`函数依然能够读取文件所有内容的方法：`file_get_content()`**
+</code></pre><p>echo “<pre>";
+echo file_get_contents("test.txt");
+echo "</pre>“;</p>
+<pre><code>内容用`pre`标签包围，确定内容在浏览器正常显示。
+## 复制文件：`copy()`
+</code></pre><p>copy(‘test.txt’,’new.txt’);</p>
+<pre><code>创建文件‘test.txt’的副本并保存为‘new.txt’
+也可以指定一下路径(文件夹必须存在)：
+</code></pre><p>copy(‘test.txt’,’test/new.txt’);</p>
+<pre><code>## 重命名文件：`rename()`
+</code></pre><p>rename(‘test.txt’,’rename.txt’);</p>
+<pre><code>将文件‘test.txt’改名为了‘rename.txt’
+
+## 删除文件：`unlink()`
+</code></pre><p>unlink(‘rename.new’);<br><code>``
+*在使用</code>rename()<code>和</code>unlink()<code>函数时，如果文件不存在系统会给出警告，建议先用</code>file_exists()`函数检查。*</p>
 
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/17/php-file/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;17&#x2F;php-file&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;17&#x2F;php-file&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/php/">php</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/php/" rel="tag">php</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2019/03/17/php-file/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;17&#x2F;php-file&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;03&#x2F;17&#x2F;php-file&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -400,28 +398,40 @@ echo &quot;&lt;/pre&gt;&quot;;</code></pre><p>内容用<code>pre</code>标签包
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387358"></script>
+<!--<script src="/js/app.js?v=1583323564208"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

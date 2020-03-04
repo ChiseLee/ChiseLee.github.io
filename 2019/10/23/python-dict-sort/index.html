@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
   
   <title>Python字典根据键(key)、值(value)排序的方式 - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
 
@@ -19,15 +20,13 @@
 <meta property="og:description" content="下面的排序都将使用sorted()函数sorted()函数是python内置的函数，对所有可迭代的对象都可以实现排序操作。当sorted()函数中的可迭代对象参数传入的是一个字典对象，排序的结果是由字典的key值决定的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-23T14:40:10.000Z">
-<meta property="article:modified_time" content="2020-02-06T03:51:27.866Z">
+<meta property="article:modified_time" content="2019-10-23T14:40:10.000Z">
 <meta property="article:author" content="Chise Lee">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1583228387275">
+  <link rel="stylesheet" href="/css/style.css?v=1583323564134">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -38,10 +37,10 @@
     <div class="nexmoe-bg" style="background-image: url(https://gitee.com/chiselee/picbed/raw/master/image/bj.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png"></a>
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
        </div>
     </div>
   </div>
@@ -49,7 +48,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Chise Lee">
-            <img src="/image/avatar.png" alt="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -57,7 +56,7 @@
         <div><span>标签</span>24</div>
         <div><span>分类</span>12</div>
     </div>
-    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
@@ -94,13 +93,13 @@
             </div>
         </a>
         
-    </ul>
+    </div>
     <aside id="nexmoe-sidebar">
   
   <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
-            <input id="search_value" name="q" type="search" placeholder="搜索">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
         </form>
     </div>
 </div>
@@ -230,16 +229,6 @@
   </div>
 
   
-  
-  <div class="nexmoe-widget-wrap">
-    <h3 class="nexmoe-widget-title">文章归档</h3>
-    <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2020 Chise Lee
@@ -252,28 +241,23 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 56.08391608391609%;"> 
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.08391608391609%;"> 
           <img data-src="https://gitee.com/chiselee/picbed/raw/master/image/bj.png" data-sizes="auto" alt="Python字典根据键(key)、值(value)排序的方式" class="lazyload">
           <h1>Python字典根据键(key)、值(value)排序的方式</h1>
       </div>
   
-  <div class="nexmoe-post-meta">
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月23日</a>
     <a><i class="nexmoefont icon-areachart"></i>393 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-    
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a>
-    
 	<a>
 		<span id="/2019/10/23/python-dict-sort/" class="leancloud_visitors" data-flag-title="Python字典根据键(key)、值(value)排序的方式">
 			<em class="post-meta-item-text">阅读量：</em>
 			<i class="leancloud-visitors-count">loading...</i>
 		</span>
 	</a>
-  </div>
+</div>
 
   <div class="nexmoe-post-right">
     
@@ -298,7 +282,8 @@
     &quot;quit&quot;: 3
     }
 &gt;&gt;&gt; sorted(dict_t)
-[&#39;apple&#39;, &#39;dd&#39;, &#39;esc&#39;, &#39;pass&#39;, &#39;quit&#39;] </code></pre><p>所以不要直接给原字典直接赋值<code>sorted(dict_name)</code>，因为函数返回的是排序好的键名组成的一个<strong><em>列表</em></strong>。<br>再通过返回的列表来遍历字典：</p>
+[&#39;apple&#39;, &#39;dd&#39;, &#39;esc&#39;, &#39;pass&#39;, &#39;quit&#39;]
+</code></pre><p>所以不要直接给原字典直接赋值<code>sorted(dict_name)</code>，因为函数返回的是排序好的键名组成的一个<strong><em>列表</em></strong>。<br>再通过返回的列表来遍历字典：</p>
 <pre><code>&gt;&gt;&gt; dict_t = {
     &quot;esc&quot;: 1,
     &quot;apple&quot;: 5,
@@ -314,7 +299,8 @@ apple 5
 dd 4
 esc 1
 pass 2
-quit 3</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据字典的值（value）排序" class="headerlink" title="根据字典的值（value）排序"></a>根据字典的值（value）排序</h2><p>使用字典内置方法<code>items</code>返回元组对，设定<code>sorted()</code>函数的参数<code>key</code>。</p>
+quit 3
+</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据字典的值（value）排序" class="headerlink" title="根据字典的值（value）排序"></a>根据字典的值（value）排序</h2><p>使用字典内置方法<code>items</code>返回元组对，设定<code>sorted()</code>函数的参数<code>key</code>。</p>
 <pre><code>&gt;&gt;&gt; dict_t = {
     &quot;esc&quot;: 1,
     &quot;apple&quot;: 5,
@@ -323,7 +309,8 @@ quit 3</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据
     &quot;quit&quot;: 3
     }
 &gt;&gt;&gt; sorted(dict_t.items(), key=lambda dict_t:dict_t[1])
-[(&#39;esc&#39;, 1), (&#39;pass&#39;, 2), (&#39;quit&#39;, 3), (&#39;dd&#39;, 4), (&#39;apple&#39;, 5)]</code></pre><p>倒序排序时<strong>设置<code>sorted()</code>函数的<code>reverse</code>参数为<code>True</code></strong>。</p>
+[(&#39;esc&#39;, 1), (&#39;pass&#39;, 2), (&#39;quit&#39;, 3), (&#39;dd&#39;, 4), (&#39;apple&#39;, 5)]
+</code></pre><p>倒序排序时<strong>设置<code>sorted()</code>函数的<code>reverse</code>参数为<code>True</code></strong>。</p>
 <pre><code>&gt;&gt;&gt; dict_t = {
     &quot;esc&quot;: 1,
     &quot;apple&quot;: 5,
@@ -332,22 +319,33 @@ quit 3</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据
     &quot;quit&quot;: 3
     }
 &gt;&gt;&gt; sorted(dict_t.items(), key=lambda dict_t:dict_t[1], reverse=True)
-[(&#39;apple&#39;, 5), (&#39;dd&#39;, 4), (&#39;quit&#39;, 3), (&#39;pass&#39;, 2), (&#39;esc&#39;, 1)]</code></pre>
+[(&#39;apple&#39;, 5), (&#39;dd&#39;, 4), (&#39;quit&#39;, 3), (&#39;pass&#39;, 2), (&#39;esc&#39;, 1)]
+</code></pre>
   </article>
-  
+
+  <div class="nexmoe-post-meta">
     
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>本文作者：</strong>Chise Lee<br>
-<strong>本文链接：</strong><a href="https://chiselee.cn/2019/10/23/python-dict-sort/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a>
+    
 </div>
 
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2019/10/23/python-dict-sort/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2019&#x2F;10&#x2F;23&#x2F;python-dict-sort&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-  
-  <section class="nexmoe-comment">
+
+    
+    <section class="nexmoe-comment">
     <div class="valine"></div>
 <script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
 <script>
@@ -361,28 +359,40 @@ quit 3</code></pre><h2 id="根据字典的值（value）排序"><a href="#根据
     })
 </script>
 </section>
+  </div>
 </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
-
-<script src="/js/app.js?v=1583228387278"></script>
+<!--<script src="/js/app.js?v=1583323564137"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
 
 
-</script>
   
 
 
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
