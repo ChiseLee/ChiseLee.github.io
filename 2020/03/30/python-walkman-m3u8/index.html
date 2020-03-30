@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>文章归档：2020/2 - Chise | blog</title>
+  <title>使用Python为Walkman生成歌单文件(.M3U8) - Chise | blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="chise的个人博客">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -15,23 +15,23 @@
     <meta name="baidu-site-verification" content="r5dcqoXwCl" />
 
   <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
-  <meta name="description" content="chise的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chise | blog">
-<meta property="og:url" content="https://chiselee.cn/archives/2020/02/index.html">
+  <meta name="description" content="我平时大多时候都是用Walkman听歌，摆脱了电脑的束缚但也有个很大的缺点：Walkman的播放列表，也就是我们常说的歌单只能一首一首地往里面添加歌曲，相对pc端的各大主流播放器确实麻烦了不少。在一次向Walkman里传输歌曲的过程中，发现SD卡里有一些.M3U8格式的文件，并且文件名与我播放器里的播放列表一致，使用文本编辑器打开：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Python为Walkman生成歌单文件(.M3U8)">
+<meta property="og:url" content="https://chiselee.cn/2020/03/30/python-walkman-m3u8/index.html">
 <meta property="og:site_name" content="Chise | blog">
-<meta property="og:description" content="chise的个人博客">
+<meta property="og:description" content="我平时大多时候都是用Walkman听歌，摆脱了电脑的束缚但也有个很大的缺点：Walkman的播放列表，也就是我们常说的歌单只能一首一首地往里面添加歌曲，相对pc端的各大主流播放器确实麻烦了不少。在一次向Walkman里传输歌曲的过程中，发现SD卡里有一些.M3U8格式的文件，并且文件名与我播放器里的播放列表一致，使用文本编辑器打开：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chiselee.cn/2020/03/30/python-walkman-m3u8/eg0.jpg">
+<meta property="article:published_time" content="2020-03-30T04:55:37.000Z">
+<meta property="article:modified_time" content="2020-03-30T04:55:37.000Z">
 <meta property="article:author" content="Chise Lee">
-<meta property="article:tag" content="chise">
-<meta property="article:tag" content="Chise">
-<meta property="article:tag" content="赤色">
-<meta property="article:tag" content="个人博客">
-<meta property="article:tag" content="chiselee">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chiselee.cn/2020/03/30/python-walkman-m3u8/eg0.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1585547348858">
+  <link rel="stylesheet" href="/css/style.css?v=1585547348568">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -244,66 +244,121 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        
-<section class="nexmoe-archives">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 61.74402250351617%;"> 
+          <img data-src="/image/walk_cover.jpg" data-sizes="auto" alt="使用Python为Walkman生成歌单文件(.M3U8)" class="lazyload">
+          <h1>使用Python为Walkman生成歌单文件(.M3U8)</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月30日</a>
+    <a><i class="nexmoefont icon-areachart"></i>643 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+	<a>
+		<span id="/2020/03/30/python-walkman-m3u8/" class="leancloud_visitors" data-flag-title="使用Python为Walkman生成歌单文件(.M3U8)">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
+</div>
 
-    <article>
-        
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码"><span class="toc-number">1.</span> <span class="toc-text">完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些变量名和配置"><span class="toc-number">2.</span> <span class="toc-text">一些变量名和配置</span></a></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
 
-        
-    </article>
+  <article>
+    <p>我平时大多时候都是用Walkman听歌，摆脱了电脑的束缚但也有个很大的缺点：<br>Walkman的播放列表，也就是我们常说的歌单只能一首一首地往里面添加歌曲，相对pc端的各大主流播放器确实麻烦了不少。<br>在一次向Walkman里传输歌曲的过程中，发现SD卡里有一些<code>.M3U8</code>格式的文件，并且文件名与我播放器里的播放列表一致，使用文本编辑器打开：<a id="more"></a><br><img data-sizes="auto" data-src="/2020/03/30/python-walkman-m3u8/eg0.jpg" alt="eg" class="lazyload"><br>除开不认识的<code>#EXTM3U</code>和<code>#EXTINF:,</code>里面存放的就是播放列表里每首歌的路径。<br>那么，如果我们按照此格式向文件里写入歌曲的路径，是不是就能通过写文件的方式将歌曲存入歌单呢，在验证后得出的答案是肯定的。</p>
+<p>对于播放器里歌曲较多的人来说，手动添加至播放列表无疑是低效的，于是我选择了用<code>python</code>来‘代替’我做这件事情，思路是：<strong>遍历播放器指定文件夹里的音乐文件然后按照上面的格式将其写入<code>.M3U8</code>文件</strong>。<br>当然这其中有一个很重要的前提：<strong><em>播放器中的歌曲是按照类别分了文件夹的！</em></strong><br>不然下面的代码没有意义。</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p>先放出完整代码，后面会进行一些说明。</p>
+<pre><code>import os
+
+rootpath = r&#39;G:\MUSIC&#39;
+tarPath = r&#39;G:\MUSIC\华语&#39;
+name = &quot;华语&quot;
+fmList = [&#39;.flac&#39;, &#39;.mp3&#39;, &#39;.m4a&#39;, &#39;.wav&#39;, &#39;.dsf&#39;, &#39;.ape&#39;, &#39;.FLAC&#39;, &#39;.WAV&#39;, &#39;.DSF&#39;, &#39;.APE&#39;]
+mList = []
+
+def walkDir(tarPath, rootpath=rootpath):
+    tpList = os.listdir(tarPath)
+    for each in tpList:
+        if os.path.isdir(tarPath+&#39;\\&#39;+each):
+            walkDir(tarPath+&#39;\\&#39;+each)
+        else:
+            mList.append((tarPath.lstrip(rootpath)+&#39;/&#39;+each).replace(&#39;\\&#39;, &#39;/&#39;))
+
+def m3uGen(title):
+    with open(&#39;{}.M3U8&#39;.format(title), &#39;w+&#39;, encoding=&#39;utf-8&#39;) as f:
+        f.write(&#39;#EXTM3U\n&#39;)
+        for each in mList:
+            if os.path.splitext(each)[1] in fmList:
+                f.write(&#39;#EXTINF:,\n&#39;+each+&#39;\n&#39;)
+
+os.chdir(rootpath)
+walkDir(tarPath)
+m3uGen(name)
+</code></pre><h2 id="一些变量名和配置"><a href="#一些变量名和配置" class="headerlink" title="一些变量名和配置"></a>一些变量名和配置</h2><ul>
+<li><code>rootpath</code>：播放器接入电脑后存放音乐的根目录，同时也是歌单文件(<code>.M3U8</code>)所在目录。</li>
+<li><code>tarPath</code>：某一类别的歌曲所在的文件夹，这些歌曲将会写入你准备新建的歌单。</li>
+<li><code>name</code>：新建歌单的歌单名，不用添加后缀。</li>
+<li><code>fmList</code>中预存了一些音乐文件的格式，如果还有其他格式，添加进去即可。</li>
+</ul>
+<p>若你有其他的生成歌单的方式，欢迎在评论区一起讨论。</p>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/python/">python</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/python/" rel="tag">python</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2020/03/30/python-walkman-m3u8/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2020&#x2F;03&#x2F;30&#x2F;python-walkman-m3u8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2020&#x2F;03&#x2F;30&#x2F;python-walkman-m3u8&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
+		visitor: 'true',
+		placeholder: '说点什么吧~'
+    })
+</script>
 </section>
-
-<style>
-.nexmoe-archives article > *:first-child {
-    margin-top: 0;
-}
-.nexmoe-archives article > *:last-child {
-    margin-bottom: 0;
-}
-.nexmoe-archives ul {
-    list-style: none;
-    padding-left: 0!important;
-}
-.nexmoe-archives li {
-    position: relative;
-    padding: 10px 0;
-}
-.nexmoe-archives li::before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    background: #ff4e6a;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: -2px;
-    margin-right: 11px;
-    border-radius: 100%;
-    border: 3px solid #fff;
-    z-index: 100;
-    position: relative;
-}
-.nexmoe-archives li::after {
-    content: "";
-    height: 100%;
-    width: 2px;
-    background: rgba(255, 78, 106, 0.2);
-    position: absolute;
-    left: 6px;
-    top: 20px;
-}
-.nexmoe-archives li:last-child:after {
-    display: none;
-}
-.nexmoe-archives span {
-    margin-right: 15px;
-}
-</style>
+  </div>
+</div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1585547348860"></script>-->
+<!--<script src="/js/app.js?v=1585547348573"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
