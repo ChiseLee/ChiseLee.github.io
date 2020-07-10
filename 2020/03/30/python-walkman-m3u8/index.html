@@ -31,7 +31,7 @@
 <meta name="twitter:image" content="https://chiselee.cn/2020/03/30/python-walkman-m3u8/eg0.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1588132533613">
+  <link rel="stylesheet" href="/css/style.css?v=1594371422223">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -254,8 +254,8 @@
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月30日</a>
-    <a><i class="nexmoefont icon-areachart"></i>643 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
 	<a>
 		<span id="/2020/03/30/python-walkman-m3u8/" class="leancloud_visitors" data-flag-title="使用Python为Walkman生成歌单文件(.M3U8)">
 			<em class="post-meta-item-text">阅读量：</em>
@@ -313,7 +313,80 @@ m3uGen(name)
 <li><code>fmList</code>中预存了一些音乐文件的格式，如果还有其他格式，添加进去即可。</li>
 </ul>
 <p>若你有其他的生成歌单的方式，欢迎在评论区一起讨论。</p>
+<p><em>2020.7.10更新</em></p>
+<pre><code>import os
 
+rootpath = r&#39;G:\MUSIC&#39;
+tarPath = r&#39;G:\MUSIC\【欧美】&#39;
+name = &quot;00.ALL&quot;
+fmList = [&#39;.flac&#39;, &#39;.mp3&#39;, &#39;.m4a&#39;, &#39;.wav&#39;, &#39;.dsf&#39;, &#39;.ape&#39;, &#39;.FLAC&#39;, &#39;.WAV&#39;, &#39;.DSF&#39;, &#39;.APE&#39;]
+mList = []
+sList = []
+
+# 遍历歌曲文件夹
+def walkDir(tarPath, rootpath=rootpath):
+    global mList
+    tpList = os.listdir(tarPath)
+    for each in tpList:
+        if os.path.isdir(tarPath+&#39;\\&#39;+each):
+            walkDir(tarPath+&#39;\\&#39;+each)
+        else:
+            mList.append((tarPath.lstrip(rootpath)+&#39;/&#39;+each).replace(&#39;\\&#39;, &#39;/&#39;))
+
+# 生成歌单
+def m3uGen(title):
+    global mList
+    print(&quot;正在生成歌单：{}......&quot;.format(title))
+    with open(&#39;{}.M3U8&#39;.format(title), &#39;w+&#39;, encoding=&#39;utf-8&#39;) as f:
+        f.write(&#39;#EXTM3U\n&#39;)
+        for each in mList:
+            if os.path.splitext(each)[1] in fmList:
+                f.write(&#39;#EXTINF:,\n&#39;+each+&#39;\n&#39;)
+    print(&quot;{}歌单共含歌曲{}首。&quot;.format(title, len(mList)))
+    mList = []
+
+# 歌单去重并排序
+def ManM3u(m3u):
+    global mList, sList
+    sList = []
+    title = m3u.split(&#39;\\&#39;)[-1].strip(&#39;.M3U8&#39;)
+    print(&quot;正在整理歌单{}......&quot;.format(title))
+    with open(m3u, &#39;r&#39;, encoding=&#39;utf-8&#39;) as f:
+        for each in f:
+            each = each.strip(&#39;\n&#39;)
+            if each == &#39;#EXTM3U&#39; or each==&#39;#EXTINF:,&#39;:
+                continue
+            if each not in sList:
+                sList.append(each)
+    mList = sorted(sList)
+    m3uGen(title)
+
+#创建一个歌单
+def CreateM(title, path):
+    walkDir(path)
+    m3uGen(title)
+
+#（自用函数，无视即可）
+def Init():
+    os.chdir(rootpath)
+    tarDict = {
+        &#39;06.华语&#39;: r&#39;G:\MUSIC\【华语】&#39;,
+        &#39;07.欧美&#39;: r&#39;G:\MUSIC\【欧美】&#39;,
+        &#39;08.日韩&#39;: r&#39;G:\MUSIC\【日韩】&#39;,
+        &#39;05.动漫&#39;: r&#39;G:\MUSIC\【日韩】\【动漫】&#39;,
+        &#39;周杰伦&#39;: r&#39;G:\MUSIC\【华语】\【周杰伦】&#39;,
+        &#39;LiSA&#39;: r&#39;G:\MUSIC\【日韩】\【LiSA】&#39;,
+        &#39;鹿乃&#39;: r&#39;G:\MUSIC\【日韩】\【鹿乃】&#39;
+    }
+    for each in tarDict.keys():
+        walkDir(tarDict[each])
+        m3uGen(each)
+    for each in os.listdir(rootpath):
+        if &#39;M3U8&#39; in each:
+            ManM3u(rootpath+&#39;\\&#39;+each)
+
+#Init()
+</code></pre>
   </article>
 
   <div class="nexmoe-post-meta">
@@ -358,7 +431,7 @@ m3uGen(name)
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1588132533619"></script>-->
+<!--<script src="/js/app.js?v=1594371422226"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
