@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1595479068200">
+  <link rel="stylesheet" href="/css/style.css?v=1595817282359">
 
   
 <meta name="generator" content="Hexo 4.2.0"></head>
@@ -580,6 +580,64 @@ p\geq 1，发散
 <li>条件收敛的级数的所有正项(负项)构成的级数一定发散。</li>
 </ul>
 </li>
+<li><p><strong>幂级数</strong></p>
+<ul>
+<li><em>收敛半径</em><ul>
+<li>如果$\displaystyle \lim_{n-&gt;\infty}|\frac{a_{n+1}}{an}|=\rho ，则R=\frac{1}{\rho}$ </li>
+<li>如果$\displaystyle \sqrt[n]{|a_n|}=\rho ，则R=\frac{1}{\rho}$ </li>
+</ul>
+</li>
+<li><em>常用展开式</em><ul>
+<li>$\frac{1}{1-x}=\displaystyle \sum_{n=0}^{\infty}x^n &emsp;(-1&lt;x&lt;1)$</li>
+<li>$\frac{1}{1+x}=\displaystyle \sum_{n=0}^{\infty}(-1)^n x^n &emsp;(-1&lt;x&lt;1)$</li>
+<li>$e^x=\displaystyle \sum_{n=0}^{\infty}\frac{x^n}{n!} &emsp;(-\infty &lt;x&lt;+\infty )$</li>
+<li>$\sin x=\displaystyle \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!} &emsp;(-\infty &lt;x&lt;+\infty )$</li>
+<li>$\cos x=\displaystyle \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!} &emsp;(-\infty &lt;x&lt;+\infty )$</li>
+<li>$\ln(1+x)=\displaystyle \sum_{n=0}^{\infty}\frac{(-1)^{n-1}x^n}{n} &emsp;(-1&lt;x\leq 1)$</li>
+<li>$(1+x)^a=\displaystyle \sum_{n=0}^{\infty}\frac{a(a-1)…(a-n+1)}{n!}x^n &emsp;(-1&lt;x&lt;1)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>傅里叶级数</strong><br>  设函数$f(x)$是周期为$2\pi$的周期函数，且在$[-\pi, \pi]$上可积，则称</p>
+<script type="math/tex; mode=display">a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nxdx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nxdx，n=1,2,...</script><p>  为$f(x)$的傅里叶系数，称级数$\frac{a_0}{2}+\displaystyle \sum_{n=1}^{\infty}(a_n\cos nx+ b_n\sin nx)$为$f(x)$以$2\pi$为周期的傅里叶级数。</p>
+<ul>
+<li><em>收敛定理</em>：设$f(x)$在$[-\pi, \pi]$上连续或只有有限个第一类间断点，且最多只有有限个极值点，则$f(x)$的傅里叶级数在$[-\pi, \pi]$上处处收敛，且收敛于<ul>
+<li>$S(x)=f(x)$，当x为$f(x)$的连续点</li>
+<li>$S(X)=\frac{f(x^-)+f(x^+)}{2}$，当x为$f(x)$的间断点</li>
+<li>$S(x)=\frac{f({(-\pi)}^+)+f(\pi ^-)}{2}$，当$x=\pm \pi$</li>
+</ul>
+</li>
+<li><em>周期为$2\pi$的函数的展开</em><ul>
+<li>$[-\pi, \pi]$上展开<script type="math/tex; mode=display">a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nxdx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nxdx，n=1,2,...</script></li>
+<li>$[-\pi, \pi]$上奇偶函数的展开<ul>
+<li>$f(x)$为奇函数<script type="math/tex; mode=display">a_n=0，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin nxdx，n=1,2,...</script></li>
+<li>$f(x)$为偶函数<script type="math/tex; mode=display">a_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos nxdx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=0，n=1,2,...</script></li>
+</ul>
+</li>
+<li>$在[0, \pi]$上展为正弦或展为余弦<ul>
+<li>展为正弦<script type="math/tex; mode=display">a_n=0，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin nxdx，n=1,2,...</script></li>
+<li>展为余弦<script type="math/tex; mode=display">a_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos nxdx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=0，n=1,2,...</script></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>周期为2l的函数的展开</em><ul>
+<li>$[-l, l]$上展开<script type="math/tex; mode=display">a_n=\frac{1}{l}\int_{-l}^{l}f(x)\cos \frac{n\pi x}{l}dx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{1}{l}\int_{-l}^{l}f(x)\sin \frac{n\pi x}{l}dx，n=1,2,...</script></li>
+<li>$[-l, l]$上奇偶函数的展开<ul>
+<li>$f(x)$为奇函数<script type="math/tex; mode=display">a_n=0，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{2}{l}\int_{0}^{l}f(x)\sin \frac{n\pi x}{l}dx，n=1,2,...</script></li>
+<li>$f(x)$为偶函数<script type="math/tex; mode=display">a_n=\frac{2}{l}\int_{0}^{l}f(x)\cos \frac{n\pi x}{l}dx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=0，n=1,2,...</script></li>
+</ul>
+</li>
+<li>$在[0, l]$上展为正弦或展为余弦<ul>
+<li>展为正弦<script type="math/tex; mode=display">a_n=0，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=\frac{2}{l}\int_{0}^{l}f(x)\sin \frac{n\pi x}{l}dx，n=1,2,...</script></li>
+<li>展为余弦<script type="math/tex; mode=display">a_n=\frac{2}{l}\int_{0}^{l}f(x)\cos \frac{n\pi x}{l}dx，n=0,1,2,...</script><script type="math/tex; mode=display">b_n=0，n=1,2,...</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   </article>
@@ -626,7 +684,7 @@ p\geq 1，发散
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1595479068205"></script>-->
+<!--<script src="/js/app.js?v=1595817282367"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
