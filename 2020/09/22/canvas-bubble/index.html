@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>canvas-bubble - Chise | blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="chise的个人博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="r5dcqoXwCl" />
+
+  <link rel="shortcut icon" href="/image/favicon.ico" type="image/png" />
+  <meta name="description" content="效果预览">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas-bubble">
+<meta property="og:url" content="https://chiselee.cn/2020/09/22/canvas-bubble/index.html">
+<meta property="og:site_name" content="Chise | blog">
+<meta property="og:description" content="效果预览">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chiselee.cn/2020/09/22/canvas-bubble/ex.gif">
+<meta property="article:published_time" content="2020-09-22T05:22:02.000Z">
+<meta property="article:modified_time" content="2020-09-22T05:22:02.000Z">
+<meta property="article:author" content="Chise Lee">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chiselee.cn/2020/09/22/canvas-bubble/ex.gif">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1600752641574">
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/image/bj.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Chise Lee" class="mdui-btn mdui-btn-icon"><img src="/image/avatar.png" alt="Chise Lee"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Chise Lee">
+            <img src="/image/avatar.png" alt="Chise Lee" alt="Chise Lee">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>40</div>
+        <div><span>标签</span>24</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friLink.html" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="https://www.jianshu.com/u/f976c92bdc7e" target="_blank" rel="noopener" title="我的简书">
+            <i class="mdui-list-item-icon nexmoefont icon"></i>
+            <div class="mdui-list-item-content">
+                我的简书
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">社交按钮</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/13744598" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/ChiseLee" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/css/">css</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/html/">html</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/javascript/">javascript</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/php/">php</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/python/">python</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/web/">web</a>
+          <span class="category-list-count">11</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客相关/">博客相关</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/数据结构/">数据结构</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/随笔/">随笔</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签云</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/android/" style="font-size: 11.67px;">android</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/gitee/" style="font-size: 10px;">gitee</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/python/" style="font-size: 18.33px;">python</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/xampp/" style="font-size: 10px;">xampp</a> <a href="/tags/%E5%8A%A8%E6%BC%AB/" style="font-size: 10px;">动漫</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 16.67px;">学习笔记</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 13.33px;">生活</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+    
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Chise Lee
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 65.10297482837528%;"> 
+          <img data-src="/image/cco.jpg" data-sizes="auto" alt="canvas-bubble" class="lazyload">
+          <h1>canvas-bubble</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年09月22日</a>
+    <a><i class="nexmoefont icon-areachart"></i>264 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+	<a>
+		<span id="/2020/09/22/canvas-bubble/" class="leancloud_visitors" data-flag-title="canvas-bubble">
+			<em class="post-meta-item-text">阅读量：</em>
+			<i class="leancloud-visitors-count">loading...</i>
+		</span>
+	</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.</span> <span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码"><span class="toc-number">2.</span> <span class="toc-text">完整代码</span></a></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><a id="more"></a>
+<p><img data-sizes="auto" data-src="/2020/09/22/canvas-bubble/ex.gif" alt="ex.gif" class="lazyload"></p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;title&gt;气泡效果&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;canvas&gt;&lt;/canvas&gt;
+    &lt;/body&gt;
+    &lt;script&gt;
+        class Circle{
+            constructor(color, radius, v, angle, x, y){
+                this.color = color;
+                this.radius = radius;
+                this.v = v;
+                this.angle = angle;
+                this.x = x;
+                this.y = y;
+            }
+
+            draw(ctx){
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+                ctx.closePath();
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function rColor(){
+            let r = 255*Math.random();
+            let g = 255*Math.random();
+            let b = 255*Math.random();
+            let o = Math.random();
+            return &#39;rgba(&#39; + r + &#39;,&#39;+ g + &#39;,&#39;+ b + &#39;,&#39;+ o + &#39;)&#39;;
+        }
+
+        function draw(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            for(let i=0; i&lt;NUM; i++){
+                arr[i].x += arr[i].v*Math.cos(arr[i].angle);
+                arr[i].y += arr[i].v*Math.sin(arr[i].angle);
+                arr[i].draw(ctx);
+            }
+            setTimeout(draw, 50);
+        }
+
+        let arr = [];
+        const NUM = 1000;
+        let centerX, centerY;
+        const canvas = document.querySelector(&#39;canvas&#39;);
+        const ctx = canvas.getContext(&#39;2d&#39;);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        centerX = canvas.width/2;
+        centerY = canvas.height/2;
+        for(let i=0; i&lt;NUM; i++){
+            arr.push(new Circle(rColor(),10*Math.random()+1,5*Math.random()+1,360*Math.random(),centerX,centerY));
+        }
+
+        draw();
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre><p>欢迎讨论。</p>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/javascript/">javascript</a><a class="nexmoefont icon-appstore-fill -link" href="/categories/web/">web</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/js/" rel="tag">js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/web/" rel="tag">web</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>Chise Lee<br>
+    <strong>本文链接：</strong><a href="https://chiselee.cn/2020/09/22/canvas-bubble/" title="https:&#x2F;&#x2F;chiselee.cn&#x2F;2020&#x2F;09&#x2F;22&#x2F;canvas-bubble&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;chiselee.cn&#x2F;2020&#x2F;09&#x2F;22&#x2F;canvas-bubble&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: '9wAnPRfMTsq7hIs3YLgjAzod-gzGzoHsz',
+        appKey: 'uEqf81dDRw3IOYVG0PmWAPiJ',
+		visitor: 'true',
+		placeholder: '说点什么吧~'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1600752641577"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
